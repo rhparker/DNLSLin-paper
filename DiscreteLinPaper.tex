@@ -142,8 +142,8 @@ where $G(W_i^\pm(n)) = \mathcal{O}(|W_i^\pm|^2)$ with $G(0) = 0$ and $DG(0) = 0$
 D_U F(T(\theta)Q(n)) = T(\theta) D_U F(Q(n))T(\theta)^{-1}
 \end{equation}
 which is obtained by differentiating the symmetry relation $F(T(\theta)U) = T(\theta)F(U)$ with respect to $U$. Finally, let
-\begin{align}\label{defDi}
-d_i &= T(\theta_{i+1}) Q(-N_i^-) - T(\theta_i) Q(N_i^+) \label{didef}
+\begin{align} \label{didef}
+d_i &= T(\theta_{i+1}) Q(-N_i^-) - T(\theta_i) Q(N_i^+)
 \end{align}
 Substituting these into \eqref{Usystem}, we obtain the following system of equations for the piecewise function $W_i^\pm$.
 \begin{align}
@@ -1197,11 +1197,11 @@ Combining all of these gives us the second estimate in \eqref{Westimates}. For t
 
 \subsection{Setup}
 
-To prove the stability theorem, we will also use Lin's method. As in San98, we will write the eigenfunction as a piecewise perturbation of the symmetry eigenfunction $S_1(n)$. 
+To prove the stability theorem, we will also use Lin's method. As in \cite{Sandstede1998}, we will write the eigenfunction as a piecewise perturbation of the kernel eigenfunction $S_1(n)$. 
 
 Assume Hypothesis \ref{initialhyp} and Hypothesis \ref{intersectionhyp}(ii). Using Theorem \ref{ntmulti}, let $Q_m(n)$ be an $m-$pulse solution to \eqref{diffeq} which resembles $m$ copies of the primary pulse solution $Q_1(n)$. We write $Q_m(n)$ piecewise as in \eqref{qmpiecewise}, and we have the following bounds from Theorem \ref{ntmulti}.
 \begin{enumerate}[(i)]
-\item $Q_1(n) = \mathcal{O}(r^n)$
+\item $Q_1(n) = \mathcal{O}(r^|n|)$
 \item $||\tilde{Q}|| \leq C r^N$
 \item $|\tilde{Q}_{i+1}^-(-N_i^-) - T(\theta_i) Q_1(N_i^+)|| \leq C r^{2N}$ 
 \item $|\tilde{Q}_i^+(N_i^+) - T(\theta_{i+1}) Q_1(-N_i^-)|| \leq C r^{2N}$
@@ -1211,97 +1211,71 @@ Recall that the eigenvalue problem is given by
 \begin{align*}
 V(n+1) = DF(Q_m(n)) V(n) + \lambda B V(n)
 \end{align*}
-Let $S_m(n) = S Q_m(n)$, where $S$ is the infinitesimal generator of the symmetry $T(\theta)$. Then $S_m(n)$ solves the equation
+Let $S_m(n) = T'(0) Q_m(n)$, where $T'(0)$ is the infinitesimal generator of the symmetry $T(\theta)$. Then $S_m(n)$ solves the equation
 \begin{equation}\label{Smsolves}
 S_m(n+1) = A(Q_m(n))S_m(n)
 \end{equation}
 Using the piecewise form of $Q_m(n)$ from \eqref{qmpiecewise}, we can write $S_m(n)$ piecewise as 
 \begin{equation}\label{Smdef}
-S_m(n) = S T(\theta_i) Q(n) + S \tilde{Q}_i^\pm(n)
+S_m(n) = T'(0) T(\theta_i) Q(n) + T'(0) \tilde{Q}_i^\pm(n)
 = T(\theta_i) S_1(n) + \tilde{S}_i^\pm(n)
 \end{equation}
-where we use the fact that $S$ commutes with $T(\theta)$. Since $S$ is a bounded matrix, bounds from Theorem \ref{ntmulti} apply to $S_m(n)$ as well.
+since $T'(0)$ commutes with $T(\theta)$. Since $S$ is a bounded matrix, the bounds from Theorem \ref{ntmulti} apply to $S_m(n)$ as well.
 
-As in San98, we will take a piecewise ansatz for the eigenfunction $V(n)$. The form of the ansatz will depend on whether we take Hypothesis \ref{melnikovhyp}(i) or \ref{melnikovhyp}(ii). For Hypothesis \ref{melnikovhyp}(i), we use the piecewise ansatz
+As in \cite{Sandstede1998}, we will take a piecewise ansatz for the eigenfunction $V(n)$. The form of the ansatz will depend on whether we take Hypothesis \ref{melnikovhyp}(i) or \ref{melnikovhyp}(ii). For Hypothesis \ref{melnikovhyp}(i), we use the piecewise ansatz
 \begin{align*}
 V_i^\pm(n) &= d_i S_m(n) + W_i^\pm(n) = d_i ( T(\theta_i) S_1(n) + \tilde{S}_i^\pm(n) ) + W_i^\pm(n)
 && i = 1, \dots, n-1
 \end{align*}
 where $d_i \in \C$. Substituting this into \eqref{latticeEVP} and simplifying, the eigenvalue problem becomes
 \begin{equation}\label{EVPhypi}
-W_i^\pm(n) = DF(Q_m(n)) W_i^\pm(n) + \lambda B W_i^\pm(n) + \lambda d_i B T(\theta_i) S_1(n) + \lambda d_i B \tilde{S}_i^\pm(n)
+W_i^\pm(n) = DF(Q_m(n)) W_i^\pm(n) + \lambda B W_i^\pm(n) + \lambda d_i B ( T(\theta_i) S_1(n) + \tilde{S}_i^\pm(n))
 \end{equation}
 
-If instead Hypothesis \ref{melnikovhyp}(ii) holds, recall that there exists a localized function $T_1(n)$ such that 
+If Hypothesis \ref{melnikovhyp}(ii) holds, we will need a different ansatz. Recall that there exists a localized function $T_1(n)$ such that 
 \begin{equation}\label{T1vareq}
 T_1(n+1) = DF(Q(n)) T_1(n) + B S_1(n)
 \end{equation}
-Using the symmetry relation $F(T(\theta)U) = T(\theta)F(U)$ and the commuting relation $B T(\theta) = T(\theta)B$ from Hypothesis \ref{melnikovhyp}(ii), this we also have
+Using the symmetry relation $F(T(\theta)U) = T(\theta)F(U)$ and the commuting relation $B T(\theta) = T(\theta)B$ from Hypothesis \ref{melnikovhyp}(ii), we also have
 \begin{equation}\label{TthetaT1vareq}
 T(\theta)T_1(n+1) = DF(T(\theta)Q(n)) T(\theta)T_1(n) + B T(\theta) S_1(n)
 \end{equation}
-Similarly, by the Fredholm alternative, there exists a function $T_m(n)$ such that 
+
+Using Lin's method, we can find a function $T_m(n)$ such that
 \begin{equation}\label{Tmsolves}
 T_m(n+1) = DF(Q_m(n)) T_m(n) + B S_m(n)
 \end{equation}
-In this case, we use the piecewise ansatz
-\begin{equation}\label{Viansatz2}
-V_i^\pm(n) = 
-d_i [ S_m(n) + \lambda T_m(n) ] + W_i^\pm(n)
-\end{equation}
-Substituting this into \eqref{latticeEVP}, we get
-\begin{align*}
-d_i &S_m(n+1) + d_i \lambda T_m(n+1) + W_i^\pm(n+1) \\
-&= d_i DF(Q_m(n)) S_m(n) + d_i \lambda DF(Q_m(n)) T_m(n) + DF(Q_m(n)) W_i^\pm(n) \\
-&+ d_i \lambda B S_m + d_i \lambda^2 B T_m(n) + \lambda B W_i^\pm(n)
-\end{align*}
-Using equations \eqref{Smsolves} and \eqref{Tmsolves}, this simplifies to
-\begin{align*}
-W_i^\pm(n+1)
-&= DF(Q_m(n)) W_i^\pm(n) + \lambda B W_i^\pm(n) + d_i \lambda^2 B T_m(n)
-\end{align*}
-Let
-\begin{equation}
-G_i^\pm(n) = DF(Q_m(n)) - DF(T(\theta_i) Q(n) )
-\end{equation}
-From the bounds above, $|G_i^\pm| \leq C r^N$. Adding and subtracting $DF(T(\theta_i) Q(n) )$, the eigenvalue problem becomes
-\begin{align}\label{Weq1}
-W_i^\pm(n+1)
-&= DF(T(\theta_i) Q(n) ) W_i^\pm(n) + G_i^\pm(n)W_i^\pm(n) + \lambda B W_i^\pm(n) + d_i \lambda^2 B T_m(n)
-\end{align}
-
-Since the cases for Hypotheses \ref{melnikovhyp}(i) and \ref{melnikovhyp}(ii) are similar, we will only prove one of them. Since Hypothesis \ref{melnikovhyp}(ii) holds for dNLS, we will choose to prove that case. For convenience, let
-\begin{align*}
-\tilde{H}_i^\pm(n) &= B T_m(n) \\
-H_i(n) &= B T(\theta_i) T_1(n)
-\end{align*}
-Making this substitution, \eqref{Weq1} becomes
-\begin{equation}\label{Weq2}
-W_i^\pm(n) = DF(T(\theta_i) Q(n) ) W_i^\pm(n) + (G_i^\pm(n) + \lambda B) W_i^\pm(n) + \lambda^2 d_i B \tilde{H}_i^\pm(n)
-\end{equation}
-
-Before we continue, we would like to write $T_m(n)$ as a piecewise perturbation of $T_1(n)$ in a similar fashion to \eqref{qmpiecewise}. To do this, we take the piecewise ansatz 
+Specifically, we make the piecewise ansatz 
 \begin{equation}\label{Tmansatz}
 T_m(n) = T(\theta)T_1(n) + \tilde{T}_i^\pm(n)
 \end{equation}
-using the same intervals as \eqref{qmpiecewise}. Substituting \eqref{Tmansatz} and \eqref{Smdef} into \eqref{Tmsolves}, we have
-\begin{align*}
-T(\theta)&T_1(n+1) + \tilde{T}_i^\pm(n+1) = DF(Q_m(n)) (T(\theta)T_1(n) + \tilde{T}_i^\pm(n)) + B (T(\theta)S_1(n) + \tilde{S}_i^\pm(n)) \\
-&= DF(T(\theta)Q(n)) T(\theta)T_1(n) + DF(T(\theta)Q(n)) \tilde{T}_i^\pm(n) \\
-&+ G_i^\pm(n)(T(\theta)T_1(n) + \tilde{T}_i^\pm(n)) + B T(\theta)S_1(n) + B \tilde{S}_i^\pm(n)
-\end{align*}
-Using equation \eqref{TthetaT1vareq}, this simplifies to
+using the same intervals as \eqref{qmpiecewise}. Substituting \eqref{Tmansatz} and \eqref{Smdef} into \eqref{Tmsolves}, using equation \eqref{TthetaT1vareq}, and simplifying, we obtain the equation
 \begin{align*}
 \tilde{T}_i^\pm(n+1) 
 &= DF(T(\theta)Q(n)) \tilde{T}_i^\pm(n)
 + G_i^\pm(n) \tilde{T}_i^\pm(n) + G_i^\pm(n) T(\theta)T_1(n) + B \tilde{S}_i^\pm(n)
 \end{align*}
-We can use Lin's method to solve for $\tilde{T}_i^\pm(n+1)$. Since this is similar to what we did in the existence problem, the details will be omitted. Using Lin's method, we conclude that
+together with the appropriate matching conditions, which we can solve using Lin's method. Since this is similar to the existence problem, the details will be omitted. After going through the steps of Lin's method, we obtain the remainder boun
 \begin{equation}\label{Tipmbound}
 || \tilde{T}_i^\pm || \leq C r^{-N}
 \end{equation}
 
-Since solving the $2m$ equations \eqref{Weq2} gives us a piecewise solution, in order to have an eigenfunction we need to satisfy matching conditions at $n = \pm N_i$ and $n = 0$. Adding these conditions and using the expression \eqref{Tmansatz} for $T_m(n)$, we obtain the system of equations
+For this case, we use the piecewise ansatz
+\begin{equation}\label{Viansatz2}
+V_i^\pm(n) = 
+d_i [ S_m(n) + \lambda T_m(n) ] + W_i^\pm(n)
+\end{equation}
+Substituting this into \eqref{latticeEVP}, and simplifying by using \eqref{Smsolves} and \eqref{Tmsolves}, the eigenvalue problem becomes
+\begin{align}\label{Weq1}
+W_i^\pm(n+1)
+&= DF(T(\theta_i) Q(n) ) W_i^\pm(n) + G_i^\pm(n)W_i^\pm(n) + \lambda B W_i^\pm(n) + d_i \lambda^2 B T_m(n)
+\end{align}
+where
+\begin{equation}
+G_i^\pm(n) = DF(Q_m(n)) - DF(T(\theta_i) Q(n) )
+\end{equation}
+
+Since the cases for Hypotheses \ref{melnikovhyp}(i) and \ref{melnikovhyp}(ii) are similar, we will only prove one of them. Since Hypothesis \ref{melnikovhyp}(ii) holds for dNLS, we will do the proof for that case. In addition to solving \eqref{Weq1}, in order to have an eigenfunction we need to satisfy matching conditions at $n = \pm N_i$ and $n = 0$. Thus the system of equations we need to solve is
 \begin{align*}
 W_i^\pm(n) &= DF(T(\theta_i) Q(n) ) W_i^\pm(n) + (G_i^\pm(n) + \lambda B) W_i^\pm(n) + \lambda^2 d_i B \tilde{H}_i^\pm(n) \\
 W_i^+(N_i^+) - W_{i+1}^-(-N_i^-) &= D_i d \\
@@ -1313,11 +1287,13 @@ where
 D_i d &= [ T(\theta_{i+1}) S_1(-N_i^-) + \tilde{S}_{i+1}^-(-N_i^-)] d_{i+1}
 - [ T(\theta_i) S_1(N_i^+) + \tilde{S}_i^+(N_i^+)] d_i \\
 &+ \lambda[ T(\theta_{i+1}) T_1(-N_i^-) + \tilde{T}_{i+1}^-(-N_i^-)] d_{i+1}
-- \lambda[ T(\theta_i) T_1(N_i^+) + \tilde{T}_i^+(N_i^+)] d_i 
+- \lambda[ T(\theta_i) T_1(N_i^+) + \tilde{T}_i^+(N_i^+)] d_i \\
+\tilde{H}_i^\pm(n) &= T_m(n) \\
+H_i(n) &= T(\theta_i) T_1(n)
 \end{align*}
-and the third expression comes from the decomposition \eqref{nontdecompT} and the fact that perturbations in the direction of $T(\theta_i)S_1(0)$ and handled by the $d_i S_m(n) = d_i S_1(n) + d_i \tilde{S}_i^\pm(n)$ term in \eqref{Viansatz2}.
+and the third expression comes from the decomposition \eqref{nontdecompT} and the fact that perturbations in the direction of $T(\theta_i)S_1(0)$ are handled by the $d_i S_m(n) = d_i S_1(n) + d_i \tilde{S}_i^\pm(n)$ term in \eqref{Viansatz2}.
 
-Instead of solving this system, we will solve the system
+Following \cite{Sandstede1998}, instead of solving this system, we will solve the system
 \begin{align}
 W_i^\pm(n) &= DF(T(\theta_i) Q(n) ) W_i^\pm(n) + (G_i^\pm(n) + \lambda B) W_i^\pm(n) + \lambda^2 d_i B \tilde{H}_i^\pm(n) \label{eigsystem1} \\
 W_i^+(N_i^+) - W_{i+1}^-(-N_i^-) &= D_i d \label{eigsystem2} \\
@@ -1334,12 +1310,13 @@ Using the bounds above, we have the estimates
 ||G_i^\pm|| &\leq C r^N \\
 ||\tilde{H}_i^\pm - H|| &\leq C r^N \\
 D_i d &= [ T(\theta_{i+1}) S_1(-N_i^-) + T(\theta_i) S_1(N_i^+) ] d_{i+1}
-- [ T(\theta_i) S_1(N_i^+) + T(\theta_{i+1}) S_1(-N_i^-) ] d_i 
-+\mathcal{O}(r^N( |\lambda| + r^N))
+- [ T(\theta_i) S_1(N_i^+) + T(\theta_{i+1}) S_1(-N_i^-) ] d_i \\
+&+\mathcal{O}(r^N( |\lambda| + r^N))
 \end{align*}
 
 \subsection{Fixed point formulation}
-As in San98, we write \eqref{eigsystem1} as a fixed point problem using the exponential dichotomy from Lemma \ref{dichotomy}. Let $\delta > 0$ be small, and choose $N$ sufficiently large so that $r^N < \delta$. Define the family of evolution operators $\Phi(m, n; \theta_i)$ as in the existence problem. Define the spaces
+
+As in \cite{Sandstede1998}, we write \eqref{eigsystem1} as a fixed point problem using the exponential dichotomy from Lemma \ref{dichotomy}. Let $\delta > 0$ be small, and choose $N$ sufficiently large so that $r^N < \delta$. Define the family of evolution operators $\Phi(m, n; \theta_i)$ as in the existence problem. Define the spaces
 
 \begin{align*}
 V_W &= l^\infty([-N_{i-1}, 0]) \oplus l^\infty([0, N_i])  \\
