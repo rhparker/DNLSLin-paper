@@ -377,7 +377,7 @@ We will now show existence of multi-pulse solutions. These resemble multiple, we
 \end{equation}
 The symmetry group is $G = (\{1, -1\}, \cdot)$, and the group action on $l^\infty(\Z)$ is $g(\theta) = \theta$, i.e. multiplication by $\theta$. Thus Hypothesis \eqref{symmetryhyp}(i) is satisfied.
 
-To write this as a first order system, let $\tilde{u}_n = u_{n-1}$. Then for $\epsilon > 0$, \eqref{dNLSequilibreal} is equivalent to the difference equation in $\R^2$
+To write the stationary equation as a first order system, let $\tilde{u}_n = u_{n-1}$. Then for $\epsilon > 0$, \eqref{dNLSequilibreal} is equivalent to the difference equation in $\R^2$
 \begin{equation}\label{dnlsdiffR2}
 \begin{pmatrix}
 u \\ \tilde{u}
@@ -415,16 +415,7 @@ We will now show that (up to rotation), there are no other multi-pulse soliton s
 
 Since we are now considering complex-valued solutions to \eqref{dNLSequilib}, the symmetry group is $G = (\R, +)$, and the group action on $l^\infty(\C)$ is $g(\theta)u(n) = e^{i \theta}u(n)$, i.e. rotation by $\theta$. Thus Hypothesis \ref{symmetryhyp}(ii) is satisfied.
 
-Next, we write dNLS as a two-dimensional system in real variables. Substituting $u = v + i w$ into equation \eqref{dNLSrot} and equating real and imaginary parts, we obtain the equivalent equation
-\begin{equation}\label{dNLSreal}
-\begin{aligned}
-\dot{v}_n  &+ \epsilon (w_{n+1} - 2 w_n + w_{n-1}) - \omega w_n + v_n^2 w_n + w_n^3 = 0 \\
--\dot{w}_n &+ \epsilon (v_{n+1} - 2 v_n + v_{n-1}) - \omega v_n + v_n w_n^2 + v_n^3 = 0
-\end{aligned}
-\end{equation}
-where $v, w \in l^\infty(\R)$. 
-
-Let $\tilde{v}_n = v_{n-1}$ and $\tilde{w}_n = w_{n-1}$. Then stationary solutions to \eqref{dNLSreal} satisfy the difference equation 
+To write the stationary equation as a first order system, we first take $u = v + i w$, with $v$ and $w$ real, which gives us equation \eqref{dNLSreal}. Next, let $\tilde{v}_n = v_{n-1}$ and $\tilde{w}_n = w_{n-1}$. For $\epsilon > 0$, this gives us the first order difference equation 
 \begin{equation}\label{dnlsdiffR4}
 U(n+1) = F(U(n))
 \end{equation}
@@ -447,7 +438,7 @@ v \\ \tilde{v} \\ w \\ \tilde{w}
 v w^2 + v^3 \\ 0 \\ v^2 w + w^3 \\ 0
 \end{pmatrix}
 \end{equation}
-We have again separated the RHS into linear and nonlinear parts, so that the RHS is of the for $F(U) = DF(0) U + G(U)$. The rest state $U(n) = 0$ is an equilibrium solution. The symmetry group $G$ acts on $\R^4$ via $T(\theta)$, where
+The rest state $U(n) = 0$ is an equilibrium solution. The symmetry group $G$ acts on $\R^4$ via $T(\theta)$, where
 \begin{align}\label{TdNLS}
 T(\theta) =
 \begin{pmatrix}
@@ -457,9 +448,9 @@ T(\theta) =
 0 & \sin\theta & 0 & \cos\theta 
 \end{pmatrix}
 \end{align}
-$T(\theta)$ has infinitesimal generator $S$, which is given by
+$T(\theta)$ has infinitesimal generator $T'(0)$, which is given by
 \begin{align}\label{dnlsSgen}
-S =
+T'(0) =
 \begin{pmatrix}
 0 & 0 &-1 & 0 \\
 0 & 0 & 0 &-1 \\
@@ -468,7 +459,7 @@ S =
 \end{pmatrix}
 \end{align}
 
-For $\epsilon, \omega > 0$, $DF(0)$ has eigenvalues $\{r, 1/r\}$, each of which has multiplicity 2, since $DF(0)$ is block diagonal with two identical blocks; the constant $r$ is the same as in the previous section, and is defined in equation \eqref{defr}. Thus $DF(0)$ is hyperbolic with 2-dimensional stable and unstable manifolds. Let $q(n)$ be the real-valued on-site, primary pulse solution to \eqref{dNLSequilib}. Then the primary pulse solution to \eqref{dnlsdiffR4} is given by $Q(n) = (q(n), \tilde{q}(n), 0, 0)$.Thus Hypothesis \ref{initialhyp} is satisfied.
+For $\epsilon, \omega > 0$, $DF(0)$ has eigenvalues $\{r, 1/r\}$, each of which has multiplicity 2; the constant $r$ is defined in equation \eqref{defr} in the previous section. Thus $DF(0)$ is hyperbolic and has 2-dimensional stable and unstable manifolds. Let $q(n)$ be the real-valued on-site, primary pulse solution to \eqref{dNLSequilib}. Then the primary pulse solution to \eqref{dnlsdiffR4} is given by $Q(n) = (q(n), \tilde{q}(n), 0, 0)$. Thus Hypothesis \ref{initialhyp} is satisfied.
 
 The variational and adjoint variational equations associated with \eqref{dnlsdiffR4} and $Q(n)$ are
 \begin{align}
@@ -487,40 +478,26 @@ A(n; 0) = D_U F(Q(n)) =
 \end{equation}
 Let 
 \begin{equation}\label{defS1}
-S_1(n) = S Q(n) = (0, 0, q(n), \tilde{q}(n))
+S_1(n) = T'(0) Q(n) = (0, 0, q(n), \tilde{q}(n))
 \end{equation}. 
-We can verify that (as expected), $S_1(n)$ is a solution to the variational equation \eqref{vareqdNLS}. We assume (or know from, say, Kev09x) that there are no other linearly independent, bounded solutions to \eqref{vareqdNLS}, thus Hypothesis \ref{intersectionhyp} is satisfied. It follows the the adjoint variational equation \eqref{adjvareqdNLS} has a unique bounded solution $Z_1(n)$, and we can verify directly that
+We can verify that, as expected, $S_1(n)$ is a solution to the variational equation \eqref{vareqdNLS}. From [CITATION NEEDED], there are no other linearly independent, bounded solutions to \eqref{vareqdNLS}, thus Hypothesis \ref{intersectionhyp} is satisfied. It follows the the adjoint variational equation \eqref{adjvareqdNLS} has a unique bounded solution $Z_1(n)$, and we can verify directly that
 \begin{equation}\label{defZ1}
 Z_1(n) = (0, 0, -\tilde{q}(n), q(n))
 \end{equation}
 
-Using Theorem \ref{ntmulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $\epsilon$) there exist $m-$pulse solutions which can be written piecewise in the form  
-\begin{align*}
-Q_i^-(n) &= \theta_i Q(n) + W_i^-(n) && n \in [-N_{i-1}^-, 0] \\
-Q_i^+(n) &= \theta_i Q(n) + W_i^+(n) && n \in [0, N_i^+]
-\end{align*}
-if any only if the jump conditions
+Using Theorem \ref{ntmulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $\epsilon$) there exist $m-$pulse solutions for lengths $N_i^\pm$ and phase parameters $\theta_i$ if any only if the jump conditions
 \begin{align*}
 \xi_i = \langle T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) Q(-N_i^-) \rangle
 - \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) Q(N_{i-1}^+) \rangle + R_i
 \end{align*}
-are satisfied, where
-\[
-|R_i| \leq C r^{-3N}
-\]
-We note that the first inner product term is zero for $i = m$ and the second inner product term is 0 for $i = 1$.
-
-Using \eqref{TdNLS} and the fact that $T(\theta)$ is unitary, we can write the jump conditions as
-\begin{align*}
-\xi_i = \langle T(\theta_i - \theta_{i+1}) Z_1(N_i^+), Q(-N_i^-) \rangle
-- \langle T(\theta_i - \theta_{i-1}) Z_1(-N_{i-1}^-), Q(N_{i-1}^+) \rangle + R_i
-\end{align*}
-It is natural to write these in terms of the $m-1$ phase differences $\Delta \theta_i = \theta_{i+1} - \theta_i$, where $i = 1, \dots, m-1$. Thus the jump conditions can be written as
+are satisfied. Using \eqref{TdNLS} and the fact that $T(\theta)$ is unitary, we can write the jump conditions in terms of the $(m - 1)$ phase differences $\Delta \theta_i = \theta_{i+1} - \theta_i$ as
 \begin{align}\label{jumpDNLS}
 \xi_i = \langle T(-\Delta \theta_i) Z_1(N_i^+), Q(-N_i^-) \rangle
 - \langle T(\Delta \theta_{i-1}) Z_1(-N_{i-1}^-), Q(N_{i-1}^+) \rangle + R_i
 \end{align}
-Again, we note that the terms involving $\Delta \theta_0$ and $\Delta \theta_m$ are 0.
+where $\Delta \theta_0 = 0$ and $\Delta \theta_m = 0$.
+
+*** STOPPED HERE ***
 
 Next, we evaluate the inner product terms in \eqref{jumpDNLS}. For the first inner product term, we have
 \begin{align*}
