@@ -107,7 +107,6 @@ B =
 \end{pmatrix}
 \end{equation}
 
-
 \section{Main Theorems}
 
 \subsection{Setup}
@@ -233,7 +232,7 @@ W_i^\pm(0) \in T(\theta_i) Y^+ \oplus T(\theta_i) Y^- \oplus \R T(\theta_i) Z_1(
 We can now state the following theorems regarding existence of multi-pulse solutions to \eqref{diffeq}. Proofs of the theorems will follow in a later section. First, if Hypothesis \ref{symmetryhyp}(i) holds, we have a unique $m-$pulse solution to \eqref{diffeq}.
 
 \begin{theorem}\label{transversemulti}
-Assume Hypotheses \ref{symmetryhyp}(i), \ref{initialhyp}, and \ref{intersectionhyp}, and let $Q(n)$ be the primary pulse solution to \eqref{diffeq}. Then, for sufficiently large $N$, there exists a unique $m-$pulse solution $Q_m(n)$ to \eqref{diffeqm1} which can be written piecewise in the form \eqref{Upiecewise}. For the remainder terms $W_i^\pm(n)$ we have the following estimates
+Assume Hypotheses \ref{symmetryhyp}(i), \ref{initialhyp}, and \ref{intersectionhyp}, and let $Q(n)$ be the primary pulse solution to \eqref{diffeq}. Then, for sufficiently large $N$, there exists a unique $m-$pulse solution $Q_m(n)$ to \eqref{diffeq} which can be written piecewise in the form \eqref{Upiecewise}. For the remainder terms $W_i^\pm(n)$ we have the following estimates
 \begin{equation}\label{Westimates}
 \begin{aligned}
 ||W_i^\pm|| &\leq C r^{-N} \\
@@ -305,7 +304,7 @@ The following conditions...
 \end{enumerate}
 \end{lemma}
 
-We can now state the stability theorem, in which we locate the eigenvalues of \eqref{latticePDE} resulting from interactions between neighboring pulses.
+We can now state the stability theorem, in which we locate the eigenvalues of \eqref{latticeEVP} resulting from interactions between neighboring pulses.
 
 \begin{theorem}\label{stabilitytheorem}
 Assume Hypotheses \ref{symmetryhyp}(ii), \ref{initialhyp}, \ref{intersectionhyp}, and let $Q_m(n)$ an $m-$pulse solution to \eqref{diffeq} constructed according to Theorem \ref{ntmulti}. Then there exists a bounded, nonzero solution $V(n)$ of the eigenvalue problem \eqref{multiEVP} for $|\lambda| < \delta$ if and only if $\det E(\lambda) = 0$, where
@@ -342,20 +341,9 @@ and the remainder term has uniform bound
 
 \subsection{Background}
 
-Before we apply the results the previous section to discrete NLS (dNLS), we will give a brief overview of the equation and what is already known. Many more details can be found in \cite{Kevrekidis2009}. 
+In this section, we will apply the results the previous section to the discrete NLS equation \eqref{dNLS}. Before we do that, we will give a brief overview of the equation and what is already known. More details can be found in \cite{Kevrekidis2009}. 
 
-We will take the following form of dNLS
-\begin{equation}\label{dNLS}
-i\dot{u}_n + \epsilon(u_{n+1} - 2 u_n + u_{n-1}) + |u_n|^2 u_n = 0
-\end{equation}
-which is (2.12) in \cite{Kevrekidis2009} with $\beta = -1$ (focusing) and $\sigma = 1$. The single parameter $\epsilon$ represents the coupling between nodes. Equation \eqref{dNLS} is Hamiltonian, with energy given by (2.17) in \cite{Kevrekidis2009}. If we take $u = v + i w$, with $v$ and $w$ real, then we obtain, upon equating real and imaginary parts,  the equivalent equation
-\begin{equation}\label{dNLSreal}
-\begin{aligned}
-\dot{v}_n  &+ \epsilon (w_{n+1} - 2 w_n + w_{n-1}) + v_n^2 w_n + w_n^3 = 0 \\
--\dot{w}_n &+ \epsilon (v_{n+1} - 2 v_n + v_{n-1}) + v_n w_n^2 + v_n^3 = 0
-\end{aligned}
-\end{equation}
-which can be written in Hamiltonian form as
+Equation \eqref{dNLS} is Hamiltonian, with energy given by (2.17) in \cite{Kevrekidis2009}. Alternatively, taking $u = v + i w$, with $v$ and $w$ real, we can write \eqref{dNLS} in Hamiltonian form as
 \begin{equation}\label{dNLSrealHam}
 \frac{d}{dt}\begin{pmatrix}v_n \\ w_n\end{pmatrix}
 + J \nabla H(u_n, v_n) = 0
@@ -364,92 +352,57 @@ where $J$ is the standard skew-symmetric symplectic matrix
 \[
 J = \begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix}
 \]
-and the energy $H$ is
+and the Hamiltonian $H$ is
 \begin{equation}\label{dNLSrealH}
 H(u_n, v_n) = -\sum_{n = -\infty}^\infty 
 \left( \frac{1}{2}\left(v_n - v_{n-1}\right)^2 + \frac{1}{2}\left(w_n - w_{n-1}\right)^2 - \frac{1}{4}\left( v_n^2 + w_n^2 \right)^2 \right)
 \end{equation}
 
-We are interested in standing wave solutions, which are of the form $u_n = e^{i \omega t}\phi_n $. Making the substitution $u_n \mapsto u_n e^{i \omega t}$ in \eqref{dNLS} and simplifying, we obtain the steady state equation
-\begin{equation}\label{dNLSequilib}
-\epsilon(u_{n+1} - 2 u_n + u_{n-1}) - \omega u_n + |u_n|^2 u_n = 0
-\end{equation}
-The anti-continuum limit occurs at $\epsilon = 0$, at which point \eqref{dNLSequilib} becomes an algebraic equation. Any function $u(n)$ with $u(n) \in \{ 0, \pm \sqrt{\omega}\}$ is a solution to \eqref{dNLSequilib} when $\epsilon = 0$. We are interested in what happens as $\epsilon$ increases.
+At the anti-continuum limit, when $\epsilon = 0$, equation \eqref{dNLSequilib} reduces to a system of decoupled algebraic equations. Any function $u(n)$ with $u(n) \in \{ 0, \pm \sqrt{\omega}\}$ is a solution. For $\epsilon > 0$, dNLS possesses two real-valued, symmetric, single pulse solutions (up to rotation): on-site solutions, which are centered on a single lattice point; and off-site solutions, which are centered between two adjacent lattice points \cite{Kevrekidis2009}. The on-site solution has a single eigenvalue at 0 from the rotational symmetry. The off-site solution has an additional pair of real eigenvalues; since the off-site solution is spectrally unstable, we will only consider the on-site solution from here on. 
 
-The dNLS equation possesses two real-valued, symmetric, single pulse solutions (up to rotation): on-site solutions, which are centered on a single lattice point; and off-site solutions, which are centered between two adjacent lattice points \cite{Kevrekidis2009}. The on-site solution has a single eigenvalue at 0 from the rotational symmetry. The off-site solution has an additional pair of real eigenvalues; since the off-site solution is spectrally unstable, we will only consider the on-site solution from here on. 
-
-Let $q(n)$ be the on-site solution, which exists for all $\epsilon$ (REFERENCE). The following results are known concerning multi-solitons of dNLS. For sufficiently small $\epsilon$, $m$-pulse solutions exist for any pulse distances $N_i^\pm$ and any phase differences $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $\epsilon$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}. For any $\epsilon$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it follows from Sturm-Liouville theory that there is at least one positive, real eigenvalue \cite{Kapitula2001a}.
+Let $q(n)$ be the on-site solution to \eqref{dNLSequilib}, which exists for all $\epsilon > 0$ (REFERENCE). For sufficiently small $\epsilon$, $m$-pulse solutions exist for any pulse distances $N_i^\pm$ and any phase differences $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $\epsilon$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}. For any $\epsilon$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it follows from Sturm-Liouville theory that there is at least one positive, real eigenvalue \cite{Kapitula2001a}.
 
 \subsection{Real-valued multi-pulses}
 
-We will now show existence of multi-pulse solutions. These resemble multiple, well-separated copies of the on-site, primary pulse solution $q(n)$. First, we will look for real-valued solutions to \eqref{dNLSequilib}. In this case, the stationary equation reduces to
-\begin{equation}\label{dNLSequilibreal}
+We will now show existence of multi-pulse solutions. First, we will look for real-valued solutions to \eqref{dNLSequilib}. In this case, the stationary equation reduces to
+\begin{equation*}
 \epsilon(u_{n+1} - 2 u_n + u_{n-1}) - \omega u_n + u_n^3 = 0
-\end{equation}
-The symmetry group is $G = (\{1, -1\}, \cdot)$, and the group action on $l^\infty(\Z)$ is $g(\theta) = \theta$, i.e. multiplication by $\theta$. Thus Hypothesis \eqref{symmetryhyp}(i) is satisfied.
-
-To write the stationary equation as a first order system, let $\tilde{u}_n = u_{n-1}$. Then for $\epsilon > 0$, \eqref{dNLSequilibreal} is equivalent to the difference equation in $\R^2$
+\end{equation*}
+For $\epsilon \neq 0$, this is equivalent to the first order difference equation $U_{n+1} = F(U_n)$, where $U_n = (u_n, \tilde{u}_n) \in \R^2$, $\tilde{u}_n = u_{n-1}$, and 
 \begin{equation}\label{dnlsdiffR2}
+F
 \begin{pmatrix}
 u \\ \tilde{u}
-\end{pmatrix}_{n+1} =
+\end{pmatrix} =
 \begin{pmatrix}
 \frac{\omega}{\epsilon} + 2 & -1 \\
 1 & 0
 \end{pmatrix}
 \begin{pmatrix}
 u \\ \tilde{u}
-\end{pmatrix}_n
+\end{pmatrix}
 - \frac{1}{\epsilon} 
 \begin{pmatrix}
-u_n^3 \\ 0
+u^3 \\ 0
 \end{pmatrix}
 \end{equation}
-where we have separated the RHS into linear and nonlinear parts. The symmetry group $G$ acts on $\R^2$ via $T(\theta) = \theta I$. The rest state $U(n) = 0$ is an equilibrium solution. For $\epsilon, \omega > 0$, $DF(0)$ has a pair of real eigenvalues $\{r, 1/r \}$, where $r$ depends on both $\epsilon$ and $\omega$, and is given by
+The symmetry group $G = \{ 1, -1\}$ acts on $\R^2$ via $T(\theta) = \theta I$, thus Hypothesis \ref{symmetryhyp}(i) is satisfied. For $\epsilon, \omega > 0$, $DF(0)$ has a pair of real eigenvalues $\{r, 1/r \}$, where $r$ depends on both $\epsilon$ and $\omega$, and is given by
 \begin{align}\label{defr}
 r = 1 + \frac{\omega}{2 \epsilon} \left( 1 + \sqrt{1 + \frac{4 \epsilon}{\omega}} \right) > 1
 \end{align}
 As $\epsilon \rightarrow \infty$, $r \rightarrow 1$, thus the spectral gap decreases with increasing $\epsilon$. As $\epsilon \rightarrow 0$, $r \rightarrow \infty$.
 
-It follows that 0 is a hyperbolic equilibrium point with 1-dimensional stable and unstable manifolds. Thus Hypothesis \ref{initialhyp} is satisfied. Since the variational equation does not have a bounded solution, the stable and unstable manifolds intersect transversely, thus Hypothesis \ref{intersectionhyp} is satisfied. 
+It follows that 0 is a hyperbolic equilibrium point with 1-dimensional stable and unstable manifolds. Let $q_n$ be the on-site, real-valued solution to \eqref{dNLSequilib}. Then $Q_n = (q_n, \tilde{q}_n)$ is the primary pulse solution to $U_{n+1} = F(U_n)$, where $\tilde{q}_n = q_{n-1}$. Thus Hypothesis \ref{initialhyp} is satisfied. Since the variational equation does not have a bounded solution, the stable and unstable manifolds intersect transversely, thus Hypothesis \ref{intersectionhyp} is satisfied. 
 
-Using Theorem \ref{transversemulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $\epsilon$) there exist $m-$pulse solutions which can be written piecewise in the form
-\begin{align*}
-Q_i^-(n) &= \theta_i Q(n) + W_i^-(n) && n \in [-N_{i-1}^-, 0] \\
-Q_i^+(n) &= \theta_i Q(n) + W_i^+(n) && n \in [0, N_i^+]
-\end{align*}
-for any choices $\theta_i = \pm 1$ and lengths $N_i \geq N$. 
+Using Theorem \ref{transversemulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $\epsilon$) there exist $m-$pulse solutions for any $\theta_i = \pm 1$ and lengths $N_i \geq N$. 
 
 \subsection{No other multi-pulses}
 
-We will now show that (up to rotation), there are no other multi-pulse soliton solutions to dNLS. In particular, there are no multi-pulse solutions with phase differences other than $0$ and $\pi$. For convenience, we will reuse much of the notation from the previous section. 
-
-Since we are now considering complex-valued solutions to \eqref{dNLSequilib}, the symmetry group is $G = (\R, +)$, and the group action on $l^\infty(\C)$ is $g(\theta)u(n) = e^{i \theta}u(n)$, i.e. rotation by $\theta$. Thus Hypothesis \ref{symmetryhyp}(ii) is satisfied.
-
-To write the stationary equation as a first order system, we first take $u = v + i w$, with $v$ and $w$ real, which gives us equation \eqref{dNLSreal}. Next, let $\tilde{v}_n = v_{n-1}$ and $\tilde{w}_n = w_{n-1}$. For $\epsilon > 0$, this gives us the first order difference equation 
-\begin{equation}\label{dnlsdiffR4}
+We will now show that (up to rotation), there are no other multi-pulse soliton solutions to dNLS, i.e. there are no multi-pulse solutions with phase differences other than $0$ and $\pi$. For convenience, we will reuse much of the notation from the previous section. In this case, $u$ can be complex, so for $\epsilon \neq 0$, we are looking for solutions to the difference equation 
+\begin{equation}\label{dNLSdiff}
 U(n+1) = F(U(n))
 \end{equation}
-in $\R^4$, where $U(n) = (v(n), \tilde{v}(n), w(n), \tilde{w}(n))$ and $F:\R^4 \rightarrow \R^4$ is defined by
-\begin{equation}\label{FdNLS}
-F\begin{pmatrix}
-v \\ \tilde{v} \\ w \\ \tilde{w}
-\end{pmatrix} =
-\begin{pmatrix}
-\frac{\omega}{\epsilon} + 2 & -1 & 0 & 0 \\
-1 & 0 & 0 & 0 \\
-0 & 0 & \frac{\omega}{\epsilon} + 2 & -1 \\
-0 & 0 & 1 & 0
-\end{pmatrix}
-\begin{pmatrix}
-v \\ \tilde{v} \\ w \\ \tilde{w}
-\end{pmatrix}
-- \frac{1}{\epsilon} 
-\begin{pmatrix}
-v w^2 + v^3 \\ 0 \\ v^2 w + w^3 \\ 0
-\end{pmatrix}
-\end{equation}
-The rest state $U(n) = 0$ is an equilibrium solution. The symmetry group $G$ acts on $\R^4$ via $T(\theta)$, where
+where $U(n) \in \R^4$ and $F$ is defined in equation \eqref{FdNLS}. The symmetry group $G = (\R, \cdot)$ acts on $\R^4$ via $T(\theta)$, where
 \begin{align}\label{TdNLS}
 T(\theta) =
 \begin{pmatrix}
@@ -459,7 +412,7 @@ T(\theta) =
 0 & \sin\theta & 0 & \cos\theta 
 \end{pmatrix}
 \end{align}
-$T(\theta)$ has infinitesimal generator $T'(0)$, which is given by
+which has infinitesimal generator
 \begin{align}\label{dnlsSgen}
 T'(0) =
 \begin{pmatrix}
@@ -470,62 +423,45 @@ T'(0) =
 \end{pmatrix}
 \end{align}
 
-For $\epsilon, \omega > 0$, $DF(0)$ has eigenvalues $\{r, 1/r\}$, each of which has multiplicity 2; the constant $r$ is defined in equation \eqref{defr} in the previous section. Thus $DF(0)$ is hyperbolic and has 2-dimensional stable and unstable manifolds. Let $q(n)$ be the real-valued on-site, primary pulse solution to \eqref{dNLSequilib}. Then the primary pulse solution to \eqref{dnlsdiffR4} is given by $Q(n) = (q(n), \tilde{q}(n), 0, 0)$. Thus Hypothesis \ref{initialhyp} is satisfied.
+For $\epsilon, \omega > 0$, $DF(0)$ has eigenvalues $\{r, 1/r\}$, each of which has multiplicity 2; the constant $r$ is defined in equation \eqref{defr} in the previous section. Thus $DF(0)$ is hyperbolic and has 2-dimensional stable and unstable manifolds. Let $q(n)$ be the real-valued, on-site, primary pulse solution to \eqref{dNLSequilib}. Then the primary pulse solution to $U_{n+1} = F(U_n)$ is given by $Q(n) = (q(n), \tilde{q}(n), 0, 0)$. Thus Hypothesis \ref{initialhyp} is satisfied.
 
-The variational and adjoint variational equations associated with \eqref{dnlsdiffR4} and $Q(n)$ are
+The variational and adjoint variational equations associated with \eqref{dNLSdiff} are
 \begin{align}
-V(n+1) &= A(n; 0) V(n) \label{vareqdNLS} \\
-Z(n+1) &= [A(n; 0)^*]^{-1} Z(n) \label{adjvareqdNLS}
+V(n+1) &= D_U F(Q(n)) V(n) \label{vareqdNLS} \\
+Z(n+1) &= [D_U F(Q(n))^*]^{-1} Z(n) \label{adjvareqdNLS}
 \end{align}
-where
-\begin{equation}\label{AQdNLS}
-A(n; 0) = D_U F(Q(n)) = 
-\begin{pmatrix}
-\frac{\omega}{\epsilon} + 2 - \frac{3 q(n)^2}{\epsilon} & -1 & 0 & 0 \\
-1 & 0 & 0 & 0 \\
-0 & 0 & \frac{\omega}{\epsilon} + 2 - \frac{q(n)^2}{\epsilon} & -1 \\
-0 & 0 & 1 & 0
-\end{pmatrix}
-\end{equation}
-Let 
-\begin{equation}\label{defS1}
-S_1(n) = T'(0) Q(n) = (0, 0, q(n), \tilde{q}(n))
-\end{equation}. 
-We can verify that, as expected, $S_1(n)$ is a solution to the variational equation \eqref{vareqdNLS}. From [CITATION NEEDED], there are no other linearly independent, bounded solutions to \eqref{vareqdNLS}, thus Hypothesis \ref{intersectionhyp} is satisfied. It follows the the adjoint variational equation \eqref{adjvareqdNLS} has a unique bounded solution $Z_1(n)$, and we can verify directly that
+We can verify that $T'(0) Q(n) = (0, 0, q(n), \tilde{q}(n))$ is a solution to \eqref{vareqdNLS}, as expected. From [CITATION OR HYPOTHESIS], there are no other linearly independent, bounded solutions to \eqref{vareqdNLS}, thus Hypothesis \ref{intersectionhyp} is satisfied. It follows the the adjoint variational equation \eqref{adjvareqdNLS} has a unique bounded solution $Z_1(n)$, and we can verify directly that
 \begin{equation}\label{defZ1}
 Z_1(n) = (0, 0, -\tilde{q}(n), q(n))
 \end{equation}
 
-Using Theorem \ref{ntmulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $\epsilon$) there exist $m-$pulse solutions for lengths $N_i^\pm$ and phase parameters $\theta_i$ if any only if the jump conditions
-\begin{align*}
-\xi_i = \langle T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) Q(-N_i^-) \rangle
-- \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) Q(N_{i-1}^+) \rangle + R_i
-\end{align*}
-are satisfied. Using \eqref{TdNLS} and the fact that $T(\theta)$ is unitary, we can write the jump conditions in terms of the $(m - 1)$ phase differences $\Delta \theta_i = \theta_{i+1} - \theta_i$ as
+Using Theorem \ref{ntmulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $\epsilon$) there exist $m-$pulse solutions with lengths $N_i^\pm$ and phase parameters $\theta_i$ if any only if the jump conditions \eqref{jumpcondexist} are satisfied. Using \eqref{TdNLS} and the fact that $T(\theta)$ is unitary, we can rewrite the jump conditions in terms of the $(m - 1)$ phase differences $\Delta \theta_i = \theta_{i+1} - \theta_i$ to get
 \begin{align}\label{jumpDNLS}
 \xi_i = \langle T(-\Delta \theta_i) Z_1(N_i^+), Q(-N_i^-) \rangle
 - \langle T(\Delta \theta_{i-1}) Z_1(-N_{i-1}^-), Q(N_{i-1}^+) \rangle + R_i
 \end{align}
-where $\Delta \theta_0 = 0$ and $\Delta \theta_m = 0$.
-
-Evaluating the inner product terms in \eqref{jumpDNLS}, we have
-\begin{align*}
+where $\Delta \theta_0 = 0$ and $\Delta \theta_m = 0$. The inner product terms in \eqref{jumpDNLS} are
+\begin{equation}\label{jumpIPs}
+\begin{aligned}
 \langle T(-\Delta\theta_i) Z_1(N_i^+), Q(-N_i^-) \rangle 
 &= -b_i \sin(\Delta\theta_i) \\
 \langle T(\Delta\theta_{i-1}) Z_1(-N_{i-1}^-), Q(N_{i-1}^+) \rangle &= -b_{i-1} \sin(\Delta\theta_{i-1})
-\end{align*}
+\end{aligned}
+\end{equation}
 where 
 \begin{align*}
 b_i &= q(N_i^+ - 1)q(N_i^-) - q(N_i^+)q(N_i^- + 1) \\
 \end{align*}
-Using the even symmetry of the single pulse $q(n)$, this becomes
+Since the single pulse $q(n)$ is an even function, we can write $b_i$ as
 \begin{equation}\label{bieq}
 b_i = \begin{cases}
 q(N_i^+)\left( q(N_i^+ + 1) - q(N_i^+ - 1) \right) & N_i \text{ even} \\
 q(N_i^+)q(N_i^+ + 2) - q(N_i^+ - 1)q(N_i^+ + 1) & N_i \text{ odd}
 \end{cases}
 \end{equation}
-Since $q(n)$ is strictly decreasing as $n$ moves away from 0 [CITATION NEEDED], $b_i < 0$ for all $i$. Substituting these into \eqref{jumpDNLS}, the jump conditions become
+Since $q(n)$ is strictly decreasing as $n$ moves away from 0 [CITATION, THIS IS TRUE FOR SUFFICIENTLY LARGE $N$ SINCE $r$ IS REAL, AND I BELIEVE IT IS ALWAYS TRUE], $b_i < 0$ for all $i$. 
+
+Letting $s_i = \sin{\Delta\theta_i}$ and substituting equations \eqref{jumpIPs} into \eqref{jumpDNLS}, the jump conditions become
 \begin{equation}\label{jumpDNLS2}
 \begin{aligned}
 \xi_1 &= -b_1 s_1 + R_1 \\
@@ -534,11 +470,11 @@ Since $q(n)$ is strictly decreasing as $n$ moves away from 0 [CITATION NEEDED], 
 \xi_m &= b_{m-1} s_{m-1} + R_m
 \end{aligned}
 \end{equation}
-where $s_i = \sin{\Delta\theta_i}$. Since $b_i = \mathcal{O}(r^{-2N})$ and $R_i = \mathcal{O}(r^{-3N})$, the jump conditions can only be satisfied if $s_i = \mathcal{O}(r^{-N})$. Thus we only have to consider that case from now on. 
-
-There exists a conserved quantity $E: \R^4 \rightarrow$ such that $E(0) = 0$, $\nabla E(U) = 0 \iff F(U) = 0$, and $\langle \nabla E(U), F(U) \rangle = 0$. [EITHER FIND CITATION OR ACTUALLY FIND IT.] Thus, as in \cite{SandstedeStrut}, we can eliminate one of the jump conditions. Since it does not matter which one, we will choose to eliminate the final one. We can then write the $(m-1)$ remaining jump conditions in matrix form as $B s + R = 0$, where $s = (s_1, \dots, s_{m-1})$ and $B$ as the $(m-1)\times(m-1)$ matrix
+Since $b_i = \mathcal{O}(r^{-2N})$ and $R_i = \mathcal{O}(r^{-3N})$, the jump conditions can only be satisfied if $s_i = \mathcal{O}(r^{-N})$. Thus we only have to consider that case from now on. 
+ 
+There exists a conserved quantity $E: \R^4 \rightarrow \R$ such that $E(0) = 0$ and $E(U_{n+1}) = E(U_n)$ for all solutions $U_n$ to \eqref{dNLSdiff} [EITHER FIND CITATION OR ACTUALLY FIND IT]. Thus, as in \cite{SandstedeStrut}, we can eliminate the final equation in \eqref{jumpDNLS2}. We can write the $(m-1)$ remaining jump conditions in matrix form as $H s + R = 0$, where $s = (s_1, \dots, s_{m-1})$ and $B$ is the $(m-1)\times(m-1)$ matrix
 \[
-B = \begin{pmatrix}
+H = \begin{pmatrix}
 -b_1 \\
 b_1 & -b_2 \\
 & b_2 & -b_3 \\
@@ -546,48 +482,30 @@ b_1 & -b_2 \\
 &&& b_{m-2} & -b_{m-1} \\
 \end{pmatrix}
 \]
-
-Since $B$ is lower triangular and all the $b_i$ are nonzero, $B$ is invertible, thus $s = B^{-1}R$ is the unique value of $s$ for which all the jump conditions are satisfied. In the previous section, we showed that for sufficiently large $N$, real-valued multi-pulses exist with phase differences which are either 0 or $\pi$; for all of those cases, $s = 0$. Since we found a unique solution $s$, and $s = 0$ is a solution, $s = 0$ must be the unique solution to the jump conditions. We conclude that for sufficiently large $N$, the jump conditions can only be satisfied if all of the phase differences $\Delta \theta_i$ are either 0 or $\pi$. No other phase differences are possible.
+Since $H$ is lower triangular and all the $b_i$ are nonzero, $B$ is invertible, thus $s = B^{-1}R$ is the unique value of $s$ for which all the jump conditions are satisfied. In the previous section, we showed that for sufficiently large $N$, real-valued multi-pulses exist with phase differences which are either 0 or $\pi$; for all of those cases, $s = 0$. Since we found a unique solution $s$, and $s = 0$ is a solution, $s = 0$ must be the unique solution to the jump conditions. We conclude that for sufficiently large $N$, the jump conditions can only be satisfied if all of the phase differences $\Delta \theta_i$ are either 0 or $\pi$. No other phase differences are possible.
 
 \subsection{Eigenvalue problem}
 
-In this section, we locate the eigenvalues for the linearization of \eqref{dNLS} about $q_m(n)$, which is an equilibrium standing wave solution. Using the results from the previous two sections, Let $q_m(n)$ be a real-valued, $m-$pulse equilibrium solution to \eqref{dNLSequilib} with phase differences $\Delta \theta_1, \dots, \theta_{m-1} \in \{0, \pi\}$. Linearizing \eqref{dNLS} about $q_m$, and writing the resulting equation as a first-order difference equation in $\R^4$ as we did in the previous section, we obtain the eigenvalue problem 
-\begin{equation}\label{dNLSEVP}
-V(n+1) = DF(Q_m(n)) V(n) + \lambda B V(n)
-\end{equation}
-where $F$ is given by \eqref{FdNLS} in the previous section, $V(n) = (a_n, \tilde{a}_n, b_n, \tilde{b}_n)$, and $B$ is the constant coefficient matrix 
+In this section, we locate the eigenvalues for the linearization of \eqref{dNLS} about the multi-pulse $Q_m(n)$, i.e. we solve equation \eqref{multiEVP} with $B$ defined in \eqref{dNLSB}. We can show directly that $B T(\theta) = T(\theta) B$. We showed in the previous section that $T'(0)Q(n)$ is the unique bounded solution to the variational equation \eqref{vareqdNLS}, and that $Z_1(n)$ is the unique bounded solution to the adjoint variational equation \eqref{adjvareqdNLS}. For the first Melnikov sum, we have
 \[
-B = 
-\begin{pmatrix}
-0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 0 \\
--1 & 0 & 0 & 0 \\
-0 & 0 & 0 & 0
-\end{pmatrix}
+M_1 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B T'(0)Q(n) \rangle = 0
 \]
-We can verify Hypothesis \ref{BTcommutehyp} directly by computing $B T(\theta)$ and $T(\theta) B$. Let
-
-\begin{align*}
-S_1 &= T'(0) Q= (0, 0, q_n, \tilde{q}_n) \\
-Z_1 &= (0, 0, -\tilde{q}_n, q_n) \\
-T_1 &= (-\partial_\omega q_n, -\partial_\omega \tilde{q}_n, 0, 0)
-\end{align*}
-We showed in the previous section that $S_1(n+1) = DF(Q(n)) S_1(n)$, and that $Z_1$ is the unique bounded solution to the adjoint variational equation \eqref{adjvareqdNLS}. For the first Melnikov sum, we have
-\[
-M_1 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B S_1(n) \rangle = 0
-\]
+Let 
+\begin{align}\label{dNLSdefS1}
+S_1 &= (-\partial_\omega q_n, -\partial_\omega \tilde{q}_n, 0, 0)
+\end{align}
 It is straightforward to verify that
 \begin{align*}
-T_1(n+1) &= DF(Q(n)) T_1(n) + B S_1(n)
+S_1(n+1) &= DF(Q(n)) S_1(n) + B T'(0) Q(n)
 \end{align*}
 The higher order Melnikov sum is
 \[
-M_2 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B T_1(n) \rangle =
+M_2 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B S_1(n) \rangle =
 \sum_{n=-\infty}^\infty q(n) q_\omega(n)
 \]
-Numerical analysis suggests that $M_2 > 0$m so we will assume that is the case, and so Hypothesis \ref{melnikovhyp}(ii) is satisfied.
+Numerical analysis suggests that $M_2 > 0$, so we will assume that is the case. Thus Hypothesis \ref{melnikovhyp}(ii) is satisfied.
 
-For $N$ sufficiently large, we can find the eigenvalues of \eqref{dNLSEVP} using Theorem \ref{stabilitytheorem}. The matrix $A$ is
+For $N$ sufficiently large, we can find the eigenvalues of \eqref{multiEVP} using Theorem \ref{stabilitytheorem}. The matrix $A$ is
 \begin{align}\label{AdNLS}
 A &= \begin{pmatrix}
 -\cos(\Delta\theta_1) b_1 & \cos(\Delta\theta_1) b_1 & & &  \\
@@ -596,13 +514,12 @@ A &= \begin{pmatrix}
 & &  \cos(\Delta\theta_{m-1}) b_{m-1} & -\cos(\Delta\theta_{m-1}) b_{m-1}  \\
 \end{pmatrix}
 \end{align}
-where the $b_i < 0$ and are defined in \eqref{bieq}. The matrix $A$ is symmetric tridiagonal, thus its eigenvalues are real. Furthermore, $A$ has an eigenvalue at 0 with corresponding eigenvector $(1, 1, \dots, 1)^T$. Since the $b_i$ are all negative, the signs of the entries of $A$ are determined by the phase differences $\Delta\theta_i$. Using \cite[Lemma 5.4]{Sandstede1998}, the signs of the remaining $m-1$ eigenvalues of $A$ are as follows. 
+where the $b_i < 0$ and are defined in \eqref{bieq}. To solve $E(\lambda) = 0$, we need to find the eigenvalues of $A$. Since $A$ is symmetric tridiagonal, its eigenvalues are real. Furthermore, $A$ has an eigenvalue at 0 with corresponding eigenvector $(1, 1, \dots, 1)^T$. Using \cite[Lemma 5.4]{Sandstede1998}, the signs of the remaining $m-1$ eigenvalues of $A$ are determined by the phase differences $\Delta\theta_i$.  
 \begin{enumerate}
 	\item $A$ has $k_\pi$ negative real eigenvalues (counting multiplicity), where $k_\pi$ is the number of $\Delta\theta_i$ which are $\pi$. 
 	\item $A$ has $k_0$ positive real eigenvalues (counting multiplicity), where $k$ is the number of $\Delta\theta_i$ which are $0$. 
 \end{enumerate}
-
-Next, we show that the eigenvalues of $A$ are distinct. To do this, we note that $\mu$ is an eigenvalue of $A$ if and only if $(A - \mu I)v = 0$ has a nontrivial solution. Let $p_i = \cos(\Delta\theta_i) b_i$. Then this equation can be written as the following Sturm-Liouville difference equation with Dirichlet boundary conditions
+To show that the eigenvalues of $A$ are distinct, we note that $\mu$ is an eigenvalue of $A$ if and only if $(A - \mu I)v = 0$ has a nontrivial solution. Let $p_i = \cos(\Delta\theta_i) b_i$. Then the equation $(A - \mu I)v = 0$ can be written as the Sturm-Liouville difference equation with Dirichlet boundary conditions
 \begin{equation}\label{SLdiff2}
 \begin{aligned}
 \nabla( p_j \Delta d_j ) &= \mu d_j && j = 1, \dots, m \\
@@ -612,7 +529,7 @@ d_{m+1} &= 0
 \end{equation}
 where $\Delta$ is the forward difference operator $\Delta f(j) = f(j+1) - f(j)$ and $\nabla$ is the backward difference operator $\nabla f(j) = f(j) - f(j-1)$. It follows from \cite[Corollary 2.2.7]{Jirari1995} that the eigenvalues of \eqref{SLdiff2}, thus the eigenvalues of $A$, are real and distinct. Let $\{0, \mu_1, \dots, \mu_{m-1}\}$ be the distinct eigenvalues of $A$.
 
-To find the eigenvalues, we will solve equation \eqref{Elambda} from Theorem \ref{stabilitytheorem}. We will always have an eigenvalue at 0 with algebraic multiplicity 2 and geometric multiplicity 1. The eigenfunction is $S_m(n) = T'(0) Q_m(n)$ and the generalized eigenfunction is $T_m(n) = \partial_\omega Q_m(n)$. To find the remaining eigenvalues, which result from interaction between the pulses, we rescale equation \eqref{Elambda} in the following way. Let
+To find the eigenvalues of \eqref{multiEVP}, we will solve equation \eqref{Elambda}. We will always have an eigenvalue at 0 with algebraic multiplicity 2 and geometric multiplicity 1. We can verify directly that $T'(0) Q_m(n)$ is the eigenfunction and $S_m(n) = \partial_\omega Q_m(n)$ is the generalized eigenfunction. The remaining eigenvalues result from interaction between the pulses. To find these, we rescale equation \eqref{Elambda} in the following way. Let
 \begin{align*}
 A = r^{-2N} \tilde{A} \\
 \lambda = r^{-N} \tilde{\lambda} \\
@@ -646,28 +563,26 @@ Since \eqref{dNLS} is Hamiltonian, by Hamiltonian symmetry, eigenvalues must com
 \begin{align}\label{inteigsDNLS}
 \lambda_j(N) &= \sqrt{\frac{\tilde{\mu}_j}{M_2}}r^{-N} + \mathcal{O}(r^{-2N}) && j = 1, \dots, m-1
 \end{align}
-These are either real or purely imaginary, and the remainder term cannot move these off of the real or imaginary axis. 
-
-Since we are taking $M_2 > 0$, we conclude that there are
+These are either real or purely imaginary, and the remainder term cannot move these off of the real or imaginary axis. Since $M_2 > 0$, we conclude that there are
 \begin{enumerate}
 	\item $k_\pi$ pairs of purely imaginary eigenvalues
 	\item $k_0$ pairs of real eigenvalues
 \end{enumerate}
 
-Finally, we consider the specific cases of the 2-soliton and the 3-soliton with equal distances. For the 2-soliton, the matrix $A$ is given by
+Finally, we consider three special cases. The simplest case is the 2-pulse. The matrix $A$ is given by
 \begin{align*}
 A &= b_1 \begin{pmatrix}
 -\cos(\Delta\theta_1) & \cos(\Delta\theta_1) \\
 \cos(\Delta\theta_1) & -\cos(\Delta\theta_1) 
 \end{pmatrix}
 \end{align*}
-which has nonzero eigenvalue $-\cos(\Delta\theta_1) b_1$, thus the pair of interaction eigenvalues is given by
+which has nonzero eigenvalue $-\cos(\Delta\theta_1) b_1$, thus there is a pair of interaction eigenvalues given by
 \begin{align*}
 \lambda &= \sqrt{\frac{-\cos(\Delta\theta_1) b_1}{M_2}} + \mathcal{O}(r^{-2N})
 \end{align*}
 Since $b_1 < 0$ and $M_2 > 0$, this pair is real if $\Delta\theta_1 = 0$ and purely imaginary if $\Delta\theta_1 = \pi$.
 
-For the 3-soliton with equal distances, there are three distinct combinations of $(\Delta\theta_1, \Delta\theta_2)$ to consider. The matrix $A$ is given by
+Next, we consider the 3-pulse with equal distances $N_1 = N_2$, so we have $b_1 = b_2 = b$. There are three distinct combinations of $(\Delta\theta_1, \Delta\theta_2)$ to consider. The matrix $A$ is given by
 \begin{align*}
 A &= b \begin{pmatrix}
 -\cos(\Delta\theta_1) & \cos(\Delta\theta_1) & 0  \\
@@ -675,11 +590,11 @@ A &= b \begin{pmatrix}
 0 & \cos(\Delta\theta_2) & -\cos(\Delta\theta_2) \\
 \end{pmatrix}
 \end{align*}
-where $b_1 = b_2 = b$, since the distances are equal. The nonzero eigenvalues are given by
+The nonzero eigenvalues of $A$ are
 \[
 \mu = \left( \pm\sqrt{\cos(\Delta\theta_1)^2 - \cos(\Delta\theta_1) \cos(\Delta\theta_2) + \cos(\Delta\theta_2)^2} - \cos(\Delta\theta_1) - \cos(\Delta\theta_2) \right)b
 \]
-For the three distinct 3-soltions, these are
+For the three distinct 3-pulses, these are
 \begin{align*}
 \lambda = \begin{cases}
 -3b, -b & (\Delta\theta_1, \Delta\theta_2) = (0, 0) \\
@@ -687,13 +602,26 @@ For the three distinct 3-soltions, these are
 3b, b & (\Delta\theta_1, \Delta\theta_2) = (\pi, \pi)
 \end{cases}
 \end{align*}
-The only 3-soliton which is stable is $(\Delta\theta_1, \Delta\theta_2) = (\pi, \pi)$. These also allow us to compare the magnitude of the eigenvalues.
+The only 3-soliton which is stable is $(\Delta\theta_1, \Delta\theta_2) = (\pi, \pi)$, which has two pairs of purely imaginary eigenvalues. These formulas also give us the relative magnitude of the interaction eigenvalues.
+
+Finally, we consider the the $m-$pulse with equal pulse distances $N_i$ (so $b_i = b$) and equal phase differences $\Delta\theta_i = \Delta\theta$. In this case, the eigenvalue problem $(A - \mu I)p = 0$ is equivalent to the following difference equation with Neumann boundary conditions
+\begin{equation*}
+\begin{aligned}
+p_{n-1} - 2 p_n + p_{n+1} - \frac{\mu}{b (\Delta\theta)} &= 0 \\
+p_0 &= p_1 \\
+p_{m+1} &= p_m
+\end{aligned}
+\end{equation*}
+which has solutions
+\begin{align*}
+\mu_k &= 2 b \left( \cos\frac{\pi k}{m} - 1 \right) \cos (\Delta\theta) && k = 1, \dots, m
+\end{align*}
 
 \subsection{Numerics}
 
 Here we present numerics relevant to dNLS. The possibilities are endless. We will add stuff as needed/requested.
 
-We used AUTO to trace bifurcation diagrams for 2-solitons as the coupling parameter $\epsilon$ is varied. I will add these here, together with interpretation, once we decide which figures we want to include.
+We used AUTO to trace bifurcation diagrams for 2-pulses as the coupling parameter $\epsilon$ is varied. I will add these here, together with interpretation, once we decide which figures we want to include.
 
 From equation \eqref{inteigsDNLS}, for fixed $\omega$ and $\epsilon$, the interaction eigenvalues decay as $r^{-N}$. We can verify this numerically by plotting $\log \lambda$ vs. $N$ for a double pulse. 
 
@@ -705,7 +633,7 @@ From equation \eqref{inteigsDNLS}, for fixed $\omega$ and $\epsilon$, the intera
 \includegraphics[width=5cm]{dnlsPM.eps}
 \includegraphics[width=5cm]{dnlsPMeig.eps}
 \includegraphics[width=5cm]{dnlsPMdecay.eps}
-\label{fig:eigendecay}
+\label{fig:eigendecay1}
 \caption{Solution, eigenvalue pattern, and plot of $\log(\lambda)$ vs. $N$ for $++$ (top) and $+-$ (bottom) solitons. Parameters $\omega = 2$ and $\epsilon = 1.0$}
 \end{figure}
 In both cases, the relative error in the eigenvalue decay rate from that predicted by the theory is order $1e-4$.
@@ -721,10 +649,9 @@ In both cases, the relative error in the eigenvalue decay rate from that predict
 \includegraphics[width=5cm]{dnlsPPM.eps}
 \includegraphics[width=5cm]{dnlsPPMeig.eps}
 \includegraphics[width=5cm]{dnlsPPMdecay.eps}
-\label{fig:eigendecay}
+\label{fig:eigendecay2}
 \caption{Solution, eigenvalue pattern, and plot of $\log(\lambda)$ vs. $N$ for $+++$ (top), $+-+$ (middle), and $++-$ solitons. Parameters $\omega = 2$ and $\epsilon = 1.0$}
 \end{figure}
-
 
 \section{Proof of Existence Theorems}
 
@@ -815,7 +742,7 @@ and the exponential decay rates
 \end{enumerate}
 
 \begin{proof}
-We will consider the problem on $\Z^+$. Since $A$ is constant coefficient and hyperbolic, the difference equation $W(n+1) = A^+ W(n)$ has an exponential dichotomy on $\R^+$. All the results except for \eqref{projexpdecay} follow directly from \cite[Proposition 2.5]{Beyn1997}. Equation \eqref{projexpdecay} follows from using the estiamte \eqref{Anexpdecay} in the proof of \cite[Proposition 2.5]{Beyn1997}.
+We will consider the problem on $\Z^+$. Since $A$ is constant coefficient and hyperbolic, the difference equation $W(n+1) = A^+ W(n)$ has an exponential dichotomy on $\R^+$. All the results except for \eqref{projexpdecay} follow directly from \cite[Proposition 2.5]{Beyn1997}. Equation \eqref{projexpdecay} follows from using the estimate \eqref{Anexpdecay} in the proof of \cite[Proposition 2.5]{Beyn1997}.
 \end{proof}
 \end{lemma}
 
@@ -862,7 +789,7 @@ P_{s/u}^\pm(m; \theta) = T(\theta)P_{s/u}^\pm(m; 0)T(\theta)^{-1}
 \]
 Finally, let $E^s(\theta)$ and $E^u(\theta)$ be the stable and unstable eigenspaces of $T(\theta) D_U F(0) T(\theta)^{-1}$, and let $P_0^s(\theta)$ and $P_0^u(\theta)$ be the corresponding eigenprojections.
 
-We note that the estimates from Lemma \ref{dichotomy} do not depend on $\theta$. Finally, if we take Hypothesis \ref{intersectionhyp}(ii), $T(\theta) S_1(n)$ is a solution to \eqref{Vtheta}.
+We note that the estimates from Lemma \ref{dichotomy} do not depend on $\theta$. Finally, if we take Hypothesis \ref{intersectionhyp}(ii), $T'(0) Q(n)$ is a solution to \eqref{Vtheta}.
 
 Next, as in \cite{Sandstede1997} and \cite{Knobloch2000}, we write equation \eqref{Wsystem1} in fixed-point form using the discrete variation of constants formula from Lemma \ref{VOCformula} together with projections on the stable and unstable subspaces of the exponential dichotomy.
 \begin{equation}\label{FPeqs1}
@@ -880,7 +807,7 @@ where $W_i^-(n) \in l^\infty([-N_{i-1}^-, 0])$, $W_i^+(n) \in l^\infty([0, N_i^+
 \item $a_i^- \in E^s(\theta_i)$, $a_i^+ \in E^u(\theta_i)$, and $a_0^- = a_m^+ = 0$
 \item $b_i^+ \in T(\theta_i) Y^+$ and $b_i^- \in T(\theta_i) Y^-$.
 \end{enumerate}
-We note that if Hypothesis \ref{intersectionhyp}(ii) holds, we do not need to include a component in $T(\theta_i) S_1$ in $b_i^\pm$, since that direction is handled by the symmetry parameter $\theta_i$.
+We note that if Hypothesis \ref{intersectionhyp}(ii) holds, we do not need to include a component in $T'(0) Q(0)$ in $b_i^\pm$, since that direction is handled by the symmetry parameter $\theta_i$.
 
 Since we wish to construct a homoclinic orbit to the rest state at 0, we take the initial conditions $a_0^- = 0$ and $a_m^+ = 0$. For these cases, the fixed point equations are given by
 \begin{align*}
@@ -1047,11 +974,11 @@ If Hypothesis \ref{intersectionhyp}(ii) holds, we will not in general be able to
 
 Recall that for all $\theta \in \R$ we have the decomposition
 \[
-\R^d = \R T(\theta) S_1(0) \oplus T(\theta) Y^+ \oplus T(\theta) Y^- \oplus \R T(\theta) Z_1(0)
+\R^d = \R T(\theta) T'(0)Q(0) \oplus T(\theta) Y^+ \oplus T(\theta) Y^- \oplus \R T(\theta) Z_1(0)
 \]
 Projecting in these directions, we can write \eqref{Wsystem3} as the system of equations
 \begin{align}
-P_{T(\theta)S_1}\left( W_i^+(0) - W_i^-(0) \right) &= 0 \label{jumpS1} \\
+P_{T(\theta)T'(0)Q(0)}\left( W_i^+(0) - W_i^-(0) \right) &= 0 \label{jumpS1} \\
 P_{T(\theta)Y^+ \oplus T(\theta)Y^-}\left( W_i^+(0) - W_i^-(0) \right) &= 0 \label{jumpnonZ} \\
 P_{\R T(\theta)Z_1(0)} \left( W_i^+(0) - W_i^-(0) \right) &= 0 \label{jumpZ}
 \end{align}
@@ -1137,7 +1064,7 @@ Combining all of these gives us the second estimate in \eqref{Westimates}. For t
 
 \subsection{Setup}
 
-To prove the stability theorem, we will also use Lin's method. As in \cite{Sandstede1998}, we will write the eigenfunction as a piecewise perturbation of the kernel eigenfunction $S_1(n)$. 
+To prove the stability theorem, we will also use Lin's method. As in \cite{Sandstede1998}, we will write the eigenfunction as a piecewise perturbation of the kernel eigenfunction $T'(0)Q(n)$. 
 
 Assume Hypothesis \ref{initialhyp} and Hypothesis \ref{intersectionhyp}(ii). Using Theorem \ref{ntmulti}, let $Q_m(n)$ be an $m-$pulse solution to \eqref{diffeq} which resembles $m$ copies of the primary pulse solution $Q_1(n)$. We write $Q_m(n)$ piecewise as in \eqref{qmpiecewise}, and we have the following bounds from Theorem \ref{ntmulti}.
 \begin{enumerate}[(i)]
@@ -1151,61 +1078,55 @@ Recall that the eigenvalue problem is given by
 \begin{align*}
 V(n+1) = DF(Q_m(n)) V(n) + \lambda B V(n)
 \end{align*}
-Let $S_m(n) = T'(0) Q_m(n)$, where $T'(0)$ is the infinitesimal generator of the symmetry $T(\theta)$. Then $S_m(n)$ solves the equation
-\begin{equation}\label{Smsolves}
-S_m(n+1) = A(Q_m(n))S_m(n)
+It is straightforward to verify that 
+\begin{equation}\label{DFkernel1}
+(T'(0)Q_m)(n+1) = DF(Q_m(n))(T'(0)Q_m)(n)
 \end{equation}
-Using the piecewise form of $Q_m(n)$ from \eqref{qmpiecewise}, we can write $S_m(n)$ piecewise as 
-\begin{equation}\label{Smdef}
-S_m(n) = T'(0) T(\theta_i) Q(n) + T'(0) \tilde{Q}_i^\pm(n)
-= T(\theta_i) S_1(n) + \tilde{S}_i^\pm(n)
-\end{equation}
-since $T'(0)$ commutes with $T(\theta)$. Since $S$ is a bounded matrix, the bounds from Theorem \ref{ntmulti} apply to $S_m(n)$ as well.
 
-As in \cite{Sandstede1998}, we will take a piecewise ansatz for the eigenfunction $V(n)$. The form of the ansatz will depend on whether we take Hypothesis \ref{melnikovhyp}(i) or \ref{melnikovhyp}(ii). For Hypothesis \ref{melnikovhyp}(i), we use the piecewise ansatz
+As in \cite{Sandstede1998}, we will take a piecewise ansatz for the eigenfunction $V(n)$ which exploits \eqref{DFkernel1}. The form of the ansatz will depend on whether we take Hypothesis \ref{melnikovhyp}(i) or \ref{melnikovhyp}(ii). For Hypothesis \ref{melnikovhyp}(i), we use the piecewise ansatz
 \begin{align*}
-V_i^\pm(n) &= d_i S_m(n) + W_i^\pm(n) = d_i ( T(\theta_i) S_1(n) + \tilde{S}_i^\pm(n) ) + W_i^\pm(n)
+V_i^\pm(n) &= d_i T'(0) Q_m(n) + W_i^\pm(n) 
 && i = 1, \dots, n-1
 \end{align*}
 where $d_i \in \C$. Substituting this into \eqref{latticeEVP} and simplifying, the eigenvalue problem becomes
 \begin{equation}\label{EVPhypi}
-W_i^\pm(n) = DF(Q_m(n)) W_i^\pm(n) + \lambda B W_i^\pm(n) + \lambda d_i B ( T(\theta_i) S_1(n) + \tilde{S}_i^\pm(n))
+W_i^\pm(n) = DF(Q_m(n)) W_i^\pm(n) + \lambda B W_i^\pm(n) + \lambda d_i B T'(0)Q_m(n)
 \end{equation}
 
-If Hypothesis \ref{melnikovhyp}(ii) holds, we will need a different ansatz. Recall that there exists a localized function $T_1(n)$ such that 
-\begin{equation}\label{T1vareq}
-T_1(n+1) = DF(Q(n)) T_1(n) + B S_1(n)
+For the remainder of this section, we will assume that Hypothesis \ref{melnikovhyp}(ii) holds, which is the case for dNLS. The proof for the other case is similar. By Hypothesis \ref{melnikovhyp}(ii), there exists a localized function $S_1(n)$ such that 
+\begin{equation}\label{S1vareq}
+S_1(n+1) = DF(Q(n)) S_1(n) + B T'(0) Q(n)
 \end{equation}
-Using the symmetry relation $F(T(\theta)U) = T(\theta)F(U)$ and the commuting relation $B T(\theta) = T(\theta)B$ from Hypothesis \ref{melnikovhyp}(ii), we also have
-\begin{equation}\label{TthetaT1vareq}
-T(\theta)T_1(n+1) = DF(T(\theta)Q(n)) T(\theta)T_1(n) + B T(\theta) S_1(n)
+From the symmetry relation $F(T(\theta)U) = T(\theta)F(U)$ and the commuting relation \eqref{BTcommute} from Hypothesis \ref{symmetryhyp}, it follows that
+\begin{equation}\label{TthetaS1vareq}
+T(\theta)S_1(n+1) = DF(T(\theta)Q(n)) T(\theta)S_1(n) + B T(\theta) T'(0)Q(n)
 \end{equation}
-
-Using Lin's method, we can find a function $T_m(n)$ such that
-\begin{equation}\label{Tmsolves}
-T_m(n+1) = DF(Q_m(n)) T_m(n) + B S_m(n)
+Using Lin's method, we can find a function $S_m(n)$ such that
+\begin{equation}\label{Smsolves}
+S_m(n+1) = DF(Q_m(n)) S_m(n) + B T'(0) Q_m(n)
 \end{equation}
 Specifically, we make the piecewise ansatz 
-\begin{equation}\label{Tmansatz}
-T_m(n) = T(\theta)T_1(n) + \tilde{T}_i^\pm(n)
+\begin{equation}\label{Smansatz}
+S_m(n) = T(\theta)S_1(n) + \tilde{S}_i^\pm(n)
 \end{equation}
-using the same intervals as \eqref{qmpiecewise}. Substituting \eqref{Tmansatz} and \eqref{Smdef} into \eqref{Tmsolves}, using equation \eqref{TthetaT1vareq}, and simplifying, we obtain the equation
+using the same intervals as \eqref{qmpiecewise}. Substituting \eqref{Smansatz} into \eqref{Smsolves}, using equation \eqref{TthetaS1vareq}, and simplifying, we obtain the equation
 \begin{align*}
-\tilde{T}_i^\pm(n+1) 
-&= DF(T(\theta)Q(n)) \tilde{T}_i^\pm(n)
-+ G_i^\pm(n) \tilde{T}_i^\pm(n) + G_i^\pm(n) T(\theta)T_1(n) + B \tilde{S}_i^\pm(n)
+\tilde{S}_i^\pm(n+1) 
+&= DF(T(\theta_i)Q(n)) \tilde{S}_i^\pm(n)
++ G_i^\pm(n)\tilde{S}_i^\pm(n) + G_i^\pm(n) T(\theta)S_1(n) + B T'
+(0) \tilde{Q}_i^\pm(n)
 \end{align*}
-together with the appropriate matching conditions, which we can solve using Lin's method. Since this is similar to the existence problem, the details will be omitted. After going through the steps of Lin's method, we obtain the remainder boun
-\begin{equation}\label{Tipmbound}
-|| \tilde{T}_i^\pm || \leq C r^{-N}
+together with the appropriate matching conditions, which we can solve using Lin's method. Since this is similar to the existence problem, the details will be omitted. After going through the steps of Lin's method, we obtain the remainder bound
+\begin{equation}\label{Sipmbound}
+|| \tilde{S}_i^\pm || \leq C r^{-N}
 \end{equation}
 
-For this case, we use the piecewise ansatz
+For this case, we take the piecewise ansatz
 \begin{equation}\label{Viansatz2}
 V_i^\pm(n) = 
-d_i [ S_m(n) + \lambda T_m(n) ] + W_i^\pm(n)
+d_i [ T'(0)Q_m(n) + \lambda S_m(n) ] + W_i^\pm(n)
 \end{equation}
-Substituting this into \eqref{latticeEVP}, and simplifying by using \eqref{Smsolves} and \eqref{Tmsolves}, the eigenvalue problem becomes
+Substituting this into \eqref{latticeEVP}, and simplifying by using \eqref{DFkernel1} and \eqref{Smsolves}, the eigenvalue problem becomes
 \begin{align}\label{Weq1}
 W_i^\pm(n+1)
 &= DF(T(\theta_i) Q(n) ) W_i^\pm(n) + G_i^\pm(n)W_i^\pm(n) + \lambda B W_i^\pm(n) + d_i \lambda^2 B T_m(n)
@@ -1215,23 +1136,22 @@ where
 G_i^\pm(n) = DF(Q_m(n)) - DF(T(\theta_i) Q(n) )
 \end{equation}
 
-Since the cases for Hypotheses \ref{melnikovhyp}(i) and \ref{melnikovhyp}(ii) are similar, we will only prove one of them. Since Hypothesis \ref{melnikovhyp}(ii) holds for dNLS, we will do the proof for that case. In addition to solving \eqref{Weq1}, in order to have an eigenfunction we need to satisfy matching conditions at $n = \pm N_i$ and $n = 0$. Thus the system of equations we need to solve is
+In addition to solving \eqref{Weq1}, we need to satisfy matching conditions at $n = \pm N_i$ and $n = 0$. Thus the system of equations we need to solve is
 \begin{align*}
 W_i^\pm(n) &= DF(T(\theta_i) Q(n) ) W_i^\pm(n) + (G_i^\pm(n) + \lambda B) W_i^\pm(n) + \lambda^2 d_i B \tilde{H}_i^\pm(n) \\
 W_i^+(N_i^+) - W_{i+1}^-(-N_i^-) &= D_i d \\
 W_i^\pm(0) &\in \C T(\theta_i)Y^+ \oplus T(\theta_i)Y^- \oplus T(\theta_i) Z_1(0) \\ 
 W_i^+(0) - W_i^-(0) &= 0 
 \end{align*}
-where
+where the third equation comes from the decomposition \eqref{nontdecompT} and the fact that perturbations in the direction of $T(\theta_i)T'(0)Q(0)$ are handled by the $d_i T'(0)Q_m(0) = d_i T'(0)Q(n) + d_i T'(0)T'(0)\tilde{Q}_i^\pm(n)$ term in \eqref{Viansatz2} and we have 
 \begin{align*}
-D_i d &= [ T(\theta_{i+1}) S_1(-N_i^-) + \tilde{S}_{i+1}^-(-N_i^-)] d_{i+1}
-- [ T(\theta_i) S_1(N_i^+) + \tilde{S}_i^+(N_i^+)] d_i \\
-&+ \lambda[ T(\theta_{i+1}) T_1(-N_i^-) + \tilde{T}_{i+1}^-(-N_i^-)] d_{i+1}
-- \lambda[ T(\theta_i) T_1(N_i^+) + \tilde{T}_i^+(N_i^+)] d_i \\
-\tilde{H}_i^\pm(n) &= T_m(n) \\
-H_i(n) &= T(\theta_i) T_1(n)
+D_i d &= [ T(\theta_{i+1}) T'(0)Q(-N_i^-) + T'(0)\tilde{Q}_{i+1}^-(-N_i^-)] d_{i+1}
+- [ T(\theta_i) T'(0)Q(N_i^+) + T'(0)\tilde{Q}_i^+(N_i^+)] d_i \\
+&+ \lambda[ T(\theta_{i+1}) S_1(-N_i^-) + \tilde{S}_{i+1}^-(-N_i^-)] d_{i+1}
+- \lambda[ T(\theta_i) S_1(N_i^+) + \tilde{S}_i^+(N_i^+)] d_i \\
+\tilde{H}_i^\pm(n) &= T(\theta_i) S_1(n) + \tilde{S}_i^\pm(n) \\
+H_i(n) &= T(\theta_i) S_1(n)
 \end{align*}
-and the third expression comes from the decomposition \eqref{nontdecompT} and the fact that perturbations in the direction of $T(\theta_i)S_1(0)$ are handled by the $d_i S_m(n) = d_i S_1(n) + d_i \tilde{S}_i^\pm(n)$ term in \eqref{Viansatz2}.
 
 Following \cite{Sandstede1998}, instead of solving this system, we will solve the system
 \begin{align}
@@ -1240,23 +1160,24 @@ W_i^+(N_i^+) - W_{i+1}^-(-N_i^-) &= D_i d \label{eigsystem2} \\
 W_i^\pm(0) &\in T(\theta_i) Y^+ \oplus T(\theta_i) Y^- \oplus \C T(\theta_i) Z_1(0) \label{eigsystem3a} \\
 W_i^+(0) - W_i^-(0) &\in \C T(\theta_i) Z_1(0) \label{eigsystem3b} 
 \end{align}
-A solution to this system will generically have $n$ jumps at $n = 0$. Thus we have an eigenfunction if and only if the following $n$ jump conditions are satisfied.
+A solution to this system will generically have $n$ jumps at $n = 0$. Thus we have an eigenfunction if and only if the following $n$ jump conditions
 \begin{equation*}
 \xi_i = \langle T(\theta_i) Z_1(0), W_i^+(0) - W_i^-(0) \rangle = 0
 \end{equation*}
+are satisfied.
 
 Using the bounds above, we have the estimates
 \begin{align*}
 ||G_i^\pm|| &\leq C r^N \\
 ||\tilde{H}_i^\pm - H|| &\leq C r^N \\
-D_i d &= [ T(\theta_{i+1}) S_1(-N_i^-) + T(\theta_i) S_1(N_i^+) ] d_{i+1}
-- [ T(\theta_i) S_1(N_i^+) + T(\theta_{i+1}) S_1(-N_i^-) ] d_i \\
+D_i d &= [ T(\theta_{i+1}) T'(0)Q(-N_i^-) + T(\theta_i) T'(0)Q(N_i^+) ] d_{i+1}
+- [ T(\theta_i) T'(0) Q(N_i^+) + T(\theta_{i+1}) T'(0)Q(-N_i^-) ] d_i \\
 &+\mathcal{O}(r^N( |\lambda| + r^N))
 \end{align*}
 
 \subsection{Fixed point formulation}
 
-As in \cite{Sandstede1998}, we write equation \eqref{eigsystem1} as a fiexed point proble using the discrete variation of constants formula from Lemma \ref{VOCformula} together with projections on the stable and unstable subspaces of the exponential dichotomy. Let $\delta > 0$ be small, and choose $N$ sufficiently large so that $r^N < \delta$. As in the existence problem, let $\Phi(m, n; \theta_i)$ be the family of evolution operators for \eqref{Vtheta}. Define the spaces
+As in \cite{Sandstede1998}, we write equation \eqref{eigsystem1} as a fixed point problem using the discrete variation of constants formula from Lemma \ref{VOCformula} together with projections on the stable and unstable subspaces of the exponential dichotomy. Let $\delta > 0$ be small, and choose $N$ sufficiently large so that $r^N < \delta$. As in the existence problem, let $\Phi(m, n; \theta_i)$ be the family of evolution operators for \eqref{Vtheta}. Define the spaces
 \begin{align*}
 V_W &= l^\infty([-N_{i-1}, 0]) \oplus l^\infty([0, N_i])  \\
 V_a &= \bigoplus_{i=0}^{n-1} E^u \oplus E^s \\
@@ -1410,9 +1331,9 @@ J_1: V_a \rightarrow \bigoplus_{j=1}^{m-1} \C^d
 \]
 by $(J_1)_i(a_i^+, a_i^-) = a_i^+ - a_i^-$. Since $E^s \oplus E^u = \C^d$, the map $J_1$ is a linear isomorphism. Define the map
 \[
-S_1(a) = J_1 (a) + L_3(\lambda)(a, 0, 0) = J_1( I + J_1^{-1} L_3(\lambda)(a, 0 0) )
+K_1(a) = J_1 (a) + L_3(\lambda)(a, 0, 0) = J_1( I + J_1^{-1} L_3(\lambda)(a, 0 0) )
 \]
-For sufficiently small $\delta$, $||J_1^{-1} L_3(\lambda)(a, 0, 0)|| < 1$, thus the operator $S_1(a)$ is invertible. We can then solve for $a$ to get
+For sufficiently small $\delta$, $||J_1^{-1} L_3(\lambda)(a, 0, 0)|| < 1$, thus the operator $K_1(a)$ is invertible. We can then solve for $a$ to get
 \[
 a = A_1(\lambda)(b, d) = S_i^{-1}(-D d - L_3(\lambda)(b, d))
 \]
@@ -1445,19 +1366,19 @@ C\left( (r^N + ||G|| + |\lambda| )|b| + (r^N + ||G|| + |\lambda|)|D||d| + |\lamb
 
 Finally, we will satisfy equations \eqref{eigsystem3a} and \eqref{eigsystem3b}. Since we have the decomposition
 \begin{equation}\label{decomp1}
-C^d = \C T(\theta_i) Z_1(0) \oplus \C T(\theta_i) S_1(0) \oplus T(\theta_i) Y^+ \oplus T(\theta_i) Y^-
+C^d = \C T(\theta_i) Z_1(0) \oplus \C T(\theta_i) T'(0)Q(0) \oplus T(\theta_i) Y^+ \oplus T(\theta_i) Y^-
 \end{equation}
 these two equations are equivalent to the three projections
 \begin{equation}\label{projeq}
 \begin{aligned}
-P(T(\theta_i) S_1(0)) W_i^- &= 0 \\
-P(T(\theta_i) S_1(0)) W_i^+ &= 0 \\
+P(T(\theta_i) T'(0)Q(0)) W_i^- &= 0 \\
+P(T(\theta_i) T'(0)Q(0)) W_i^+ &= 0 \\
 P(T(\theta_i) Y^+ \oplus T(\theta_i) Y^-) (W_i^+ - W_i^-) &= 0
 \end{aligned}
 \end{equation}
-where the kernel of each projection is the remaining elements of the direct sum decomposition \eqref{decomp1}. Since we have eliminated any component in $T(\theta_i) S_1(0)$ in the first two projections, we do not need it in the third projection.
+where the kernel of each projection is the remaining elements of the direct sum decomposition \eqref{decomp1}. Since we have eliminated any component in $T(\theta_i) T'(0)Q(0)$ in the first two projections, we do not need it in the third projection.
 
-We decompose $b_i^\pm$ uniquely as $b_i^\pm = x_i^\pm + y_i^\pm$, where $x_i^\pm \in \C T(\theta_i) S_1(0)$ and $y_i^\pm \in T(\theta_i) Y^\pm$. In the next lemma, we solve the equations \eqref{projeq}.
+We decompose $b_i^\pm$ uniquely as $b_i^\pm = x_i^\pm + y_i^\pm$, where $x_i^\pm \in \C T(\theta_i) T'(0)Q(0)$ and $y_i^\pm \in T(\theta_i) Y^\pm$. In the next lemma, we solve the equations \eqref{projeq}.
 
 % lemma: solve at n=0
 \begin{lemma}\label{eiginv3}
@@ -1513,31 +1434,31 @@ We use the exponential dichotomy estimates from Lemma \ref{dichotomy} and plug i
 
 Define the map
 \[
-J_2: \left( \bigoplus_{j=1}^n \C S_1(0) \oplus \C S_1(0) \right) \oplus
+J_2: \left( \bigoplus_{j=1}^n \C T'(0)Q(0) \oplus \C T'(0)Q(0) \right) \oplus
 \left( \bigoplus_{j=1}^n Y^- \oplus Y^+ \right) 
-\rightarrow \bigoplus_{j=1}^n \C S_1(0) \oplus \C S_1(0) \oplus (Y^- \oplus Y^+)
+\rightarrow \bigoplus_{j=1}^n \C T'(0)Q(0) \oplus \C T'(0)Q(0) \oplus (Y^- \oplus Y^+)
 \]
 by 
 \[
 J_2( (x_i^+, x_i^-),(y_i^+, y_i^-))_i = ( x_i^+, x_i^-, y_i^+ - y_i^- )
 \]
-Since $\C^d = \C T(\theta_i) Z_1(0) \oplus \C T(\theta_i) S_1(0) \oplus T(\theta_i) Y^- \oplus T(\theta_i) Y^+)$, $J_2$ is an isomorphism. Using this and the fact that $b_i = (x_i^- + y_i^-, x_i^+ + y_i^+)$, we can write \eqref{projeq2} as
+Since $\C^d = \C T(\theta_i) Z_1(0) \oplus \C T(\theta_i) T'(0)Q(0) \oplus T(\theta_i) Y^- \oplus T(\theta_i) Y^+)$, $J_2$ is an isomorphism. Using this and the fact that $b_i = (x_i^- + y_i^-, x_i^+ + y_i^+)$, we can write \eqref{projeq2} as
 \begin{equation}\label{projxy2}
 J_2( (x_i^+, x_i^-),(y_i^+, y_i^-))_i 
 + L_4(\lambda)_i(b_i, 0) + L_4(\lambda)_i(0, d) = 0
 \end{equation}
 Consider the map
 \begin{align*}
-S_2(b)_i &= J_2( (x_i^+, x_i^-),(y_i^+, y_i^-))_i 
+K_2(b)_i &= J_2( (x_i^+, x_i^-),(y_i^+, y_i^-))_i 
 + L_4(\lambda)_i(b_i, 0) 
 \end{align*}
 Substituting this in \eqref{projxy2}, we have
 \begin{align*}
-S_2(b) &= -L_4(\lambda)(0, d)
+K_2(b) &= -L_4(\lambda)(0, d)
 \end{align*}
-For sufficiently small $\delta$, the operator $S_2(b)$ is invertible. Thus we can solve for $b$ to get
+For sufficiently small $\delta$, the operator $K_2(b)$ is invertible. Thus we can solve for $b$ to get
 \begin{equation}
-b = B_1(\lambda)(d) = -S_2^{-1} L_4(\lambda)(0, d)
+b = B_1(\lambda)(d) = -K_2^{-1} L_4(\lambda)(0, d)
 \end{equation}
 where we have the uniform bound on $B_1$
 \begin{equation}
@@ -1564,7 +1485,7 @@ In the next lemma, we derive formulas for these jumps.
 
 % lemma : jump conditions
 \begin{lemma}\label{jumpcond}
-Assume Hypothesis \ref{BTcommutehyp}. Then $W_i^+(0) = W_i^-(0)$ for $i = 1, \dots, m$ if and only if the $m$ jump conditions
+$W_i^+(0) = W_i^-(0)$ for $i = 1, \dots, m$ if and only if the $m$ jump conditions
 \begin{equation}\label{xicond}
 \xi_i = \langle T(\theta_i) Z_1(0), W_i^+(0) - W_i^-(0) \rangle = 0
 \end{equation}
@@ -1572,7 +1493,7 @@ are satisfied. The jumps $\xi_i$ can be written as
 \begin{equation}\label{xieq}
 \xi_i = \langle T(\theta_i) Z_1(N_i^+), P_0^u(\theta_i) D_i d \rangle 
 + \langle T(\theta_i) Z_1(-N_{i-1}^-), P_0^s(\theta_{i-1}) D_{i-1} d \rangle 
-- \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B T_1(j)\rangle + R(\lambda)_i(d)
+- \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B S_1(j)\rangle + R(\lambda)_i(d)
 \end{equation}
 where the remainder term $R(\lambda)(d)$ has bound
 \begin{align}\label{xiRbound}
@@ -1605,11 +1526,11 @@ For the terms involving $a$, we substitute $A_4$ from Lemma \ref{eiginv3} to get
 The sums involving $\tilde{H}$ give us the higher order Melnikov sum $M_2$.
 \begin{align*}
 &\langle T(\theta_i) Z_1(0), \sum_{j = -N_{i-1}^-}^{-1} \Phi_s^-(0, j+1; \theta_i) B \tilde{H}_i^-(j) + \sum_{j = 0}^{N_i^+-1} \Phi_u^+(0, j+1; \theta_i) B \tilde{H}_i^+(j) \rangle \\
-&= \sum_{j = -N_{i-1}^-}^{-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) T_1(j) \rangle + \sum_{j = 0}^{N_i^+-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) T_1(j) \rangle + \mathcal{O}(r^N)\\
-&= \sum_{j = -\infty}^{\infty} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) T_1(j)\rangle + \mathcal{O}(r^N) \\
-&= \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B T_1(j)\rangle + \mathcal{O}(r^N)
+&= \sum_{j = -N_{i-1}^-}^{-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) S_1(j) \rangle + \sum_{j = 0}^{N_i^+-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) S_1(j) \rangle + \mathcal{O}(r^N)\\
+&= \sum_{j = -\infty}^{\infty} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) S_1(j)\rangle + \mathcal{O}(r^N) \\
+&= \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B S_1(j)\rangle + \mathcal{O}(r^N)
 \end{align*}
-where in the last line we used Hypothesis \ref{BTcommutehyp} and the fact that $T(\theta)$ is unitary.
+where in the last line we used \eqref{BTcommute} from Hypothesis \ref{symmetryhyp} and the fact that $T(\theta)$ is unitary.
 
 Finally, we need to obtain bound for the sum involving $W$. To do this, as in \cite{Sandstede1998}, we will need an improved bound for $W$. Plugging in the bounds for $A_3$, $W_3$, and $B_1$ into the fixed point equations \eqref{fpeig}, we have piecewise bounds
 \begin{align*}
@@ -1633,7 +1554,7 @@ Putting this all together, we have
 \begin{equation*}
 \xi_i = \langle T(\theta_i) Z_1(N_i^+), P_0^u(\theta_i) D_i d \rangle 
 + \langle T(\theta_i) Z_1(-N_{i-1}^-), P_0^s(\theta_{i-1}) D_{i-1} d \rangle 
-- \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B T_1(j)\rangle + R(\lambda)_i(d)
+- \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B S_1(j)\rangle + R(\lambda)_i(d)
 \end{equation*}
 where the remainder term $R(\lambda)(d)$ has bound
 \begin{align*}
@@ -1644,40 +1565,40 @@ where the remainder term $R(\lambda)(d)$ has bound
 
 \subsection{Proof of Theorem \ref{stabilitytheorem}}
 
-Using the bound on $T_1$ and $\tilde{T}_i^\pm$, equation \eqref{Dideq} for $D_i d$ simplifies to
+Using the bound on $S_1$ and $\tilde{S}_i^\pm$, equation \eqref{Dideq} for $D_i d$ simplifies to
 \begin{align}\label{Did3}
-D_i d &= [ T(\theta_{i+1}) S_1(-N_i^-) + \tilde{S}_{i+1}^-(-N_i^-)] d_{i+1}
-- [ T(\theta_i) S_1(N_i^+) + \tilde{S}_i^+(N_i^+)] d_i + \mathcal{O}(|\lambda|r^{-N}|d|)
+D_i d &= [ T(\theta_{i+1}) T'(0)Q(-N_i^-) + T'(0)\tilde{Q}_{i+1}^-(-N_i^-)] d_{i+1}
+- [ T(\theta_i) T'(0)Q(N_i^+) + T'(0)\tilde{Q}_i^+(N_i^+)] d_i + \mathcal{O}(|\lambda|r^{-N}|d|)
 \end{align}
-Using the estimates \eqref{Westimates} together with $S_1(n) = T'(0) Q(n)$ and $S_m(n) = T'(0) Q_m(n)$, we have
+Using the estimates \eqref{Westimates}, we have
 \begin{align*}
-\tilde{S}_{i+1}^-(-N_i^-) &= T(\theta_i) S_1(N_i^+) + \mathcal{O}(r^{-2N}) \\
-\tilde{S}_i^+(N_i^+) &= T(\theta_{i+1}) S_1(-N_i^-) + \mathcal{O}(r^{-2N})
+T'(0) \tilde{Q}_{i+1}^-(-N_i^-) &= T(\theta_i) T'(0) Q(N_i^+) + \mathcal{O}(r^{-2N}) \\
+T'(0) \tilde{Q}_i^+(N_i^+) &= T(\theta_{i+1}) T'(0) Q(-N_i^-) + \mathcal{O}(r^{-2N})
 \end{align*}
 since the infinitesimal generator of a group commutes with the group elements. Substituting these into \eqref{Did3}, we have
 \begin{equation}\label{Did4}
-D_i d = [ T(\theta_{i+1}) S_1(-N_i^-) + T(\theta_i) S_1(N_i^+) ] d_{i+1}
-- [ T(\theta_i) S_1(N_i^+) + T(\theta_{i+1}) S_1(-N_i^-) ] d_i 
+D_i d = [ T(\theta_{i+1}) T'(0)Q(-N_i^-) + T(\theta_i) T'(0)Q(N_i^+) ] d_{i+1}
+- [ T(\theta_i) T'(0)Q(N_i^+) + T(\theta_{i+1}) T'(0)Q(-N_i^-) ] d_i 
 +\mathcal{O}(r^N( |\lambda| + r^N))
 \end{equation}
 
 Next, we substitute \eqref{Did4} into jump expressions $\xi_i$ from Lemma \ref{jumpcond}. For the term $\langle T(\theta_i) Z_1(N_i^+), P_0^u(\theta_i) D_i d \rangle$, we use equation \eqref{projexpdecay} to get
 \begin{equation*}
 \langle T(\theta_i) Z_1(N_i^+), P_0^u(\theta_i) D_i d \rangle 
-= \langle T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) S_1(-N_i^-) \rangle (d_{i+1} - d_i)
+= \langle T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) T'(0)Q(-N_i^-) \rangle (d_{i+1} - d_i)
 + \mathcal{O}(r^{-3N})
 \end{equation*}
-since $T(\theta)$ is unitary and $\langle Z_1(n), S_1(n) \rangle = 0$ for all $n$. Similarly, we have
+since $T(\theta)$ is unitary and $\langle Z_1(n), T'(0)Q(n) \rangle = 0$ for all $n$. Similarly, we have
 \begin{align*}
 \langle T(\theta_i) Z_1(-N_{i-1}^-), P_0^s D_{i-1} d \rangle 
-&= \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) S_1(N_{i-1}^+) \rangle (d_i - d_{i-1})
+&= \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) T'(0)Q(N_{i-1}^+) \rangle (d_i - d_{i-1})
 \end{align*}
 
 Substituting these into the jump equations, we obtain the jump conditions
 \begin{align*}
-\xi_i = \langle T(\theta_i) &Z_1(N_i^+), T(\theta_{i+1}) S_1(-N_i^-) \rangle (d_{i+1} - d_i)
-+ \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) S_1(N_{i-1}^+) \rangle (d_i - d_{i-1}) \\
-&- \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B T_1(j)\rangle + R(\lambda)_i(d)
+\xi_i = \langle T(\theta_i) &Z_1(N_i^+), T(\theta_{i+1}) T'(0)Q(-N_i^-) \rangle (d_{i+1} - d_i)
++ \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) T'(0)Q(N_{i-1}^+) \rangle (d_i - d_{i-1}) \\
+&- \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B S_1(j)\rangle + R(\lambda)_i(d)
 \end{align*}
 For the remainder term, we have
 \begin{align*}
