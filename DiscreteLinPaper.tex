@@ -327,7 +327,7 @@ E(\lambda) = \begin{cases}
 $M_1$ and $M_2$ are defined in Hypothesis \eqref{melnikovhyp}. $A$ is the tridiagonal $m \times m$ matrix
 \begin{align}\label{matrixA}
 A &= \begin{pmatrix}
--a_1 & a_1 & & &  \\
+-a_1 & a_1 & & & \\
 -\tilde{a}_1 & \tilde{a}_1 - a_2 & a_2 \\
 & -\tilde{a}_2 & \tilde{a}_2 - a_3 & a_3 \\
 & \ddots & & \ddots \\
@@ -349,7 +349,7 @@ and the remainder term has uniform bound
 
 \subsection{Background}
 
-In this section, we will apply the results the previous section to the discrete NLS equation \eqref{dNLS}. Before we do that, we will give a brief overview of the equation and what is already known. More details can be found in \cite{Kevrekidis2009}. 
+We will now apply the results the previous section to the discrete NLS equation \eqref{dNLS}. Before we do that, we will give a brief overview what is already known. More details can be found in \cite{Kevrekidis2009}. 
 
 Equation \eqref{dNLS} is Hamiltonian, with energy given by (2.17) in \cite{Kevrekidis2009}. Alternatively, taking $u = v + i w$, with $v$ and $w$ real, we can write \eqref{dNLS} in Hamiltonian form as
 \begin{equation}\label{dNLSrealHam}
@@ -366,22 +366,98 @@ H(u_n, v_n) = -\sum_{n = -\infty}^\infty
 \left( \frac{1}{2}\left(v_n - v_{n-1}\right)^2 + \frac{1}{2}\left(w_n - w_{n-1}\right)^2 - \frac{1}{4}\left( v_n^2 + w_n^2 \right)^2 \right)
 \end{equation}
 
-At the anti-continuum limit, when $d = 0$, equation \eqref{dNLSequilib} reduces to a system of decoupled algebraic equations. Any function $u(n)$ with $u(n) \in \{ 0, \pm \sqrt{\omega}\}$ is a solution. For $d > 0$, dNLS possesses two real-valued, symmetric, single pulse solutions (up to rotation): on-site solutions, which are centered on a single lattice point; and off-site solutions, which are centered between two adjacent lattice points \cite{Kevrekidis2009}. The on-site solution has a single eigenvalue at 0 from the rotational symmetry. The off-site solution has an additional pair of real eigenvalues; since the off-site solution is spectrally unstable, we will only consider the on-site solution from here on. 
+At the anti-continuum limit, equation \eqref{dNLSequilib} reduces to a system of decoupled algebraic equations. Any function $u(n)$ with $u(n) \in \{ 0, \pm \sqrt{\omega}\}$ is a solution. For $d > 0$, dNLS possesses two real-valued, symmetric, single pulse solutions (up to rotation): on-site solutions, which are centered on a single lattice point; and off-site solutions, which are centered between two adjacent lattice points \cite{Kevrekidis2009}. The on-site solution has a single eigenvalue at 0 from the rotational symmetry. The off-site solution has an additional pair of real eigenvalues; since the off-site solution is spectrally unstable, we will only consider the on-site solution from here on. 
 
-Let $q(n)$ be the on-site solution to \eqref{dNLSequilib}, which exists for all $d > 0$ (REFERENCE). For sufficiently small $d$, $m$-pulse solutions exist for any pulse distances $N_i^\pm$ and any phase differences $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $d$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}. For any $d$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it follows from Sturm-Liouville theory that there is at least one positive, real eigenvalue \cite{Kapitula2001a}.
+For sufficiently small $d$, $m$-pulse solutions exist to equation \eqref{dNLSequilib} for any pulse distances as long as the phase differences satisfy $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $d$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}. For any $d$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it follows from Sturm-Liouville theory that there is at least one positive, real eigenvalue \cite{Kapitula2001a}.
 
-\subsection{Real-valued multi-pulses}
+\subsection{Main Results}
 
-We will now show existence of multi-pulse solutions. First, we will look for real-valued solutions to \eqref{dNLSequilib}. In this case, the stationary equation reduces to
+Let $q(n)$ be the on-site, real-valued soliton solution to \eqref{dNLSequilib}, which exists for all $d > 0$ (REFERENCE). We will characterize an $m-$pulse solution to \eqref{dNLSequilib} in terms of the $m-1$ length parameters $\{ N_1, \dots, N_{m-1} \}$ and the $m-1$ phase differences $\{ \Delta\theta_1, \dots, \Delta\theta_{m-1} \}$ between consecutive copies of $q(n)$. We have the following theorem regarding the existence of $m-$pulse solutions.
+
+\begin{theorem}\label{dNLSexisttheorem}
+There exists a positive integer $N_0$ (which depends on $\omega$ and $d$), with the following property. For any $m \geq 2$, lengths $N_i \leq N_0$, and phase differences $\Delta\theta_i \in \{0, \pi\}$, there exists a unique $m-$pulse solution to \eqref{dNLSequilib} which resembles $m$ consecutive copies of the on-site $q(n)$. No other phase differences are possible.
+\end{theorem}
+
+Given such a solution $q_m(n)$, the following theorem locates the small eigenvalues of \eqref{dNLSlatticeEVP} resulting from interaction between consecutive copies of $q(n)$. 
+
+\begin{theorem}
+Let $q_m(n)$ be an $m-$pulse solution to \eqref{dNLSequilib} with length parameters $N_i$ and phase differences $\Delta\theta_i$. Then there exist $m-1$ pairs of eigenvalues $\{\pm \lambda_1, \dots, \pm \lambda_{m-1}\}$ to \eqref{dNLSlatticeEVP} which are groups as follows:
+\begin{enumerate}
+	\item $k_\pi$ pairs of purely imaginary eigenvalues
+	\item $k_0$ pairs of real eigenvalues
+\end{enumerate}
+where $k_\pi$ is the number of phase differences $\Delta\theta_i$ which are $\pi$, and $k_0$ is the number of phase differences $\Delta\theta_i$ which are $0$.
+
+Furthermore, the eigenvalues are given by the following formula.
+\begin{align}\label{eigsDNLS}
+\lambda_j &= \sqrt{\frac{d \tilde{\mu}_j}{M}}r^{-N} + \mathcal{O}(r^{-2N}) && j = 1, \dots, m-1
+\end{align}
+where 
+\begin{align*}
+r &= 1 + \frac{\omega}{2 d} \left( 1 + \sqrt{1 + \frac{4 d}{\omega}} \right)\\
+N &= \min\{ N_1, \dots, N_{m-1} \} \\
+M &= \sum_{n=-\infty}^\infty q(n) q_\omega(n)
+\end{align*}
+and $\{ \tilde{\mu}_1, \dots, \tilde{\mu}_{m-1} \}$ are the distinct, real, nonzero eigenvalues of the symmetric, tridiagonal matrix
+\begin{align*}
+A &= \frac{1}{r^{2N}}\begin{pmatrix}
+-\cos(\Delta\theta_1) b_1 & \cos(\Delta\theta_1) b_1 & & &  \\
+\cos(\Delta\theta_1) b_1 & -\cos(\Delta\theta_1) b_1 - \cos(\Delta\theta_2) b_2 & \cos(\Delta\theta_2) b_2 \\
+& \ddots & \ddots \\
+& &  \cos(\Delta\theta_{m-1}) b_{m-1} & -\cos(\Delta\theta_{m-1}) b_{m-1}  \\
+\end{pmatrix}
+\end{align*}
+with
+\begin{align*}
+b_i = \begin{cases}
+q\left(\frac{N_i}{2}\right) \left[ q\left(\frac{N_i}{2} + 1\right) - q\left(\frac{N_i}{2} - 1\right) \right] & N_i \text{ even} \\
+q\left(\frac{N_i-1}{2}\right)\left(\frac{N_i+3}{2}\right) 
+- \left(\frac{N_i+1}{2}\right)q\left(\frac{N_i-3}{2}\right) & N_i \text{ odd}
+\end{cases}
+\end{align*}
+\end{theorem}
+
+As a corollary, we can compute the nonzero eigenvalues of \eqref{dNLSlatticeEVP} in several special cases.
+
+\begin{corollary}\[\]
+\begin{enumerate}[(i)]
+\item For the $2-$pulse with $b_1 = b$,
+\begin{align*}
+\lambda_1 &= 
+\begin{cases}
+\tilde{\lambda}  + \mathcal{O}(r^{-2N}) & \Delta\theta_1 = 0 \\
+\tilde{\lambda} i + \mathcal{O}(r^{-2N}) & \Delta\theta_1 = \pi
+\end{cases}
+\end{align*}
+\item For the symmetric $3-$pulse with $b_1 = b_2 = b$,
+\begin{align*}
+\lambda_{1, 2} &= \begin{cases}
+\tilde{\lambda}, \sqrt{3} k & (\Delta\theta_1, \Delta\theta_2) = (0, 0) \\
+3^{1/4}\tilde{\lambda}, 3^{1/4}\tilde{\lambda}i & (\Delta\theta_1, \Delta\theta_2) = (0, \pi) \\
+\tilde{\lambda}i, \sqrt{3} \tilde{\lambda}i & (\Delta\theta_1, \Delta\theta_2) = (\pi, \pi)
+\end{cases}
+\end{align*}
+\item For the symmetric $m$-pulse with $b_i = b$ and $\Delta\theta_i = \Delta\theta$ for all $i$,
+\begin{align*}
+\lambda_j = \begin{cases}
+\sqrt{2\left( \cos\frac{\pi j}{m} - 1 \right)}\tilde{\lambda} & \Delta\theta = 0 \\
+\sqrt{2\left( \cos\frac{\pi j}{m} - 1 \right)}\tilde{\lambda}i & \Delta\theta = \pi
+\end{cases}
+\end{align*}
+for $j = 1, \dots, m$.
+\end{enumerate}
+where $\tilde{\lambda} = \sqrt{\frac{|b_1|d}{M}} > 0$.
+\end{corollary}
+
+\subsection{Proof of Theorem \ref{dNLSexisttheorem}}
+
+First, we will look for real-valued solutions to \eqref{dNLSequilib}. In this case, the stationary equation \eqref{dNLS} reduces to
 \begin{equation*}
 d(u_{n+1} - 2 u_n + u_{n-1}) - \omega u_n + u_n^3 = 0
 \end{equation*}
-For $d \neq 0$, this is equivalent to the first order difference equation $U_{n+1} = F(U_n)$, where $U_n = (u_n, \tilde{u}_n) \in \R^2$, $\tilde{u}_n = u_{n-1}$, and 
+For $d \neq 0$, this is equivalent to the first order difference equation $U_{n+1} = F(U_n; \omega)$, where $U_n = (u_n, \tilde{u}_n) \in \R^2$, $\tilde{u}_n = u_{n-1}$, and 
 \begin{equation}\label{dnlsdiffR2}
-F
-\begin{pmatrix}
-u \\ \tilde{u}
-\end{pmatrix} =
+F(U; \omega) = 
 \begin{pmatrix}
 \frac{\omega}{d} + 2 & -1 \\
 1 & 0
@@ -400,38 +476,11 @@ r = 1 + \frac{\omega}{2 d} \left( 1 + \sqrt{1 + \frac{4 d}{\omega}} \right) > 1
 \end{align}
 As $d \rightarrow \infty$, $r \rightarrow 1$, thus the spectral gap decreases with increasing $d$. As $d \rightarrow 0$, $r \rightarrow \infty$.
 
-It follows that 0 is a hyperbolic equilibrium point with 1-dimensional stable and unstable manifolds. Let $q_n$ be the on-site, real-valued solution to \eqref{dNLSequilib}. Then $Q_n = (q_n, \tilde{q}_n)$ is the primary pulse solution to $U_{n+1} = F(U_n)$, where $\tilde{q}_n = q_{n-1}$. Thus Hypothesis \ref{initialhyp} is satisfied. Since the variational equation does not have a bounded solution, the stable and unstable manifolds intersect transversely, thus Hypothesis \ref{intersectionhyp} is satisfied. 
+It follows that 0 is a hyperbolic equilibrium point with 1-dimensional stable and unstable manifolds. Since $Q_n = (q_n, \tilde{q}_n)$ is the primary pulse solution to $U_{n+1} = F(U_n)$, where $\tilde{q}_n = q_{n-1}$, Hypothesis \ref{initialhyp} is satisfied. Since the variational equation does not have a bounded solution, the stable and unstable manifolds intersect transversely, thus Hypothesis \ref{intersectionhyp} is satisfied. 
 
-Using Theorem \ref{transversemulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $d$) there exist $m-$pulse solutions for any $\theta_i = \pm 1$ and lengths $N_i \geq N$. 
+Using Theorem \ref{transversemulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $d$) there exist $m-$pulse solutions for any $\theta_i = \pm 1$ and lengths $N_i \geq N$. These correspond to phase differences of $0$ and $\pi$.
 
-\subsection{No other multi-pulses}
-
-We will now show that (up to rotation), there are no other multi-pulse soliton solutions to dNLS, i.e. there are no multi-pulse solutions with phase differences other than $0$ and $\pi$. For convenience, we will reuse much of the notation from the previous section. In this case, $u$ can be complex, so for $d \neq 0$, we are looking for solutions to the difference equation 
-\begin{equation}\label{dNLSdiff}
-U(n+1) = F(U(n))
-\end{equation}
-where $U(n) \in \R^4$ and $F$ is defined in equation \eqref{FdNLS}. The symmetry group $G = (\R, \cdot)$ acts on $\R^4$ via $T(\theta)$, where
-\begin{align}\label{TdNLS}
-T(\theta) =
-\begin{pmatrix}
-\cos\theta & 0 &-\sin\theta & 0 \\
-0 & \cos\theta & 0 &-\sin\theta \\
-\sin\theta & 0 & \cos\theta & 0 \\
-0 & \sin\theta & 0 & \cos\theta 
-\end{pmatrix}
-\end{align}
-which has infinitesimal generator
-\begin{align}\label{dnlsSgen}
-T'(0) =
-\begin{pmatrix}
-0 & 0 &-1 & 0 \\
-0 & 0 & 0 &-1 \\
-1 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 
-\end{pmatrix}
-\end{align}
-
-For $d, \omega > 0$, $DF(0)$ has eigenvalues $\{r, 1/r\}$, each of which has multiplicity 2; the constant $r$ is defined in equation \eqref{defr} in the previous section. Thus $DF(0)$ is hyperbolic and has 2-dimensional stable and unstable manifolds. Let $q(n)$ be the real-valued, on-site, primary pulse solution to \eqref{dNLSequilib}. Then the primary pulse solution to $U_{n+1} = F(U_n)$ is given by $Q(n) = (q(n), \tilde{q}(n), 0, 0)$. Thus Hypothesis \ref{initialhyp} is satisfied.
+We will now show that there are no multi-pulse solutions with phase differences other than $0$ and $\pi$. Since we now allow $u$ to be complex-valued, we are looking for solutions to the difference equation \eqref{dNLSdiff}. For $d, \omega > 0$, $DF(0)$ has eigenvalues $\{r, 1/r\}$, each of which has multiplicity 2, thus $DF(0)$ is hyperbolic and has 2-dimensional stable and unstable manifolds. The primary pulse solution to \eqref{dNLSdiff} is given by $Q(n) = (q(n), \tilde{q}(n), 0, 0)$. Thus Hypothesis \ref{initialhyp} is satisfied. 
 
 The variational and adjoint variational equations associated with \eqref{dNLSdiff} are
 \begin{align}
@@ -443,12 +492,12 @@ We can verify that $T'(0) Q(n) = (0, 0, q(n), \tilde{q}(n))$ is a solution to \e
 Z_1(n) = (0, 0, -\tilde{q}(n), q(n))
 \end{equation}
 
-Using Theorem \ref{ntmulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $d$) there exist $m-$pulse solutions with lengths $N_i^\pm$ and phase parameters $\theta_i$ if any only if the jump conditions \eqref{jumpcondexist} are satisfied. Using \eqref{TdNLS} and the fact that $T(\theta)$ is unitary, we can rewrite the jump conditions in terms of the $(m - 1)$ phase differences $\Delta \theta_i = \theta_{i+1} - \theta_i$ to get
+Using Theorem \ref{ntmulti}, for sufficiently large $N$ (which depends on $r$, thus $\omega$ and $d$) there exist $m-$pulse solutions with lengths $N_i^\pm$ and phase parameters $\theta_i$ if any only if the jump conditions \eqref{jumpcondexist} are satisfied. Since the symmetry group $T(\theta)$ is unitary, we can rewrite the jump conditions in terms of the phase differences $\Delta \theta_i = \theta_{i+1} - \theta_i$ to get
 \begin{align}\label{jumpDNLS}
 \xi_i = \langle T(-\Delta \theta_i) Z_1(N_i^+), Q(-N_i^-) \rangle
 - \langle T(\Delta \theta_{i-1}) Z_1(-N_{i-1}^-), Q(N_{i-1}^+) \rangle + R_i
 \end{align}
-where $\Delta \theta_0 = 0$ and $\Delta \theta_m = 0$. The inner product terms in \eqref{jumpDNLS} are
+where we take $\Delta \theta_0 = \Delta \theta_m = 0$. The inner product terms in \eqref{jumpDNLS} are
 \begin{equation}\label{jumpIPs}
 \begin{aligned}
 \langle T(-\Delta\theta_i) Z_1(N_i^+), Q(-N_i^-) \rangle 
@@ -458,16 +507,17 @@ where $\Delta \theta_0 = 0$ and $\Delta \theta_m = 0$. The inner product terms i
 \end{equation}
 where 
 \begin{align*}
-b_i &= q(N_i^+ - 1)q(N_i^-) - q(N_i^+)q(N_i^- + 1) \\
+b_i &= q(N_i^+ - 1)q(N_i^-) - q(N_i^+)q(N_i^- + 1)
 \end{align*}
 Since the single pulse $q(n)$ is an even function, we can write $b_i$ as
 \begin{equation}\label{bieq}
 b_i = \begin{cases}
-q(N_i^+)\left( q(N_i^+ + 1) - q(N_i^+ - 1) \right) & N_i \text{ even} \\
-q(N_i^+)q(N_i^+ + 2) - q(N_i^+ - 1)q(N_i^+ + 1) & N_i \text{ odd}
+q\left(\frac{N_i}{2}\right) \left[ q\left(\frac{N_i}{2} + 1\right) - q\left(\frac{N_i}{2} - 1\right) \right] & N_i \text{ even} \\
+q\left(\frac{N_i-1}{2}\right)\left(\frac{N_i+3}{2}\right) 
+- \left(\frac{N_i+1}{2}\right)q\left(\frac{N_i-3}{2}\right) & N_i \text{ odd}
 \end{cases}
 \end{equation}
-Since $q(n)$ is strictly decreasing as $n$ moves away from 0 [CITATION, THIS IS TRUE FOR SUFFICIENTLY LARGE $N$ SINCE $r$ IS REAL, AND I BELIEVE IT IS ALWAYS TRUE], $b_i < 0$ for all $i$. 
+Since $q(n)$ is strictly decreasing as $n$ moves away from 0 [CITATION NEEDED, THIS IS TRUE FOR SUFFICIENTLY LARGE $N$ SINCE $r$ IS REAL, AND I BELIEVE IT IS ALWAYS TRUE], $b_i < 0$ for all $i$. 
 
 Letting $s_i = \sin{\Delta\theta_i}$ and substituting equations \eqref{jumpIPs} into \eqref{jumpDNLS}, the jump conditions become
 \begin{equation}\label{jumpDNLS2}
@@ -490,7 +540,7 @@ b_1 & -b_2 \\
 &&& b_{m-2} & -b_{m-1} \\
 \end{pmatrix}
 \]
-Since $H$ is lower triangular and all the $b_i$ are nonzero, $B$ is invertible, thus $s = B^{-1}R$ is the unique value of $s$ for which all the jump conditions are satisfied. In the previous section, we showed that for sufficiently large $N$, real-valued multi-pulses exist with phase differences which are either 0 or $\pi$; for all of those cases, $s = 0$. Since we found a unique solution $s$, and $s = 0$ is a solution, $s = 0$ must be the unique solution to the jump conditions. We conclude that for sufficiently large $N$, the jump conditions can only be satisfied if all of the phase differences $\Delta \theta_i$ are either 0 or $\pi$. No other phase differences are possible.
+Since $H$ is lower triangular and all the $b_i$ are nonzero, $B$ is invertible, thus $s = B^{-1}R$ is the unique value of $s$ for which all the jump conditions are satisfied. In the previous section, we showed that for sufficiently large $N$, real-valued multi-pulses exist with phase differences which are either 0 or $\pi$; for all of those cases, $s = 0$. Since we found a unique solution $s$, and $s = 0$ is a solution, $s = 0$ must be the unique solution to the jump conditions. Thus\ for sufficiently large $N$, the jump conditions can only be satisfied if all of the phase differences $\Delta \theta_i$ are either 0 or $\pi$. No other phase differences are possible.
 
 \subsection{Eigenvalue problem}
 
@@ -581,53 +631,7 @@ These are either real or purely imaginary, and the remainder term cannot move th
 	\item $k_0$ pairs of real eigenvalues
 \end{enumerate}
 
-Finally, we consider three special cases. The simplest case is the 2-pulse. The matrix $A$ is given by
-\begin{align*}
-A &= b_1 \begin{pmatrix}
--\cos(\Delta\theta_1) & \cos(\Delta\theta_1) \\
-\cos(\Delta\theta_1) & -\cos(\Delta\theta_1) 
-\end{pmatrix}
-\end{align*}
-which has nonzero eigenvalue $-\cos(\Delta\theta_1) b_1$, thus there is a pair of interaction eigenvalues given by
-\begin{align*}
-\lambda &= \sqrt{\frac{-\cos(\Delta\theta_1) b_1}{M_2}} + \mathcal{O}(r^{-2N})
-\end{align*}
-Since $b_1 < 0$ and $M_2 > 0$, this pair is real if $\Delta\theta_1 = 0$ and purely imaginary if $\Delta\theta_1 = \pi$.
 
-Next, we consider the 3-pulse with equal distances $N_1 = N_2$, so we have $b_1 = b_2 = b$. There are three distinct combinations of $(\Delta\theta_1, \Delta\theta_2)$ to consider. The matrix $A$ is given by
-\begin{align*}
-A &= b \begin{pmatrix}
--\cos(\Delta\theta_1) & \cos(\Delta\theta_1) & 0  \\
-\cos(\Delta\theta_1) & -\cos(\Delta\theta_1) - \cos(\Delta\theta_2) & \cos(\Delta\theta_2) \\ 
-0 & \cos(\Delta\theta_2) & -\cos(\Delta\theta_2) \\
-\end{pmatrix}
-\end{align*}
-The nonzero eigenvalues of $A$ are
-\[
-\mu = \left( \pm\sqrt{\cos(\Delta\theta_1)^2 - \cos(\Delta\theta_1) \cos(\Delta\theta_2) + \cos(\Delta\theta_2)^2} - \cos(\Delta\theta_1) - \cos(\Delta\theta_2) \right)b
-\]
-For the three distinct 3-pulses, these are
-\begin{align*}
-\mu = \begin{cases}
--3b, -b & (\Delta\theta_1, \Delta\theta_2) = (0, 0) \\
-\pm \sqrt{3}b & (\Delta\theta_1, \Delta\theta_2) = (0, \pi) \\
-3b, b & (\Delta\theta_1, \Delta\theta_2) = (\pi, \pi)
-\end{cases}
-\end{align*}
-The only 3-soliton which is stable is $(\Delta\theta_1, \Delta\theta_2) = (\pi, \pi)$, which has two pairs of purely imaginary eigenvalues. These formulas also give us the relative magnitude of the interaction eigenvalues.
-
-Finally, we consider the the $m-$pulse with equal pulse distances $N_i$ (so $b_i = b$) and equal phase differences $\Delta\theta_i = \Delta\theta$. In this case, the eigenvalue problem $(A - \mu I)p = 0$ is equivalent to the following difference equation with Neumann boundary conditions
-\begin{equation*}
-\begin{aligned}
-p_{n-1} - 2 p_n + p_{n+1} - \frac{\mu}{b (\Delta\theta)} &= 0 \\
-p_0 &= p_1 \\
-p_{m+1} &= p_m
-\end{aligned}
-\end{equation*}
-which has solutions
-\begin{align*}
-\mu_k &= 2 b \left( \cos\frac{\pi k}{m} - 1 \right) \cos (\Delta\theta) && k = 1, \dots, m
-\end{align*}
 
 \subsection{Numerics}
 
