@@ -314,17 +314,6 @@ Finally, we have
 \begin{equation}\label{Qomegageneig}
 \partial_\omega Q(n+1, \omega) = D\tilde{F}(Q(n, \omega), \omega)\partial_\omega Q(n, \omega)+ B T'(0)Q(n, \omega)
 \end{equation}
-
-\begin{proof}
-Let $Q(n, \omega_0)$ be the homoclinic orbit solution to \eqref{diffeq1} resulting from the intersection in (iii). Since the intersection in (iii) is transverse and $E$ is smooth in $\omega$, the intersection persists for $\omega$ near $\omega_0$, thus homoclinic orbits $Q(n, \omega)$ exist for $\omega$ near $\omega_0$. A standard contraction mapping argument shows that $Q(n, \omega)$ is differentiable in $\omega$ near $\omega_0$ and that the exponential decay rate \eqref{Qomegabound} holds.
-
-To obtain \eqref{Qomegageneig}, take $U(n) = Q(n, \omega)$ in \eqref{diffeq1} and differentiate with respect to $\omega$ to get
-\begin{align*}
-\partial_\omega Q(n+1, \omega) &=
-DF(Q(n, \omega))\partial_\omega Q(n, \omega) + \omega B T'(0) \partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega) \\
-&= D\tilde{F}(Q(n, \omega))\partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega) \\
-\end{align*}
-\end{proof}
 \end{lemma}
 
 We can now state the stability theorem, in which we locate the eigenvalues of \eqref{latticeEVP} resulting from interactions between neighboring pulses.
@@ -459,17 +448,16 @@ For a $3-$pulse, the eigenvalues are given by
 \]
 \end{corollary}
 
-
-
 \subsection{Numerics}
 
-Here we present numerics relevant to dNLS. The possibilities are endless. We will add stuff as needed/requested.
-
-EXISTENCE
-
-We used AUTO to trace bifurcation diagrams for 2-pulses as the coupling parameter $d$ is varied. I will add these here, together with interpretation, once we decide which figures we want to include.
-
-STABILITY
+To construct multi-pulse solutions to \eqref{dNLSequilib}, we use AUTO to do parameter continuation from the anti-continuum limit, where the solutions are all known. In Figure \label{fig:bd1}, we start at the anti-continuum limit with a double pulse composed of two on-site solitons (1). A turning point bifurcation occurs at (2); the 2-pulse ceases to exist after that value of $d$. As $d$ decreases, we follow the branch back to the anti-continuum limit, at which point we have a double pulse composed of two off-site solitons (3). Finally, there is a symmetry-breaking bifurcation which occurs near (2). If we follow that branch back to the anti-continuum limit, we obtain an asymmetric double pulse composed of one on-site soliton and one off-site soliton; the mirror image of that asymmetric pulse also occurs, but is not shown.
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{bd1.eps}
+\caption{Start of bifurcation diagram showing $l^2$ norm of solution versus coupling parameter $d$ for a 2-pulse as $d$ is varied. Pulse distance $N = 10$, $\omega = 1$.}
+\label{fig:bd1}
+\end{figure}
+The complete bifurcation diagram will be presented in an appendix (NOT YET WRITTEN).
 
 For the eigenvalue problem, we first constructed multi-pulse solutions to dNLS with Matlab by using parameter continuation in the coupling constant $d$ from the anti-continuum limit. For all computations, 100 lattice points were used. We then found the eigenvalues of the linearization about our solution using \texttt{eig}. 
 
@@ -1182,6 +1170,17 @@ P^u_-(-N_i^-; \theta_{i+1}) W_{i+1}^-(-N_i^-) = \mathcal{O}(e^{-2N})
 Combining all of these gives us the second estimate in \eqref{Westimates}. For the third estimate in \eqref{Westimates}, we apply the projection $P^s_+(N_i^+; \theta_i)$ to \eqref{Wsubdi} and follow the same procedure.
 
 \section{Proof of Stability Theorem}
+
+\subsection{Proof of Lemma \ref{geneigcriteria}}
+
+Let $Q(n, \omega_0)$ be the homoclinic orbit solution to \eqref{diffeq1} resulting from the intersection in (iii). Since the intersection in (iii) is transverse and $E$ is smooth in $\omega$, the intersection persists for $\omega$ near $\omega_0$, thus homoclinic orbits $Q(n, \omega)$ exist for $\omega$ near $\omega_0$. A standard contraction mapping argument shows that $Q(n, \omega)$ is differentiable in $\omega$ near $\omega_0$ and that the exponential decay rate \eqref{Qomegabound} holds.
+
+To obtain \eqref{Qomegageneig}, take $U(n) = Q(n, \omega)$ in \eqref{diffeq1} and differentiate with respect to $\omega$ to get
+\begin{align*}
+\partial_\omega Q(n+1, \omega) &=
+DF(Q(n, \omega))\partial_\omega Q(n, \omega) + \omega B T'(0) \partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega) \\
+&= D\tilde{F}(Q(n, \omega))\partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega) \\
+\end{align*}
 
 \subsection{Setup}
 
