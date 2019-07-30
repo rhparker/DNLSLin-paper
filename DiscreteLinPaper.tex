@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[pdfborder={0 0 0.5 [3 2]}]{hyperref}%
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}%
-\usepackage[shortalphabetic]{amsrefs}%
+\usepackage{amsrefs}
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{amssymb}                
@@ -9,7 +9,6 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{bbm}
-\usepackage[table,xcdraw]{xcolor}
 \usepackage{float}
 \usepackage{mathtools}
 \usepackage{graphicx,epsfig}
@@ -34,7 +33,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{hypothesis}{Hypothesis}
 
-\graphicspath{ {discrete/} }
+\graphicspath{ {images/} }
 
 \begin{document}
 
@@ -256,28 +255,20 @@ Since $Q_m(n)$ decays exponentially to 0 and $F$ is smooth, $DF(Q_m(n))$ is expo
 
 We will also assume a Melnikov sum conditions holds.
 \begin{hypothesis}\label{melnikovhyp}
-One of the following Melnikov conditions holds.
-\begin{enumerate}[(i)]
-\item
-\begin{equation}\label{M1cond}
-M_1 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B T'(0)Q(n) \rangle \neq 0
-\end{equation}
-\item $M_1 = 0$, and there exists a function $S_1(n)$ such that
+\begin{align}
+M_1 &= \sum_{n=-\infty}^\infty \langle Z_1(n+1), B T'(0)Q(n) \rangle = 0\label{M1cond}\\
+M_2 &= \sum_{n=-\infty}^\infty \langle Z_1(n+1), B S_1(n) \rangle \neq 0 \label{M2cond}
+\end{align}
+where $S_1(n)$ satisfies the equation
 \begin{equation}\label{S1def}
 S_1(n+1) = DF(Q(n)) S_1(n) + B T'(0)Q(n)
 \end{equation}
-and 
-\begin{equation}\label{M2cond}
-M_2 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B S_1(n) \rangle \neq 0 
-\end{equation}
-Furthermore, $S_1(n)$ is exponentially localized with decay rate
+and is exponentially localized with decay rate
 \begin{equation}\label{S1decay}
 |S_1(n)| \leq C r^{-|n|}
 \end{equation}
-\end{enumerate}
 \end{hypothesis}
-
-Using dNLS as a guide, the following lemma gives criteria for the existence of $S_1(n)$ in Hypothesis \ref{melnikovhyp}(ii). In general, the Melnikov condition \eqref{M2cond}, can only be verified numerically.
+We note that the case where $M_1 \neq 0$ is simpler, as it is the discrete analogue of \cite{Sandstede1998}. Using dNLS as a guide, the following lemma gives criteria for the existence of $S_1(n)$ in Hypothesis \ref{melnikovhyp}(ii). In general, the Melnikov condition \eqref{M2cond}, can only be verified numerically.
 
 \begin{lemma}\label{geneigcriteria}
 Suppose that
@@ -287,30 +278,24 @@ Suppose that
 U(n+1) &= \tilde{F}(U(n)) + \omega B T'(0) U(n) \label{diffeq1} \\
 V(n+1) &= (D\tilde{F}(U(n)) + \omega B T'(0)) V(n) + \lambda B V(n) \label{latticeEVP1}
 \end{align}
-where $F: \R^d \rightarrow \R$ is smooth.
+where $\tilde{F}: \R^d \rightarrow \R$ is smooth.
 \item There is a smooth conserved quantity $E: \R^d \times \R \rightarrow \R$, i.e. $E(U, \omega) = E(\tilde{F}(U) + \omega B T'(0)U, \omega)$. In addition, $E(0, \omega) = 0$.  
 \item For a given $\omega_0 \in \R$, the stable manifolds $W^s(0, \omega_0)$ and the unstable manifold $W^u(0, \omega_0)$ intersect transversely in $E^{-1}(0)$. 
 \end{enumerate}
-Then there exists a homoclinic orbit solution $Q(n, \omega)$ to \eqref{diffeq1} for $\omega$ near $\omega_0$, and $Q(n, \omega)$ is differentiable in $\omega$ at $\omega = \omega_0$ with exponential bound
+Then there exists a homoclinic orbit solution $Q(n, \omega)$ to \eqref{diffeq1} for $\omega$ near $\omega_0$. $Q(n, \omega)$ is differentiable in $\omega$ at $\omega = \omega_0$, and $\partial_\omega Q(n, \omega)$ satisfies equation \eqref{S1def}with exponential bound
 \begin{equation}\label{Qomegabound}
 |\partial_\omega Q(n, \omega_0)| \leq C r^{-|n|}
 \end{equation}
-Finally, $\partial_\omega Q(n, \omega)$ satisfies equation \eqref{S1def}.
 \end{lemma}
 
 We can now state the stability theorem, in which we locate the eigenvalues of \eqref{latticeEVP} resulting from interactions between neighboring pulses.
 
 \begin{theorem}\label{stabilitytheorem}
-Assume Hypotheses \ref{symmetryhyp}(ii), \ref{initialhyp}, \ref{intersectionhyp}, and let $Q_m(n)$ an $m-$pulse solution to \eqref{diffeq} constructed according to Theorem \ref{ntmulti}. Then there exists a bounded, nonzero solution $V(n)$ of the eigenvalue problem \eqref{multiEVP} for $|\lambda| < \delta$ if and only if $\det E(\lambda) = 0$, where
+Assume Hypotheses \ref{symmetryhyp}(ii), \ref{initialhyp}, \ref{intersectionhyp}, and \eqref{melnikovhyp}. Let $Q_m(n)$ an $m-$pulse solution to \eqref{diffeq} constructed according to Theorem \ref{ntmulti}. Then there exists $\delta > 0$ small with the following property. There exists a bounded, nonzero solution $V(n)$ of the eigenvalue problem \eqref{multiEVP} for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
 \begin{equation}\label{Elambda}
-E(\lambda) = \begin{cases}
-\det(A - M_1 \lambda I + R(\lambda))
-& \text{Hypothesis \ref{melnikovhyp}(i) holds} \\
-\det(A - M_2 \lambda^2 I + R(\lambda))
-& \text{Hypothesis \ref{melnikovhyp}(ii) holds}
-\end{cases}
+E(\lambda) = \det(A - M_2 \lambda^2 I + R(\lambda))
 \end{equation}
-$M_1$ and $M_2$ are defined in Hypothesis \eqref{melnikovhyp}. $A$ is the tridiagonal $m \times m$ matrix
+$M_2$ is defined in Hypothesis \eqref{melnikovhyp}. $A$ is the tridiagonal $m \times m$ matrix
 \begin{align}\label{matrixA}
 A &= \begin{pmatrix}
 -a_1 & a_1 & & & \\
@@ -356,14 +341,14 @@ Let $q_m(n)$ be an $m-$pulse solution to \eqref{dNLSequilib} with length paramet
 \[
 M = \sum_{n=-\infty}^\infty q_n \partial_\omega q_n = \partial_\omega \frac{1}{2} \sum_{n=-\infty}^\infty q_n^2
 \]
-Then there exist $m-1$ pairs of eigenvalues $\{\pm \lambda_1, \dots, \pm \lambda_{m-1}\}$ to \eqref{dNLSlatticeEVP} which can be grouped as follows. There are $k_\pi$ pairs of purely imaginary eigenvalues and $k_0$ pairs of real eigenvalues, where $k_\pi$ is the number of phase differences $\Delta\theta_i$ which are $\pi$, and $k_0$ is the number of phase differences $\Delta\theta_i$ which are $0$. The $\lambda_j$ are given by the following formula
+Let $N_0 = \min\{ N_1, \dots, N_{m-1}\}$. Then for $N_0$ sufficiently large, there exist $m-1$ pairs of eigenvalues $\{\pm \lambda_1, \dots, \pm \lambda_{m-1}\}$ to \eqref{dNLSlatticeEVP} which can be grouped as follows. There are $k_\pi$ pairs of purely imaginary eigenvalues and $k_0$ pairs of real eigenvalues, where $k_\pi$ is the number of phase differences $\Delta\theta_i$ which are $\pi$, and $k_0$ is the number of phase differences $\Delta\theta_i$ which are $0$. The $\lambda_j$ are given by the following formula
 \begin{align}\label{eigsDNLS}
 \lambda_j &= \sqrt{\frac{d \tilde{\mu}_j}{M}}r^{-N} + \mathcal{O}(r^{-2N}) && j = 1, \dots, m-1
 \end{align}
 where 
 \begin{align*}
 r &= 1 + \frac{\omega}{2 d} \left( 1 + \sqrt{1 + \frac{4 d}{\omega}} \right)\\
-N &= \min\{ N_1, \dots, N_{m-1} \} 
+N &= \min\left\{ \frac{N_1}{2}, \dots, \frac{N_{m-1}}{2} \right\} 
 \end{align*}
 and $\{ \tilde{\mu}_1, \dots, \tilde{\mu}_{m-1} \}$ are the distinct, real, nonzero eigenvalues of the symmetric, tridiagonal matrix $\tilde{A} = r^{-2N} A$, where
 \begin{align}\label{dNLSmatrixA}
@@ -434,10 +419,10 @@ To construct multi-pulse solutions to \eqref{dNLSequilib}, we use AUTO for param
 \begin{figure}[H]
 \centering
 \includegraphics[width=15cm]{bd1.eps}
-\caption{Start of bifurcation diagram showing $l^2$ norm of solution versus coupling parameter $d$ for a 2-pulse as $d$ is varied. Pulse distance $N = 10$, $\omega = 1$.}
+\caption{Start of bifurcation diagram showing $l^2$ norm of solution versus coupling parameter $d$ for a 2-pulse as $d$ is varied. Pulse distance $N = 12$, $\omega = 1$.}
 \label{fig:bd1}
 \end{figure}
-The complete bifurcation diagram will be presented in an appendix (NOT YET WRITTEN).
+The complete bifurcation diagram is presented in an appendix.
 
 For the eigenvalue problem, we first construct multi-pulse solutions to dNLS with Matlab by using parameter continuation in the coupling constant $d$ from the anti-continuum limit. We then fing the eigenvalues of the linearization about our solution using \texttt{eig}. 
 
@@ -471,7 +456,7 @@ In both cases, the relative error in the eigenvalue decay rate from that predict
 \end{figure}
 In all three cases, the relative error in the eigenvalue decay rate from that predicted by the theory is order $1e-4$. We can also compare the ratio of the two eigenvalues to that predicted by Corollary \eqref{dNLSeigcorr}(ii). In all cases, the relative error is less than 0.01.
 
-Finally, we can actually compute the leading order term in equation \eqref{eigsDNLS} and compare that to the numerical result. To do this, we use the expressions from Corollary \ref{dNLSeigcorr}. The terms $b_i$ from the matrix $A$ are computed using equation \eqref{bieq} and the single pulse solution $q(n)$ constructed by Matlab. The derivative $\partial_\omega q(n)$ is computed via a centered finite difference method and is then used to compute the Melnikov sum $M$. In Figure \ref{fig:error1} we plot the log of the relative error of the eigenvalues versus the coupling parameter $d$. For intermediate values of $d$, the relative error is less than 1e-3.
+Finally, we can actually compute the leading order term in equation \eqref{eigsDNLS} and compare that to the numerical result. To do this, we use the expressions from Corollary \ref{dNLSeigcorr}. The terms $b_i$ from the matrix $A$ are computed using equation \eqref{bieq} and the single pulse solution $q(n)$ constructed by Matlab. The derivative $\partial_\omega q(n)$ is computed via a centered finite difference method and is then used to compute the Melnikov sum $M$. In Figure \ref{fig:error1} we plot the log of the relative error of the eigenvalues versus the coupling parameter $d$. For intermediate values of $d$, the relative error is less than 1e-3. Since the results of Theorem \eqref{stabilitytheorem} are not uniform in $d$, i.e. they hold for sufficiently large $N$ once $d$ and $\omega$ are chosen, we do not expect to have a nice relationship between the error and $d$. This is furthermore complicated by the fact that additional sources of error arise from the computing $b_i$ and $M$.
 
 \begin{figure}[H]
 \centering
@@ -529,7 +514,7 @@ The variational and adjoint variational equations associated with \eqref{DNLSlat
 V(n+1) &= D_U F(Q(n)) V(n) \label{vareqdNLS} \\
 Z(n+1) &= [D_U F(Q(n))^*]^{-1} Z(n) \label{adjvareqdNLS}
 \end{align}
-We can verify that $T'(0) Q(n) = (0, 0, q(n), \tilde{q}(n))$ is a solution to \eqref{vareqdNLS}, as expected. From [CITATION OR HYPOTHESIS], there are no other linearly independent, bounded solutions to \eqref{vareqdNLS}, thus Hypothesis \ref{intersectionhyp} is satisfied. It follows the the adjoint variational equation \eqref{adjvareqdNLS} has a unique bounded solution $Z_1(n)$, and we can verify directly that
+We can verify that $T'(0) Q(n) = (0, 0, q(n), \tilde{q}(n))$ is a solution to \eqref{vareqdNLS}, as expected. From [CITATION NEEDED, I BELIEVE THIS IS TRUE; OTHERWISE TAKE AS HYPOTHESIS], there are no other linearly independent, bounded solutions to \eqref{vareqdNLS}, thus Hypothesis \ref{intersectionhyp} is satisfied. It follows the the adjoint variational equation \eqref{adjvareqdNLS} has a unique bounded solution $Z_1(n)$, and we can verify directly that
 \begin{equation}\label{defZ1}
 Z_1(n) = (0, 0, -\tilde{q}(n), q(n))
 \end{equation}
@@ -564,7 +549,7 @@ Letting $s_i = \sin{\Delta\theta_i}$ and substituting equations \eqref{jumpIPs} 
 \end{equation}
 Since $b_i = \mathcal{O}(r^{-2N})$ and $R_i = \mathcal{O}(r^{-3N})$, the jump conditions can only be satisfied if $s_i = \mathcal{O}(r^{-N})$. Thus we only have to consider that case from now on. 
  
-There exists a conserved quantity $E: \R^4 \rightarrow \R$ such that $E(0) = 0$ and $E(U_{n+1}) = E(U_n)$ for all solutions $U_n$ to \eqref{DNLSlattice1} [EITHER FIND CITATION OR ACTUALLY FIND IT]. Thus, as in \cite{SandstedeStrut}, we can eliminate the final equation in \eqref{jumpDNLS2}. We can write the $(m-1)$ remaining jump conditions in matrix form as $H s + R = 0$, where $s = (s_1, \dots, s_{m-1})$ and $B$ is the $(m-1)\times(m-1)$ matrix
+The steady state equation \eqref{dNLSequilib} has an infinite number of conserved quantities $I_n$, i.e. $I_{n+1} = I_n = \text{const}$, e.g. (2.40) in \cite{Kevrekidis2009}. Thus, as in \cite{SandstedeStrut}, we can eliminate the final equation in \eqref{jumpDNLS2}. We can write the $(m-1)$ remaining jump conditions in matrix form as $H s + R = 0$, where $s = (s_1, \dots, s_{m-1})$ and $B$ is the $(m-1)\times(m-1)$ matrix
 \[
 H = \begin{pmatrix}
 -b_1 \\
@@ -574,7 +559,7 @@ b_1 & -b_2 \\
 &&& b_{m-2} & -b_{m-1} \\
 \end{pmatrix}
 \]
-Since $H$ is lower triangular and all the $b_i$ are nonzero, $B$ is invertible, thus $s = B^{-1}R$ is the unique value of $s$ for which all the jump conditions are satisfied. In the previous section, we showed that for sufficiently large $N$, real-valued multi-pulses exist with phase differences which are either 0 or $\pi$; for all of those cases, $s = 0$. Since we found a unique solution $s$, and $s = 0$ is a solution, $s = 0$ must be the unique solution to the jump conditions. Thus\ for sufficiently large $N$, the jump conditions can only be satisfied if all of the phase differences $\Delta \theta_i$ are either 0 or $\pi$. No other phase differences are possible.
+Since $H$ is lower triangular and all the $b_i$ are nonzero, $B$ is invertible, thus $s = B^{-1}R$ is the unique value of $s$ for which all the jump conditions are satisfied. In the previous section, we showed that for sufficiently large $N$, real-valued multi-pulses exist with phase differences which are either 0 or $\pi$; for all of those cases, $s = 0$. Since we found a unique solution $s$, and $s = 0$ is a solution, $s = 0$ must be the unique solution to the jump conditions. Thus for sufficiently large $N$, the jump conditions can only be satisfied if all of the phase differences $\Delta \theta_i$ are either 0 or $\pi$. No other phase differences are possible.
 
 \subsection{Proof of Theorem \ref{dNLSeigtheorem}}
 
@@ -1143,13 +1128,10 @@ Combining all of these gives us the second estimate in \eqref{Westimates}. For t
 
 \subsection{Proof of Lemma \ref{geneigcriteria}}
 
-Let $Q(n, \omega_0)$ be the homoclinic orbit solution to \eqref{diffeq1} resulting from the intersection in (iii). Since the intersection in (iii) is transverse and $E$ is smooth in $\omega$, the intersection persists for $\omega$ near $\omega_0$, thus homoclinic orbits $Q(n, \omega)$ exist for $\omega$ near $\omega_0$. A standard contraction mapping argument shows that $Q(n, \omega)$ is differentiable in $\omega$ near $\omega_0$ and that the exponential decay rate \eqref{Qomegabound} holds.
-
-To obtain \eqref{Qomegageneig}, take $U(n) = Q(n, \omega)$ in \eqref{diffeq1} and differentiate with respect to $\omega$ to get
+Let $Q(n, \omega_0)$ be the homoclinic orbit solution to \eqref{diffeq1} resulting from the intersection in (iii). Since the intersection in (iii) is transverse and $E$ is smooth in $\omega$, the intersection persists for $\omega$ near $\omega_0$, thus homoclinic orbits $Q(n, \omega)$ exist for $\omega$ near $\omega_0$. A standard contraction mapping argument shows that $Q(n, \omega)$ is differentiable in $\omega$ near $\omega_0$ and that the exponential decay rate \eqref{Qomegabound} holds. Taking $U(n) = Q(n, \omega)$ in \eqref{diffeq1} and differentiating with respect to $\omega$, we get
 \begin{align*}
 \partial_\omega Q(n+1, \omega) &=
-DF(Q(n, \omega))\partial_\omega Q(n, \omega) + \omega B T'(0) \partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega) \\
-&= D\tilde{F}(Q(n, \omega))\partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega) \\
+(D\tilde{F}(Q(n, \omega) + \omega B T'(0)) \partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega)
 \end{align*}
 
 \subsection{Setup}
@@ -1173,17 +1155,7 @@ It is straightforward to verify that
 (T'(0)Q_m)(n+1) = DF(Q_m(n))(T'(0)Q_m)(n)
 \end{equation}
 
-As in \cite{Sandstede1998}, we will take a piecewise ansatz for the eigenfunction $V(n)$ which exploits \eqref{DFkernel1}. The form of the ansatz will depend on whether we take Hypothesis \ref{melnikovhyp}(i) or \ref{melnikovhyp}(ii). For Hypothesis \ref{melnikovhyp}(i), we use the piecewise ansatz
-\begin{align*}
-V_i^\pm(n) &= d_i T'(0) Q_m(n) + W_i^\pm(n) 
-&& i = 1, \dots, n-1
-\end{align*}
-where $d_i \in \C$. Substituting this into \eqref{latticeEVP} and simplifying, the eigenvalue problem becomes
-\begin{equation}\label{EVPhypi}
-W_i^\pm(n) = DF(Q_m(n)) W_i^\pm(n) + \lambda B W_i^\pm(n) + \lambda d_i B T'(0)Q_m(n)
-\end{equation}
-
-For the remainder of this section, we will assume that Hypothesis \ref{melnikovhyp}(ii) holds, which is the case for dNLS. The proof for the other case is similar. By Hypothesis \ref{melnikovhyp}(ii), there exists a localized function $S_1(n)$ such that 
+As in \cite{Sandstede1998}, we will take a piecewise ansatz for the eigenfunction $V(n)$ which exploits \eqref{DFkernel1}. In addition, we wish to use \eqref{S1def}. By Hypothesis \ref{melnikovhyp}(ii), there exists a localized function $S_1(n)$ such that 
 \begin{equation}\label{S1vareq}
 S_1(n+1) = DF(Q(n)) S_1(n) + B T'(0) Q(n)
 \end{equation}
@@ -1195,7 +1167,7 @@ Using Lin's method, we can find a function $S_m(n)$ such that
 \begin{equation}\label{Smsolves}
 S_m(n+1) = DF(Q_m(n)) S_m(n) + B T'(0) Q_m(n)
 \end{equation}
-Specifically, we make the piecewise ansatz 
+To do this, we make the piecewise ansatz 
 \begin{equation}\label{Smansatz}
 S_m(n) = T(\theta)S_1(n) + \tilde{S}_i^\pm(n)
 \end{equation}
@@ -1206,12 +1178,12 @@ using the same intervals as \eqref{Upiecewise}. Substituting \eqref{Smansatz} in
 + G_i^\pm(n)\tilde{S}_i^\pm(n) + G_i^\pm(n) T(\theta)S_1(n) + B T'
 (0) \tilde{Q}_i^\pm(n)
 \end{align*}
-together with the appropriate matching conditions, which we can solve using Lin's method. Since this is similar to the existence problem, the details will be omitted. After going through the steps of Lin's method, we obtain the remainder bound
+together with the appropriate matching conditions, which we can solve using Lin's method. Since this is similar to the existence problem, the details will be omitted. After going through the steps of Lin's method, for which we use the decay bound \eqref{S1decay}, we obtain the bound on the remainder term
 \begin{equation}\label{Sipmbound}
 || \tilde{S}_i^\pm || \leq C r^{-N}
 \end{equation}
 
-For this case, we take the piecewise ansatz
+We now take a piecewise ansatz of the following form
 \begin{equation}\label{Viansatz2}
 V_i^\pm(n) = 
 d_i [ T'(0)Q_m(n) + \lambda S_m(n) ] + W_i^\pm(n)
@@ -1689,6 +1661,46 @@ For the remainder term, we have
 |R(\lambda)(d)| \leq C\left( (r^N + |\lambda|)^3 \right)
 \end{align*}
 since the remainder terms from the substitutions above are order $\mathcal{O}(r^{-3N})$, which is the same as the remainder term in Lemma \ref{jumpcond} when we substitute $|D|, ||G|| = \mathcal{O}(r^{-N})$.
+
+\section{Appendix: Bifurcation Diagram for dNLS}
+
+The complete bifurcation diagram generated by AUTO for a $++$ pulse for dNLS is shown in Figure \ref{fig:dNLSbif1}. The primary branch of the bifurcation diagram is an isola, as shown in the right panel of Figure \ref{fig:dNLSbif1}. If we start at a solution $q_n$, once around the isola gives us $-q_n$; a second trip around the isola returns us to $q_n$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{bd2.pdf}
+\includegraphics[width=8cm]{bd3.pdf}
+\caption{Bifurcation diagram for $++$ pulse for dNLS, $l^2$ norm vs. coupling parameter $d$. Pulse distance $N = 6$, $\omega = 1$. Complete diagram with all branches (left), primary branch (right).}
+\label{fig:dNLSbif1}
+\end{figure}
+
+The bifurcation diagram traces a path in $d$ which wanders back and forth from the focusing regime to the defocusing regime, passing through the anti-continuum limit each time. Figures \ref{fig:dNLSsol1} and \ref{fig:dNLSsol2} show sample solutions for one journey around the isola.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7.5cm]{sol1.pdf}
+\includegraphics[width=7.5cm]{sol2.pdf}
+\includegraphics[width=7.5cm]{sol3.pdf}
+\includegraphics[width=7.5cm]{sol4.pdf}
+\includegraphics[width=7.5cm]{sol5.pdf}
+\includegraphics[width=7.5cm]{sol6.pdf}
+\includegraphics[width=7.5cm]{sol7.pdf}
+\includegraphics[width=7.5cm]{sol8.pdf}
+\caption{Solutions from parameter continuation of $++$ pulse for dNLS. Position on bifurcation diagram is shown on left, solution is on right. Pulse distance $N = 6$, $\omega = 1$.}
+\label{fig:dNLSsol1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7.5cm]{sol9.pdf}
+\includegraphics[width=7.5cm]{sol10.pdf}
+\includegraphics[width=7.5cm]{sol11.pdf}
+\includegraphics[width=7.5cm]{sol12.pdf}
+\includegraphics[width=7.5cm]{sol13.pdf}
+\includegraphics[width=7.5cm]{sol14.pdf}
+\caption{Part 2 of Figure \ref{fig:dNLSsol1}. Pulse distance $N = 6$, $\omega = 1$. }
+\label{fig:dNLSsol2}
+\end{figure}
 
 
 \bibliographystyle{amsalpha}
