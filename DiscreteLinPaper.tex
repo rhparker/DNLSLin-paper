@@ -167,27 +167,27 @@ The steady state system has the form
 \end{equation}
 which is the stationary equation \cite[(2.15)]{Grillakis1987}. The steady state equation \eqref{dNLSequilibreal} also has a conserved quantity $E$, which is given by
 \begin{equation}\label{dNLSE}
-E = v_n w_{n-1} - v_{n-1} w_n.
+E = 2d(v_n w_{n-1} - v_{n-1} w_n).
 \end{equation}
 For $d \neq 0$ we can write the system  \eqref{dNLSequilibreal} as the lattice dynamical system
 \begin{equation}\label{DNLSlattice1}
 U_{n+1} = F(U_n; \omega)
 \end{equation}
-where $U_n = (v_n, \tilde{v}_n, w_n, \tilde{w}_n)$, $\tilde{v}_n = v_{n-1}$, $\tilde{w}_n = w_{n-1}$, and $F:\R^4 \times \R \rightarrow \R^4$ is the smooth function
+where $U_n = (v_n, w_n, \tilde{v}_n, \tilde{w}_n)$, $\tilde{v}_n = v_{n-1}$, $\tilde{w}_n = w_{n-1}$, and $F:\R^4 \times \R \rightarrow \R^4$ is the smooth function
 \begin{equation}\label{FdNLS}
 F(U_n; \omega) =
 \begin{pmatrix}
-\frac{\omega}{d} + 2 & -1 & 0 & 0 \\
+\frac{\omega}{d} + 2 & 0 & -1 & 0 \\
+0 & \frac{\omega}{d} + 2 &  0 & -1 \\
 1 & 0 & 0 & 0 \\
-0 & 0 & \frac{\omega}{d} + 2 & -1 \\
-0 & 0 & 1 & 0
+0 & 1 & 0 & 0
 \end{pmatrix}
 \begin{pmatrix}
-v \\ \tilde{v} \\ w \\ \tilde{w}
+v \\ w \\ \tilde{v} \\ \tilde{w}
 \end{pmatrix}
 - \frac{1}{d} 
 \begin{pmatrix}
-v w^2 + v^3 \\ 0 \\ v^2 w + w^3 \\ 0
+v w^2 + v^3 \\ v^2 w + w^3 \\ 0 \\ 0
 \end{pmatrix}
 \end{equation}
 
@@ -199,10 +199,15 @@ where $B$ is the constant coefficient matrix
 \begin{equation}\label{dNLSB}
 B = \frac{1}{d}
 \begin{pmatrix}
-0 & 0 & 1 & 0 \\
-0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
 -1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0
+\end{pmatrix} = 
+\frac{1}{d}
+\begin{pmatrix}
+J & 0 \\
+0 & 0 
 \end{pmatrix}
 \end{equation}
 
@@ -210,15 +215,23 @@ Since \eqref{dNLSequilib} is invariant under the transformation $u_n \mapsto e^{
 \begin{align}\label{TdNLS}
 T(\theta) =
 \begin{pmatrix}
-(\cos\theta) I_2 & -(\sin\theta)I_2 \\
-(\sin\theta)I_2 & (\cos\theta)I_2)
+R(\theta) & 0 \\
+0 & R(\theta)
 \end{pmatrix}
 \end{align}
-and $I_2$ is the $2 \times 2$ identity matrix. Furthermore, $T(\theta)$ commutes with $B$. The infinitesimal generator of $T(0)$ is $T'(0)$, which is the skew-symmetric matrix
+and $R(\theta)$ is the standard rotation matrix
+\begin{align*}
+R(\theta) =
+\begin{pmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\end{align*}
+Furthermore, $T(\theta)$ commutes with $B$. The infinitesimal generator of $T(0)$ is $T'(0)$, which is the skew-symmetric matrix
 \begin{align}\label{dnlsSgen}
 T'(0) = \begin{pmatrix}
-0 & -I_2 \\
-I_2 & 0
+-J & 0 \\
+0 & -J 
 \end{pmatrix}
 \end{align}
 We can rewrite equations \eqref{DNLSlattice1} and \eqref{dNLSlatticeEVP} as
@@ -233,6 +246,33 @@ From~\cite{herrmann_2011}, a symmetric, real-valued, on-site soliton solution $q
 T'(0) Q_{n+1} &= (D\tilde{F}(Q_n) + \omega B T'(0)) T'(0) Q_n \label{dNLSkernel} \\
 \partial_\omega Q_{n+1} &= (D\tilde{F}(Q_n) + \omega B T'(0)) \partial_\omega Q_n + \lambda B T'(0) Q_n \label{dNLSgenkernel}
 \end{align}
+
+\section{Generalization}
+
+Consider the Hamiltonian lattice differential equation 
+\begin{equation}\label{lattice1}
+\partial_t U_n = J H'(U_n)
+\end{equation}
+where $U_n \in \R^{2m}$, $H: l^2(\R^{2m}) \rightarrow \R$ is smooth, and $J$ is a $2m \times 2m$ symplectic matrix. Assume that there exists a group $G$ for which the group action is a unitary group of symmetries $T(\theta)$ on $\R^{2m}$ such that 
+    \begin{enumerate}
+        \item $H$ is invariant under $T(\theta)$, i.e. $H(T(\theta)U) = H(U)$ for all $\theta \in \R$.
+        \item $T'(0) = J$, where $T'(0)$ is the infinitesimal generator of $T(\theta)$.
+    \end{enumerate}
+Solutions of the form $T(\omega t)U_n(t)$ solve the lattice differential equation
+\begin{equation}\label{lattice2}
+\partial_t U_n = J (H'(U_n) - \omega U_n)
+\end{equation} 
+Bound states are equilibrium solutions to \eqref{lattice2} and satisfy the equation
+\begin{equation}\label{latticestat}
+H'(U_n) - \omega U_n = 0
+\end{equation}
+The linearization of \eqref{lattice2} about a bound state $U_n$ is the eigenvalue problem
+\begin{equation}\label{latticeEVP}
+(J H''(U_n) - \omega I - \lambda I) V_n = 0
+\end{equation}
+
+
+
 
 \section{Main Theorems}
 
