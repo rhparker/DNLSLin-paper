@@ -142,7 +142,7 @@ where $J$ is the standard skew-symmetric symplectic matrix
 \[
 J = \begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix}
 \]
-and the Hamiltonian $\mathcal{H}: l^2(\Z,\R^2) \rightarrow \R$ is
+and the Hamiltonian $\mathcal{H}: \ell^2(\Z,\R^2) \rightarrow \R$ is
 \begin{equation}\label{dNLSrealH}
 \mathcal{H}(v, w) = -\sum_{n = -\infty}^\infty 
 \left( \frac{d}{2}\left(v_n - v_{n-1}\right)^2 + \frac{d}{2}\left(w_n - w_{n-1}\right)^2 - \frac{1}{4}\left( v_n^2 + w_n^2 \right)^2 \right).
@@ -200,7 +200,7 @@ With DNLS as our principal motivation, we will consider the following more gener
 \begin{equation}\label{lattice1}
 \dot{u}_n = J [\mathcal{H}'(u)]_n
 \end{equation}
-where $u(t) \in l^2(\Z, \R^{2k})$, $\mathcal{H}: l^2(\Z, \R^{2k}) \rightarrow \R$ is smooth with $\mathcal{H}(0) = 0$ and $\mathcal{H}'(0) = 0$, and $J$ is a $2k \times 2k$ symplectic matrix. For simplicity, and again using dNLS as motivation, we will assume that $\mathcal{H}'(u)$ takes the form
+where $u(t) \in \ell^2(\Z, \R^{2k})$, $\mathcal{H}: \ell^2(\Z, \R^{2k}) \rightarrow \R$ is smooth with $\mathcal{H}(0) = 0$ and $\mathcal{H}'(0) = 0$, and $J$ is a $2k \times 2k$ symplectic matrix. For simplicity, and again using dNLS as motivation, we will assume that $\mathcal{H}'(u)$ takes the form
 \begin{equation}\label{latticeform}
 [\mathcal{H}'(u)]_n = d (\Delta_2 u)_n + f(u_n),
 \end{equation}
@@ -223,13 +223,16 @@ Equilibrium solutions to \eqref{lattice1} satisfy
 \begin{equation}\label{equilib1}
 \mathcal{H}'(u) = 0.
 \end{equation}
-Differentiating the symmetry invariance \eqref{Hinvariance}, we obtain the symmetry relation
+Differentiating the symmetry invariance \eqref{Hinvariance} as in \cite{Grillakis1987}, we obtain the symmetry relations
 \begin{equation}\label{symmetryrel}
-\mathcal{H}'(R(\theta)u))R(\theta) = \mathcal{H}'(u),
+\begin{aligned}
+\mathcal{H}'(R(\theta)u)) &= R(\theta) \mathcal{H}'(u) \\
+\mathcal{H}''(R(\theta)u)) &= R(\theta) \mathcal{H}'(u) R(\theta)^*
+\end{aligned}
 \end{equation}
 from which it follows that $u$ is a solution to \eqref{equilib1} if and only if $R(\theta)u$ is a solution. We also note that $f(R(\theta)u) = f(u)R(\theta)$.
 
-We are interested in bound states, which are solutions to \eqref{lattice1} of the form $u(t) = R(\omega t)u$, where $u \in l^2(\Z, \R^{2k})$ is independent of $t$. Bound states satisfy the equilibrium equation
+We are interested in bound states, which are solutions to \eqref{lattice1} of the form $u(t) = R(\omega t)u$, where $u \in \ell^2(\Z, \R^{2k})$ is independent of $t$. Bound states satisfy the equilibrium equation
 \begin{equation}\label{latticestat}
 \mathcal{H}'(u) - \omega u = 0,
 \end{equation}
@@ -244,7 +247,7 @@ L(q) R'(0) q = 0.
 
 \noindent As in \cite{Grillakis1987}, we take the following hypothesis about the existence of bound state solutions.
 \begin{hypothesis}\label{boundstatehyp}
-For $\omega \in (\omega_1, \omega_2)$, there exists a $C^1$ map $\omega \mapsto q$ such that $q \in l^2(\Z, \R^{2k})$ is a bound state solution to \eqref{latticestat}.
+For $\omega \in (\omega_1, \omega_2)$, there exists a $C^1$ map $\omega \mapsto q$ such that $q \in \ell^2(\Z, \R^{2k})$ is a bound state solution to \eqref{latticestat}.
 \end{hypothesis}
 
 By Hypothesis \ref{boundstatehyp}, $\partial_\omega q$ exists for $\omega \in (\omega_1, \omega_2)$. Differentiating \eqref{latticeL} with respect to $\omega$, $\partial_\omega q$ satisfies 
@@ -303,7 +306,7 @@ It follows from \eqref{Lkernel1} that
 T'(0) Q(n+1) = DF(Q(n)) T'(0) Q(n).
 \end{equation}
 
-Since $F(0) = 0$, 0 is an equilibrium point for the dynamical system \eqref{diffeq}. Fix $\omega \in \omega_1, \omega_2)$, and let $q$ be the bound state from Hypothesis \ref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in l^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, thus $Q(n)$ is a homoclinic orbit solution to $\eqref{diffeq}$ connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. It follows from \eqref{Lkernel2} that
+Since $F(0) = 0$, 0 is an equilibrium point for the dynamical system \eqref{diffeq}. Fix $\omega \in \omega_1, \omega_2)$, and let $q$ be the bound state from Hypothesis \ref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in \ell^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, thus $Q(n)$ is a homoclinic orbit solution to $\eqref{diffeq}$ connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. It follows from \eqref{Lkernel2} that
 \begin{equation}\label{DFkernel2}
 \partial_\omega Q(n+1) = DF(Q(n)) \partial_\omega Q(n) + B T'(0)Q(n).
 \end{equation}
@@ -466,7 +469,7 @@ where $F: \R^k \rightarrow \R^k$ is smooth. We make the following assumptions ab
 
 \begin{hypothesis}\label{transversehyp}
 The following hold concerning the function $F$.
-\begin{enumerate}
+\begin{enumerate}[(i)]
 \item There exists a finite group $G$ (which may be the trivial group) for which the group action is a unitary group of symmetries $T(\theta)$ on $\R^k$ such that 
 \begin{equation}\label{symmetrytransverse}
 F(T(\theta)U) = F(U)T(\theta)
@@ -671,6 +674,8 @@ intermediate ranges of the coupling parameter $d$.
 
 \section{Proof of Existence Theorems}
 
+In this section, we will prove the multi-pulse existence theorems \ref{ntmulti} and \ref{transversemulti}. Since the proofs are very similar, we will prove Theorem \ref{ntmulti} then state what modifications are necessary for the proof of Theorem \ref{transversemulti}. Throughout this section, we will assume Hypotheses \ref{symmetryhyp}, \ref{boundstatehyp}, and \ref{intersectionhyp}. We begin with setting up the exponential dichotomy necessary for the proof.
+
 \subsection{Discrete Exponential Dichotomy}
 
 First, we define the discrete evolution operator for linear difference equations.
@@ -694,7 +699,7 @@ A^{-1}(m) \dots A^{-1}(n-2) A^{-1}(n-1) & m < n
 \begin{enumerate}[(i)]
 \item The evolution operators $\Phi$ of \eqref{diffeqevol} and $\Psi$ of \eqref{adjeqevol} are related by
 \begin{equation}\label{adjevol}
-\Psi(m, n) = \Phi(n, m)^*
+\Psi(m, n) = \Phi(n, m)^*.
 \end{equation}
 \item If $V(n)$ is a solution to \eqref{diffeqevol} and $Z(n)$ is a solution to \eqref{adjeqevol}, then the inner product $\langle V(n), Z(n) \rangle$ is constant in $n$.
 \end{enumerate}
@@ -726,15 +731,15 @@ Consider the difference equation
 \begin{equation}\label{diffeqdichot}
 V(n+1) = A(n) V(n)
 \end{equation}
-Suppose there exists a constant $0 < r < 1$ and a constant coefficient matrix $A$ such that 
+Suppose there exists a constant $r > 1$ and a constant coefficient matrix $A$ such that 
 \begin{equation}\label{Anexpdecay}
 |A(n) - A| \leq C r^{|n|}
 \end{equation}
-and $|\lambda| \leq r$ or $|\lambda_\pm| \geq 1/r$ for all eigenvalues $\lambda$ of $A$. Then \eqref{diffeqdichot} has exponential dichotomies on $Z^\pm$. Specifically, there exist projections $P_\pm^s$ and $P_\pm^u$ defined on $\Z^\pm$ such that the following are true.
+and $|\lambda| \geq r$ or $|\lambda| \leq 1/r$ for all eigenvalues $\lambda$ of $A$. Then \eqref{diffeqdichot} has exponential dichotomies on $Z^\pm$. Specifically, there exist projections $P_\pm^s$ and $P_\pm^u$ defined on $\Z^\pm$ such that the following are true.
 \begin{enumerate}[(i)]
-\item
+\item Let $\Phi(m, n)$ be the evolution operator for \eqref{diffeqdichot}. Then 
 \begin{equation}\label{projcommute}
-P_\pm^{s/u}(m) \Phi(m, n) =  \Phi(m, n) P_\pm^{s/u}(n)
+P_\pm^{s/u}(m) \Phi(m, n) =  \Phi(m, n) P_\pm^{s/u}(n).
 \end{equation}
 
 \item Let $\Phi_\pm^{s/u}(m, n) = \Phi(m, n) P_\pm^{s/u}(n)$ for $m, n \geq 0$ and $m, n \leq 0$ (respectively). Then we have the estimates
@@ -746,19 +751,19 @@ P_\pm^{s/u}(m) \Phi(m, n) =  \Phi(m, n) P_\pm^{s/u}(n)
 \end{align*}
 where the evolution operator $\Phi(m, n)$ is defined in Lemma \ref{evolop}. 
 
-\item Let $E_\pm^{s/u}$ be the stable and unstable eigenspaces of $A^\pm$ and $Q_\pm^{s/u}$ the corresponding eigenprojections. Then we have
+\item Let $E^{s/u}$ be the stable and unstable eigenspaces of $A$, and let $Q^{s/u}$ the corresponding eigenprojections. Then we have
 \begin{align*}
-\dim \text{range }P_\pm^s(n) &= \dim E_\pm^s \\
-\dim \text{range }P_\pm^u(n) &= \dim E_\pm^u
+\dim \textrm{range }P_\pm^s(n) &= \dim E^s \\
+\dim \textrm{range }P_\pm^u(n) &= \dim E^u
 \end{align*}
 and the exponential decay rates
 \begin{align}\label{projexpdecay}
-| P_\pm^{s/u}(n) - Q_\pm^{s/u} | \leq C r^{|n|}
+| P_\pm^{s/u}(n) - Q^{s/u} | \leq C r^{|n|}
 \end{align}
 \end{enumerate}
 
 \begin{proof}
-We will consider the problem on $\Z^+$. Since $A$ is constant coefficient and hyperbolic, the difference equation $W(n+1) = A^+ W(n)$ has an exponential dichotomy on $\R^+$. All the results except for \eqref{projexpdecay} follow directly from \cite[Proposition 2.5]{Beyn1997}. Equation \eqref{projexpdecay} follows from using the estimate \eqref{Anexpdecay} in the proof of \cite[Proposition 2.5]{Beyn1997}.
+We will consider the problem on $\Z^+$. Since $A$ is constant coefficient and hyperbolic, the difference equation $W(n+1) = A  W(n)$ has an exponential dichotomy on $\R^+$. All the results except for \eqref{projexpdecay} follow directly from \cite[Proposition 2.5]{Beyn1997}. Equation \eqref{projexpdecay} follows from using the estimate \eqref{Anexpdecay} in the proof of \cite[Proposition 2.5]{Beyn1997}.
 \end{proof}
 \end{lemma}
 
@@ -770,7 +775,7 @@ For the initial value problem
 V(n+1) &= A(n) V(n) + G(V(n), n) \\
 V(n_0) &= V_{n_0}
 \end{align*}
-the solution $V(n)$ can be written as 
+the solution $V(n)$ can be written in summation form as 
 \begin{equation}\label{VOCformula}
 V(n) = 
 \begin{cases}
@@ -782,7 +787,7 @@ V_{n_0} & n = n_0 \\
 \begin{proof}
 For $n = n_0 + 1$,
 \[
-V(n_0 + 1) = A(n_0) V(n_0) + G(V(n_0), n_0) = \Phi(n_0+1, n_0) V(n_0) + \Phi(n_0, n_0) G(V(n_0), n_0)
+V(n_0 + 1) = A(n_0) V(n_0) + G(V(n_0), n_0) = \Phi(n_0+1, n_0) V(n_0) + \Phi(n_0, n_0) G(V(n_0), n_0).
 \]
 Iterate this to get the result for $n > n_0$. The case for $n < n_0$ is similar.
 \end{proof}
@@ -790,36 +795,34 @@ Iterate this to get the result for $n > n_0$. The case for $n < n_0$ is similar.
 
 \subsection{Fixed Point Formulation}
 
-Recall that we wish to find a solution to the system of equations \eqref{Usystem}. To do that, we will rewrite the system in the following way. First, we expand $F$ in a Taylor series about $T(\theta_i) Q(n)$ to get
+To find a solution to the system of equations \eqref{Usystem}, we will rewrite the system as a fixed point problem. First, we expand $F$ in a Taylor series about $T(\theta_i) Q(n)$ to get
 \begin{align*}
 F(U_i^\pm(n)) &= F(T(\theta_i) Q(n) + \tilde{Q}_i^\pm(n)) \\
-&= F(T(\theta_i) Q(n)) + D_U F(T(\theta_i) Q(n)) \tilde{Q}_i^\pm(n) + G(\tilde{Q}_i^\pm(n)) \\
+&= F(T(\theta_i) Q(n)) + D F(T(\theta_i) Q(n)) \tilde{Q}_i^\pm(n) + G(\tilde{Q}_i^\pm(n)) \\
 &= T(\theta_i)DF(Q(n))T(\theta_i)^{-1} Q(n)) \tilde{Q}_i^\pm + G(\tilde{Q}_i^\pm(n))
 \end{align*}
-where $G(\tilde{Q}_i^\pm(n)) = \mathcal{O}(|\tilde{Q}_i^\pm|^2)$ with $G(0) = 0$ and $DG(0) = 0$, and we used the symmetry relation \eqref{DFtheta} in the last line. Finally, let
+where $G(\tilde{Q}_i^\pm(n)) = \mathcal{O}(|\tilde{Q}_i^\pm|^2)$ with $G(0) = 0$ and $DG(0) = 0$, and we used the symmetry relation \eqref{symmetryrel} in the last line. Finally, let
 \begin{align} \label{didef}
-d_i &= T(\theta_{i+1}) Q(-N_i^-) - T(\theta_i) Q(N_i^+)
+d_i &= T(\theta_{i+1}) Q(-N_i^-) - T(\theta_i) Q(N_i^+).
 \end{align}
-Substituting these into \eqref{Usystem}, we obtain the following system of equations for the remainder function $\tilde{Q}_i^\pm$.
+Substituting these into \eqref{Usystem}, we obtain the following system of equations for the remainder functions $\tilde{Q}_i^\pm$.
 \begin{align}
-\tilde{Q}_i^\pm(n+1) &= T(\theta)D_U F(Q(n))T(\theta)^{-1} \tilde{Q}_i^\pm(n) + G(\tilde{Q}_i^\pm(n)) \label{Wsystem1} \\
+\tilde{Q}_i^\pm(n+1) &= T(\theta)D F(Q(n))T(\theta)^{-1} \tilde{Q}_i^\pm(n) + G(\tilde{Q}_i^\pm(n)) \label{Wsystem1} \\
 \tilde{Q}_i^+(N_i^+) - W_{i+1}^-(-N_i^-) &= d_i \label{Wsystem2} \\
 \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) &= 0 \label{Wsystem3}
 \end{align}
 
-Next, we look at the variational and adjoint variational equations associated with \eqref{diffeq}, which come from the linearization of \eqref{diffeq} about the primary pulse solution $Q(n)$.
+Next, we look at the variational and adjoint variational equations associated with \eqref{diffeq}, which are
 \begin{align}
-V(n+1) &= D_U F(Q(n)) V(n) \label{vareq} \\
-Z(n+1) &= [D_U F(Q(n))^*]^{-1} Z(n) \label{adjvareq} 
+V(n+1) &= D F(Q(n)) V(n) \label{vareq} \\
+Z(n+1) &= [D F(Q(n))^*]^{-1} Z(n) \label{adjvareq} 
 \end{align}
-If we take Hypothesis \ref{symmetryhyp}(i), the variational equation does not have a bounded solution, thus we can decompose $\R^d$ as $\R^d = Y^+ \oplus Y^-$, where $Y^+ = T_{Q(0)} W^s(0)$ and $Y^- = T_{Q(0)} W^u(0)$. Since $T(\theta)$ is unitary, we also have the decomposition $\R^d = T(\theta_i) Y^+ \oplus T(\theta_i) Y^-$.
-
-If we instead take Hypothesis \ref{symmetryhyp}(ii), the variational equation \eqref{vareq} has a bounded solution $T'(0) Q(n)$, which can be shown by differentiating $T(\theta) Q(n+1) = F(T(\theta)Q(n))$ with respect to $\theta$ at $\theta = 0$. From Hypothesis \ref{intersectionhyp}, \eqref{vareq} has no other linearly independent bounded solution. Thus we can decompose the tangent spaces to $W^s(0)$ and $W^u(0)$ at $Q(0)$ as
+The variational equation \eqref{vareq} has a bounded solution $T'(0) Q(n)$, thus we can decompose the tangent spaces to $W^s(0)$ and $W^u(0)$ at $Q(0)$ as
 \begin{align*}
 T_{Q(0)} W^u(0) &= Y^- \oplus \R T'(0) Q(0) \\
 T_{Q(0)} W^s(0) &= Y^+ \oplus \R T'(0) Q(0)
 \end{align*}
-It also follows from Hypothesis \ref{intersectionhyp} that the adjoint variational equation \eqref{adjvareq} has a unique bounded solution $Z_1(n)$. By Lemma \ref{evolop} below, $Z_1(0) \perp T'(0) Q(0) \oplus Y^- \oplus Y^+$, thus we can decompose $\R^d$ as
+The adjoint variational equation also has a unique bounded solution $Z_1(n)$ given by \eqref{adjvarsol}. By Lemma \ref{evolop}, $Z_1(0) \perp T'(0) Q(0) \oplus Y^- \oplus Y^+$, thus we can decompose $\R^d$ as
 \begin{equation}\label{nontdecomp}
 \R^d = \R T'(0) Q(0) \oplus Y^+ \oplus Y^- \oplus \R Z_1(0)
 \end{equation}
@@ -834,22 +837,19 @@ Finally, since perturbations in the direction of $T(\theta_i) T'(0) Q(0)$ are ha
 
 Let $\Phi(m, n; \theta)$ be the evolution operator for
 \begin{equation}\label{Vtheta}
-V(n+1; \theta) = T(\theta) D_U F(Q(n)) T(\theta)^{-1} V(n; \theta) 
+V(n+1; \theta) = T(\theta) D F(Q(n)) T(\theta)^{-1} V(n; \theta) 
 \end{equation}
-Using \eqref{DFtheta} and the definition of the evolution operator \eqref{evol},
-\[
+We note that since $T'(0)$ commutes with $T(\theta)$, $T'(0)Q(n)$ is a solution to \eqref{Vtheta}. Using \eqref{symmetryrel}, the evolution operators are related to those for $\theta = 0$ by
+\begin{equation}\label{evoloptheta}
 \Phi(m, n; \theta) = T(\theta)\Phi(m, n; 0)T(\theta)^{-1}
-\]
-
-Furthermore, since $T(\theta) D_U F(Q(n)) T(\theta)^{-1}$ decays exponentially to $T(\theta) D_U F(0) T(\theta)^{-1}$ and $D_U F(0)$ is hyperbolic by Hypothesis \ref{initialhyp}(i), equation \eqref{Vtheta} has exponential dichotomies on $\Z^+$ and $\Z^-$ by Lemma \ref{dichotomy}. Let $P_{s/u}^\pm(m; \theta)$ and $\Phi_{s/u}^\pm(m, n; \theta)$ be the projections and evolutions of this exponential dichotomy for the difference equation (\ref{Vtheta}). The projections $P_{s/u}^\pm(m; \theta)$ are related to those for $\theta = 0$ by
+\end{equation}
+Since $T(\theta) D F(Q(n)) T(\theta)^{-1}$ decays exponentially to $T(\theta) D F(0) T(\theta)^{-1}$ and $D F(0)$ is hyperbolic, equation \eqref{Vtheta} has exponential dichotomies on $\Z^+$ and $\Z^-$ by Lemma \ref{dichotomy}, and we note that the estimates from Lemma \ref{dichotomy} do not depend on $\theta$. Let $P_{s/u}^\pm(m; \theta)$ and $\Phi_{s/u}^\pm(m, n; \theta)$ be the projections and evolutions for this exponential dichotomy on $\Z^\pm$. The projections $P_{s/u}^\pm(m; \theta)$ are related to those for $\theta = 0$ by
 \[
 P_{s/u}^\pm(m; \theta) = T(\theta)P_{s/u}^\pm(m; 0)T(\theta)^{-1}
 \]
 Finally, let $E^s(\theta)$ and $E^u(\theta)$ be the stable and unstable eigenspaces of $T(\theta) D_U F(0) T(\theta)^{-1}$, and let $P_0^s(\theta)$ and $P_0^u(\theta)$ be the corresponding eigenprojections.
 
-We note that the estimates from Lemma \ref{dichotomy} do not depend on $\theta$. Finally, if we take Hypothesis \ref{intersectionhyp}(ii), $T'(0) Q(n)$ is a solution to \eqref{Vtheta}.
-
-Next, as in \cite{Sandstede1997} and \cite{Knobloch2000}, we write equation \eqref{Wsystem1} in fixed-point form using the discrete variation of constants formula from Lemma (\ref{VOCformula}) together with projections on the stable and unstable subspaces of the exponential dichotomy.
+Next, as in \cite{Sandstede1997} and \cite{Knobloch2000}, we write equation \eqref{Wsystem1} in fixed-point form using the discrete variation of constants formula \eqref{VOCformula} together with projections on the stable and unstable subspaces of the exponential dichotomy.
 \begin{equation}\label{FPeqs1}
 \begin{aligned}
 \tilde{Q}_i^-(n) &= 
@@ -860,12 +860,12 @@ Next, as in \cite{Sandstede1997} and \cite{Knobloch2000}, we write equation \eqr
 - \sum_{j = n}^{N_i^+-1} \Phi_u^+(n, j+1; \theta_i) G_i^+(\tilde{Q}_i^+(j))
 \end{aligned}
 \end{equation}
-where $\tilde{Q}_i^-(n) \in l^\infty([-N_{i-1}^-, 0])$, $\tilde{Q}_i^+(n) \in l^\infty([0, N_i^+])$, and the sums are defined to be $0$ if the upper index is smaller than the lower index. For the initial conditions, we have
+where $\tilde{Q}_i^-(n) \in \ell^\infty([-N_{i-1}^-, 0])$, $\tilde{Q}_i^+(n) \in \ell^\infty([0, N_i^+])$, and the sums are defined to be $0$ if the upper index is smaller than the lower index. For the initial conditions, 
 \begin{enumerate}
-\item $a_i^- \in E^s(\theta_i)$, $a_i^+ \in E^u(\theta_i)$, and $a_0^- = a_m^+ = 0$
+\item $a_i^- \in E^s(\theta_i)$, $a_i^+ \in E^u(\theta_i)$, and $a_0^- = a_m^+ = 0$.
 \item $b_i^+ \in T(\theta_i) Y^+$ and $b_i^- \in T(\theta_i) Y^-$.
 \end{enumerate}
-We note that if Hypothesis \ref{intersectionhyp}(ii) holds, we do not need to include a component in $T'(0) Q(0)$ in $b_i^\pm$, since that direction is handled by the symmetry parameter $\theta_i$.
+We note that we do not need to include a component in $T'(0) Q(0)$ in $b_i^\pm$, since that direction is handled by the symmetry parameter $\theta_i$.
 
 Since we wish to construct a homoclinic orbit to the rest state at 0, we take the initial conditions $a_0^- = 0$ and $a_m^+ = 0$. For these cases, the fixed point equations are given by
 \begin{align*}
@@ -879,7 +879,7 @@ where the infinite sums converge due to the exponential dichotomy.
 
 \subsection{Inversion}
 
-As in \cite{Sandstede1997}, we will solve equations \eqref{Wsystem1}, \eqref{Wsystem2}, and \eqref{Wsystem3} in stages. The first two steps are the same regardless of whether we take Hypothesis \ref{intersectionhyp}(i) or \ref{intersectionhyp}(ii). In the first lemma of this section, we solve for $\tilde{Q}_i^\pm$. 
+As in \cite{Sandstede1997}, we will solve equations \eqref{Wsystem1}, \eqref{Wsystem2}, and \eqref{Wsystem3} in stages. In the first lemma of this section, we solve equation \eqref{Wsystem1} for $\tilde{Q}_i^\pm$. 
 
 % solve for W
 \begin{lemma}\label{inv1}
@@ -899,26 +899,26 @@ For the interior pieces, we have the piecewise estimates
 \end{equation}
 
 \begin{proof}
-First, we show that the RHS of the fixed point equations \eqref{FPeqs1} defines a smooth map from $l^\infty$ (on the appropriate interval) to itself. For the $\tilde{Q}_i^-$, we have
+First, we show that the RHS of the fixed point equations \eqref{FPeqs1} defines a smooth map from $\ell^\infty$ (on the appropriate interval) to itself. For the $\tilde{Q}_i^-$, we have
 \begin{align}\label{inv1est1}
 |\Phi_s^-(n, &-N_{i-1}^-; \theta_i) a_{i-1}^-| + |\Phi_u^-(n, 0; \theta_i) b_i^-| \leq C ( |a_{i-1}^-| + |b_i^-|) 
 \end{align}
 and
 \begin{align*}
 \left| \sum_{j = -N_{i-1}^-}^{n-1} \Phi_s^-(n, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j))\right| + \left|\sum_{j = n}^{-1} \Phi_u^-(n, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j))\right| 
-\leq C ||\tilde{Q}_i^-||_{l^\infty([-N_{i-1}, 0])}^2 
+\leq C ||\tilde{Q}_i^-||_{\ell^\infty([-N_{i-1}, 0])}^2 
 \end{align*}
 both of which are independent of $n$. Define the map
-$K_i^-: l^\infty([-N_{i-1}, 0]) \times E^s \times Y^- \rightarrow l^\infty([-N_{i-1}, 0])$ by
+$K_i^-: \ell^\infty([-N_{i-1}, 0]) \times E^s \times Y^- \rightarrow \ell^\infty([-N_{i-1}, 0])$ by
 \begin{align}\label{inv1map}
 K_i^-(\tilde{Q}_i^-(n), &a_{i-1}^-, b_i^-) = \tilde{Q}_i^-(n) - \Phi_s^-(n, -N_{i-1}^-; \theta_i) a_{i-1}^- - \Phi_u^-(n, 0; \theta_i) b_i^-  \\
 &- \sum_{j = -N_{i-1}^-}^{n-1} \Phi_s^-(n, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j)) + \sum_{j = n}^{-1} \Phi_u^-(n, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j)) \nonumber
 \end{align}
-Since 0 is an equilibrium, $K(0, 0, 0) = 0$. It is not hard to show that the Fr\'echet derivative of $K_i^-$ with respect to $\tilde{Q}_i^-$ at $(\tilde{Q}_i^-(n), a_{i-1}^-, b_i^-) = (0, 0, 0)$ is a Banach space isomorphism on $l^\infty([-N_{i-1}, 0])$. Thus we can solve for $\tilde{Q}_i^-(x)$ in terms of $(a_{i-1}^-, b_i^-)$ using the IFT. This dependence is smooth, since the map $K_i^-$ is smooth. The estimate \eqref{Wipmest} on $\tilde{Q}_i^-$ comes from \eqref{inv1est1}, since the terms in \eqref{inv1map} involving sums are quadratic in $\tilde{Q}_i^\pm$. The case for $\tilde{Q}_i^+$ is similar. Finally, for the interior pieces, we can easily obtain the piecewise estimates \eqref{Wipiecewise}.
+Since 0 is an equilibrium, $K(0, 0, 0) = 0$. It is straightforward to show that the Fr\'echet derivative of $K_i^-$ with respect to $\tilde{Q}_i^-$ at $(\tilde{Q}_i^-(n), a_{i-1}^-, b_i^-) = (0, 0, 0)$ is a Banach space isomorphism on $l^\infty([-N_{i-1}, 0])$. Thus we can solve for $\tilde{Q}_i^-(x)$ in terms of $(a_{i-1}^-, b_i^-)$ using the IFT. This dependence is smooth, since the map $K_i^-$ is smooth. The estimate \eqref{Wipmest} on $\tilde{Q}_i^-$ comes from \eqref{inv1est1}, since the terms in \eqref{inv1map} involving sums are quadratic in $\tilde{Q}_i^\pm$. The case for $\tilde{Q}_i^+$ is similar. It is not hard to obtain the piecewise estimates \eqref{Wipiecewise} for the interior pieces.
 \end{proof}
 \end{lemma}
 
-Next, we use the center matching conditions at $N_i^\pm$ to solve for the initial conditions $a_i^\pm$.
+Next, we use the center matching conditions at $N_i^\pm$ to solve equation \ref{Wsystem2}. This will give us the initial conditions $a_i^\pm$.
 
 % match in middles
 \begin{lemma}\label{inv2}
@@ -943,13 +943,13 @@ a_i^+ &= T(\theta_{i+1}) Q(-N_i^-) + \tilde{a}_i^+ + \mathcal{O}(r^{-2N})
 \end{equation}
 
 \begin{proof}
-Evaluating the fixed point equations \eqref{FPeqs1} at $\pm N_i^\pm$ and subtracting, solving equation \eqref{Wsystem2} is equivalent to solving $K_i(a_i^+, a_i^-, b_i^+, b_{i+1}^-) = 0$, where $K_i: E^s \times E^u \times Y^+ \times Y^- \times \rightarrow \R^d$ is defined by
+Evaluating the fixed point equations \eqref{FPeqs1} at $\pm N_i^\pm$ and subtracting, solving equation \eqref{Wsystem2} is equivalent to solving $K_i(a_i^+, a_i^-, b_i^+, b_{i+1}^-) = 0$, where $K_i: E^s \times E^u \times Y^+ \times Y^- \rightarrow \R^d$ is defined by
 \begin{align*}
 K_i(a_i^+, &a_i^-, b_i^+, b_{i+1}^-) \\
 &= a_i^+ - a_i^- - d_i + (P_u^+(N_i^+; \theta_i) - P_0^u) a_i^+ - (P_s^-(-N_i^-; \theta_{i+1}) - P_0^s) a_i^- \\
 &+ \Phi_s^+(N_i^+, 0; \theta_i) b_i^+ - \Phi_u^-(-N_i^-, 0; \theta_{i+1}) b_{i+1}^- \\
 &+ \sum_{j = 0}^{N_i^+-1} \Phi_s^+(N_i^+, j+1; \theta_i) G_i^+(\tilde{Q}_i^+(j; a_i^+, b_i^+)) \\
-&+ \sum_{j = -N_i^-}^{-1} \Phi_u^-(-N_i^-, j+1; \theta_{i+1}) G_i^-(W_{i+1}^-(j; a_i^-, b_{i+1}^-))
+&+ \sum_{j = -N_i^-}^{-1} \Phi_u^-(-N_i^-, j+1; \theta_{i+1}) G_i^-(\tilde{Q}_{i+1}^-(j; a_i^-, b_{i+1}^-))
 \end{align*}
 and we substituted $W_{i+1}^-(n; a_i^-, b_{i+1}^-)$ and $\tilde{Q}_i^+(n; a_i^+, b_i^+)$ from Lemma \ref{inv1}. Next, we note that $K_i(0,0,0,0) = 0$ and that 
 \begin{align*}
@@ -979,24 +979,33 @@ Substituting these into \eqref{aipmest} we obtain \eqref{aipmexp}.
 \end{proof}
 \end{lemma}
 
-It only remains to satisfy \eqref{Wsystem3}. At this point, we have to treat the two cases for \ref{intersectionhyp} separately.
+It only remains to satisfy \eqref{Wsystem3}, which is the jump condition at 0. We will not in general be able to solve equation \eqref{Wsystem3}. In the next lemma, we will solve for the initial conditions $b_i^\pm$. This will give us a unique solution which will generically have $m$ jumps in the direction of $T(\theta) Z_1(0)$. We will obtain a set of $m$ jump conditions in the direction of $T(\theta) Z_1(0)$ which will depend on the symmetry parameters $\theta_i$. Satisfying the jump conditions, which solves \eqref{Wsystem3}, can be accomplished by adjusting the symmetry parameters.
 
-First, we consider the transverse intersection case. If  Hypothesis \ref{intersectionhyp}(i) holds, existence of the multi-pulse solutions follows from the implicit function theorem as long as $N$ is sufficiently large.
+Recall that for all $\theta \in \R$ we have the decomposition
+\[
+\R^d = \R T(\theta) T'(0)Q(0) \oplus T(\theta) Y^+ \oplus T(\theta) Y^- \oplus \R T(\theta) Z_1(0)
+\]
+Projecting in these directions, we can write \eqref{Wsystem3} as the system of equations
+\begin{align}
+P_{T(\theta_i)T'(0)Q(0)}\left( \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) \right) &= 0 \label{jumpS1} \\
+P_{T(\theta_i)Y^+ \oplus T(\theta_i)Y^-}\left( \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) \right) &= 0 \label{jumpnonZ} \\
+P_{\R T(\theta_i)Z_1(0)} \left( \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) \right) &= 0 \label{jumpZ}
+\end{align}
+Since $\tilde{Q}_i^\pm(0) \in Y^+ \oplus Y^- \oplus \R Z_1(0)$, equation (\ref{jumpS1}) is automatically satisfied. Since $b_i^+ \in T(\theta) Y^+$ and $b_i^- \in T(\theta) Y^-$, we will be able to satisfy \eqref{jumpnonZ} by solving for the $b_i^\pm$, which we do in the following lemma.
 
-% center match, transverse intersection
-\begin{lemma}\label{inv3t}
-Assume Hypothesis \ref{intersectionhyp}(i). Then for $i = 1, \dots m$ there is a unique pair of initial conditions $(b_i^-, b_i^+) \in T(\theta_i) Y^- \times T(\theta_i) Y^+$ such that the matching conditions \eqref{Wsystem3} are satisfied. We have the uniform bound
-\begin{equation}\label{bboundt}
+\begin{lemma}\label{inv3nt}
+For $i = 1, \dots m$ there is a unique pair of initial conditions $(b_i^-, b_i^+) \in T(\theta_i) Y^- \times T(\theta_i) Y^+$ such that \eqref{jumpnonZ} is satisfied. We have the uniform bound
+\begin{equation}\label{bboundnt}
 b = \mathcal{O}(r^{-2N})
 \end{equation}
 
 \begin{proof}
-Evaluating the fixed point equations \eqref{FPeqs1} at 0 and subtracting, we have
+For convenience, let $X_i = T(\theta_i)Y^+ \oplus T(\theta_i)Y^-$. Evaluating the fixed point equations \eqref{FPeqs1} at 0 and subtracting, and applying the projection $P_{X_i}$ to both sides, 
 \begin{align*}
-\tilde{Q}_i^+(0) &- \tilde{Q}_i^-(0) = b_i^+ - b_i^- 
-+ \Phi_u^+(0, N_i^+; \theta_i) a_i^+ - \Phi_s^-(0, -N_{i-1}^-; \theta_i) a_{i-1}^- \\
-&- \sum_{j = 0}^{N_i^+-1} \Phi_u^+(0, j+1; \theta_i) G_i^+(\tilde{Q}_i^+(j)) 
-- \sum_{j = -N_{i-1}^-}^{-1} \Phi_s^-(0, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j)) \\
+P_{X_i}( \tilde{Q}_i^+(0) &- \tilde{Q}_i^-(0)) = b_i^+ - b_i^- 
++ P_{X_i}( \Phi_u^+(0, N_i^+; \theta_i) a_i^+) - P_{X_i}( \Phi_s^-(0, -N_{i-1}^-; \theta_i) a_{i-1}^-)  \\
+&- P_{X_i} \left( \sum_{j = 0}^{N_i^+-1} \Phi_u^+(0, j+1; \theta_i) G_i^+(\tilde{Q}_i^+(j)) 
+- \sum_{j = -N_{i-1}^-}^{-1} \Phi_s^-(0, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j)) \right) \\
 \end{align*}
 Next, substitute $\tilde{Q}_i^\pm$ from Lemma \ref{inv1} and $a_i^\pm$ from Lemma \ref{inv2}. Define the spaces
 \begin{align}\label{spaceYt}
@@ -1006,11 +1015,11 @@ Z &= \bigoplus_{i=1}^{m-1} \R^d
 Let $b = (b_1^+, b_1^-, \dots, b_m^+, b_m^-) \in Y$ and $d = (d_1, \dots, d_{m-1}) \in Z$. Define the function $K: Y \times Z \rightarrow Y$ component-wise by
 \begin{align*}
 K_i(b, d) &= 
- b_i^+ - b_i^- + \Phi_u^+(0, N_i^+; \theta_i) P_0^u d_i + \Phi_s^-(0, -N_{i-1}^-; \theta_i) P_0^s d_{i-1} \\
-&+ \Phi_u^+(0, N_i^+; \theta_i) \tilde{a}_i^+(b_i^+, b_{i+1}^-) 
-- \Phi_s^-(0, -N_{i-1}^-; \theta_i) \tilde{a}_{i-1}^-(b_{i-1}^+, b_i^-) \\
-&- \sum_{j = 0}^{N_i^+-1} \Phi_u^+(0, j+1; \theta_i) G_i^+(\tilde{Q}_i^+(j; b_i^+, b_{i+1}^-)) \\
-&- \sum_{j = -N_{i-1}^-}^{-1} \Phi_s^-(0, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j; b_{i-1}^+, b_i^-))
+ b_i^+ - b_i^- + P_{X_i} \left( \Phi_u^+(0, N_i^+; \theta_i) P_0^u d_i + \Phi_s^-(0, -N_{i-1}^-; \theta_i) P_0^s d_{i-1} \right) \\
+&+ P_{X_i}\left( \Phi_u^+(0, N_i^+; \theta_i) \tilde{a}_i^+(b_i^+, b_{i+1}^-) 
+- \Phi_s^-(0, -N_{i-1}^-; \theta_i) \tilde{a}_{i-1}^-(b_{i-1}^+, b_i^-) \right) \\
+&- P_{X_i} \sum_{j = 0}^{N_i^+-1} \Phi_u^+(0, j+1; \theta_i) G_i^+(\tilde{Q}_i^+(j; b_i^+, b_{i+1}^-)) \\
+&- P_{X_i} \sum_{j = -N_{i-1}^-}^{-1} \Phi_s^-(0, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j; b_{i-1}^+, b_i^-))
 \end{align*}
 where $d_0 = d_m = 0$, and we have indicated the dependencies on the $b_i^\pm$. Using the estimates from Lemmas \ref{inv1} and \ref{inv2}, $K(0, 0) = 0$. For the partial derivatives with respect to $b_i^\pm$, we have
 \begin{align*}
@@ -1023,49 +1032,20 @@ For all other indices,
 \[
 \frac{\partial}{\partial b_j^\pm}K_i(0) = 0
 \]
-Thus, for sufficiently large $N$, the matrix $D_b K(0,0)$ is invertible. Using the IFT, there exists a unique smooth function $b: Z \rightarrow Y$ with $b(0) = 0$ such that $K(b(d),d) = 0$ for $d$ sufficiently small, which is the case for $N$ sufficiently large, since $d = \mathcal{O}(r^{-N})$.
-
-The bound for $b$ comes from projecting $K_i(b(d), d) = 0$ onto $T(\theta)Y^+$ and $T(\theta)Y^-$ together with the estimate $d = \mathcal{O}(r^{-N})$.
+Thus, for sufficiently large $N$, the matrix $D_b K(0,0)$ is invertible. Using the IFT, there exists a unique smooth function $b: Z \rightarrow Y$ with $b(0) = 0$ such that $K(b(d),d) = 0$ for $d$ sufficiently small, which is the case for $N$ sufficiently large, since $d = \mathcal{O}(r^{-N})$. The bound for $b$ comes from projecting $K_i(b(d), d) = 0$ onto $T(\theta)Y^+$ and $T(\theta)Y^-$ together with the estimate $d = \mathcal{O}(r^{-N})$.
 \end{proof}
 \end{lemma}
 
-If Hypothesis \ref{intersectionhyp}(ii) holds, we will not in general be able to solve equation \eqref{Wsystem3}. Instead, we will obtain a set of jump conditions in the direction of $T(\theta) Z_1(0)$ which will depend on the symmetry parameters $\theta_i$. Satisfying the jump conditions can then be accomplished by adjusting the symmetry parameters.
-
-Recall that for all $\theta \in \R$ we have the decomposition
-\[
-\R^d = \R T(\theta) T'(0)Q(0) \oplus T(\theta) Y^+ \oplus T(\theta) Y^- \oplus \R T(\theta) Z_1(0)
-\]
-Projecting in these directions, we can write \eqref{Wsystem3} as the system of equations
-\begin{align}
-P_{T(\theta)T'(0)Q(0)}\left( \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) \right) &= 0 \label{jumpS1} \\
-P_{T(\theta)Y^+ \oplus T(\theta)Y^-}\left( \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) \right) &= 0 \label{jumpnonZ} \\
-P_{\R T(\theta)Z_1(0)} \left( \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) \right) &= 0 \label{jumpZ}
-\end{align}
-
-Since $\tilde{Q}_i^\pm(0) \in Y^+ \oplus Y^- \oplus \R Z_1(0)$, equation (\ref{jumpS1}) is automatically satisfied. Since $b_i^+ \in T(\theta) Y^+$ and $b_i^- \in T(\theta) Y^-$, we will be able to satisfy \eqref{jumpnonZ} by solving for the $b_i^\pm$, which we do in the following lemma.
-
-% solve for $b_i^\pm$, nontransverse int
-\begin{lemma}\label{inv3nt}
-Assume Hypothesis \ref{intersectionhyp}(ii). Then for $i = 1, \dots m$ there is a unique pair of initial conditions $(b_i^-, b_i^+) \in T(\theta_i) Y^- \times T(\theta_i) Y^+$ such that the jump conditions \eqref{jumpnonZ} are satisfied. We have the uniform bound
-\begin{equation}\label{bboundnt}
-b = \mathcal{O}(r^{-2N})
-\end{equation}
-\begin{proof}
-The proof is almost identical to that of Lemma \ref{inv3t}.
-\end{proof}
-\end{lemma}
-
-Finally, we will look at equation (\ref{jumpZ}). This condition will give us $m$ jump conditions in the direction of $T(\theta_i) Z_1$.
+Finally, we will use \eqref{jumpZ} to derive the jump conditions in the direction of $T(\theta_i) Z_1$.
 
 \begin{lemma}\label{jumpZlemma}
-Assume Hypothesis \ref{intersectionhyp}(ii). Then the jump conditions in the direction of $T(\theta_i) Z_1$ are given by
+The jump conditions in the direction of $T(\theta_i) Z_1$ are given by
 \begin{equation*}
 \begin{aligned}
-\xi_1 &= \langle T(\theta_1) Z_1(N_1^+), T(\theta_2) Q(-N_1^-) \rangle + R_1  \\
-\xi_i &= \langle T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) Q(-N_i^-) \rangle
-- \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) Q(N_{i-1}^+) + R_i &&
-i = 2, \dots, m-1 \\
-\xi_m &= -\langle T(\theta_m) Z_1(-N_{m-1}^-), T(\theta_{m-1}) Q(N_{m-1}^+) + R_m
+\xi_1 &= \langle T(\theta_1) Z_1(N_1^+), T(\theta_{2}) Q(-N_1^-) \rangle + R_1 = 0 \\
+\xi_i &= \langle T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) Q(-N_i^-) \rangle \\
+&\qquad-\langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) Q(N_{i-1}^+) \rangle + R_i = 0 && \qquad i = 2, \dots, m-1 \\
+\xi_m &= -\langle T(\theta_m) Z_1(-N_{m-1}^-), T(\theta_{m-1}) Q(N_{m-1}^+) \rangle + R_m = 0
 \end{aligned}
 \end{equation*}
 where the remainder term has bound
@@ -1093,12 +1073,11 @@ For the higher order terms in \eqref{jumpZ}, we substitute $\tilde{Q}_i^\pm$ fro
 \end{proof}
 \end{lemma}
 
-\subsection{Proofs of Theorems \ref{transversemulti} and \ref{ntmulti}}
-The existence statement from Theorem \ref{transversemulti} follows from Lemma \ref{inv3t}, and the existence statement from Theorem \ref{ntmulti} follows from Lemma \ref{jumpZlemma}. The uniform bound $||\tilde{Q}_i^\pm|| \leq C r^{-N}$ in \eqref{Westimates} follows from Lemma \ref{inv1} together with the estimates on $a_i^\pm$ and $b_i^\pm$. 
+\subsection{Proof of Theorem \ref{ntmulti}}
 
-For the second estimate in \eqref{Westimates}, recall that in Lemma \ref{inv2} we solved
+The existence statement follows from the jump conditions in Lemma \ref{jumpZlemma}. The uniform bound $||\tilde{Q}_i^\pm|| \leq C r^{-N}$ in \eqref{Westimates} follows from Lemma \ref{inv1} together with the estimates on $a_i^\pm$ and $b_i^\pm$. For the second estimate in \eqref{Westimates}, recall that in Lemma \ref{inv2} we solved
 \begin{equation}\label{Wsubdi}
-\tilde{Q}_i^+(N_i^+) - W_{i+1}^-(-N_i^-) = T(\theta_{i+1}) Q(-N_i^-) - T(\theta_i) Q(N_i^+)
+\tilde{Q}_i^+(N_i^+) - \tilde{Q}_{i+1}^-(-N_i^-) = T(\theta_{i+1}) Q(-N_i^-) - T(\theta_i) Q(N_i^+)
 \end{equation}
 Apply the projection $P^u_-(-N_i^-; \theta_{i+1})$ to \eqref{Wsubdi}, noting that it acts as the identity on $T(\theta_{i+1}) Q(-N_i^-)$. We look at the three remaining terms in \eqref{Wsubdi} one at a time. For $T(\theta_i) Q(N_i^+)$, we follow the proof of Lemma \ref{inv2} and use the estimate (\ref{projexpdecay}) to get
 \begin{align*}
@@ -1113,43 +1092,25 @@ from which it follows that
 \[
 P^u_-(-N_i^-; \theta_{i+1}) \tilde{Q}_i^+(N_i^+) = \tilde{Q}_i^+(N_i^+) + \mathcal{O}(r^{-2N})
 \]
-For $W_{i+1}^-(-N_i^-)$, we follow a similar procedure to conclude that
+For $\tilde{Q}_{i+1}^-(-N_i^-)$, we follow a similar procedure to conclude that
 \[
-P^u_-(-N_i^-; \theta_{i+1}) W_{i+1}^-(-N_i^-) = \mathcal{O}(r^{-2N})
+P^u_-(-N_i^-; \theta_{i+1}) \tilde{Q}_{i+1}^-(-N_i^-) = \mathcal{O}(r^{-2N})
 \]
 Combining all of these gives us the second estimate in \eqref{Westimates}. For the third estimate in \eqref{Westimates}, we apply the projection $P^s_+(N_i^+; \theta_i)$ to \eqref{Wsubdi} and follow the same procedure.
 
-\section{Proof of Stability Theorem}
+\subsection{Proof of Theorem \ref{transversemulti}}
 
-\subsection{Proof of Lemma \ref{geneigcriteria}}
+In the transverse intersection case, we can decompose $\R^d$ as $\R^d = Y^+ \oplus Y^-$, where $Y^+ = T_{Q(0)} W^s(0)$ and $Y^- = T_{Q(0)} W^u(0)$. Lemmas \ref{inv1} and \ref{inv2} are identical. To obtain a multi-pulse, all that remains to do is solve 
+\[
+\tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) = P_{T(\theta_i)Y^+ \oplus T(\theta_i)Y^-}( \tilde{Q}_i^+(0) - \tilde{Q}_i^-(0) ) = 0
+\]
+which is done in Lemma \ref{inv3nt}. There are no remaining jump conditions to satisfy.
 
-Let $Q(n, \omega_0)$ be the homoclinic orbit solution to \eqref{diffeq1} resulting from the intersection in (3). Since the intersection in (3) is transverse and $E$ is smooth in $\omega$, the intersection persists for $\omega$ near $\omega_0$, thus homoclinic orbits $Q(n, \omega)$ exist for $\omega$ near $\omega_0$. A standard contraction mapping argument shows that $Q(n, \omega)$ is differentiable in $\omega$ near $\omega_0$ and that the exponential decay rate \eqref{Qomegabound} holds. Taking $U(n) = Q(n, \omega)$ in \eqref{diffeq1} and differentiating with respect to $\omega$, we get
-\begin{align*}
-\partial_\omega Q(n+1, \omega) &=
-(D\tilde{F}(Q(n, \omega) + \omega B T'(0)) \partial_\omega Q(n, \omega) + B T'(0) Q(n, \omega)
-\end{align*}
-
-Fix $\omega$ near $\omega_0$, and for simplicity of notation, we will suppress the dependence on $\omega$. For the Melnikov sum result, we first characterize the adjoint solution $Z_1(n)$. Differentiating the conservation relation (2a) in $U$ at $U = Q(n)$,
-\begin{align*}
-DE(Q(n)) &= DE(F(Q(n)) DF(Q(n))
-\end{align*}
-Taking the adjoint and using $Q(n+1) = F(Q(n))$, this becomes
-\begin{align*}
-[DF(Q(n))]^* [DE(Q(n+1))]^* = [DF(Q(n))]^*
-\end{align*}
-Since $Z_1$ is the unique bounded solution to the adjoint variational equation \eqref{adjvareq} and $DE(Q(n))$ is bounded since $E$ is smooth, we conclude that $Z_1(n) = [D_U E( Q(n) )]^*$.
-
-Finally, we evaluate the inner product in the Melnikov sum $M_1$. Using the compatibility relation (2e),
-\begin{align*}
-\langle Z_1(n + 1), &BT'(0) Q(n) \rangle
-= \langle [D E(Q(n+1))]^*, BT'(0) Q(n) \rangle \\
-&= \langle [D E(F(Q(n)))]^*, BT'(0) Q(n) \rangle \\
-&= 0
-\end{align*}
+\section{Proof of Theorem \ref{stabilitytheorem}}
 
 \subsection{Setup}
 
-To prove the stability theorem, we will also use Lin's method. As in \cite{Sandstede1998}, we will write the eigenfunction as a piecewise perturbation of the kernel eigenfunction $T'(0)Q(n)$. 
+To prove Theorem \ref{stabilitytheorem}, we will also use Lin's method. As in \cite{Sandstede1998}, we will write the eigenfunction as a piecewise perturbation of the kernel eigenfunction $T'(0)Q(n)$. 
 
 Assume Hypothesis \ref{initialhyp} and Hypothesis \ref{intersectionhyp}(ii). Using Theorem \ref{ntmulti}, let $Q_m(n)$ be an $m-$pulse solution to \eqref{diffeq} which resembles $m$ copies of the primary pulse solution $Q_1(n)$. We write $Q_m(n)$ piecewise as in \eqref{Upiecewise}, and we have the following bounds from Theorem \ref{ntmulti} and Remark \ref{Qdecay}.
 \begin{enumerate}[(i)]
