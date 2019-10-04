@@ -412,7 +412,7 @@ We will now turn to the spectral stability of multi-pulses. In particular, we wi
 \begin{equation}\label{multiEVP}
 V(n+1) = DF(q_m(n)) V(n) + \lambda B V(n),
 \end{equation}
-where $DF(q_m(n))$ and $B$ are given by \eqref{latticeDF} and \eqref{latticeB}. Since $q_m(n)$ decays exponentially to 0 and $F$ is smooth, $DF(q_m(n))$ is exponentially asymptotic to the constant coefficient matrix $DF(0)$, which is hyperbolic by Hypothesis \ref{initialhyp}. 
+where $DF(q_m(n))$ and $B$ are given by \eqref{latticeDF} and \eqref{latticeB}. Since $q_m(n)$ decays exponentially to 0 and $F$ is smooth, $DF(q_m(n))$ is exponentially asymptotic to the constant coefficient matrix $DF(0)$, which is hyperbolic.
 
 We will also assume a Melnikov sum conditions holds. Since we have a Hamiltonian system, the standard Melnikov sum $M_1$ is 0 since $J$ is skew-symmetric.
 \begin{align}\label{MelnikovM1zero}
@@ -608,7 +608,7 @@ If $N_1 < N_2 < 2 N_1$, then, to leading order, these have magnitude
 where $b_1$ and $b_2$ are given by equation \eqref{bieq}.
 \end{corollary}
 
-\subsection{Numerics}
+\subsection{Numerical results}
 
 In this section, we provide numerical verification for the results in the previous section. We first construct multi-pulse solutions to the steady state DNLS problem by using Matlab for parameter continuation in the coupling constant $d$ from the anti-continuum limit. We then find the eigenvalues of the linearization about this solution using Matlab's \texttt{eig} function. 
 
@@ -1748,7 +1748,7 @@ By Hamiltonian symmetry, the eigenvalues of dNLS must come in quartets $\pm \alp
 These are either real or purely imaginary, and the remainder term cannot move these off of the real or imaginary axis. Since $M, d > 0$, we conclude that there are $k_\pi$ pairs of purely imaginary eigenvalues and $k_0$ pairs of real eigenvalues.
 
 We note that upon variations of $d$,
-these may collide with other eigenvalues including
+these interaction eigenvalues may collide with other eigenvalues including
 the ones associated with the continuous spectrum
 and lead to quartets as, e.g., in some of the
 case examples in~\cite{Pelinovsky2005}. We can ensure this will not happen by choosing $N$ sufficiently large.
@@ -1794,6 +1794,12 @@ For Corollary \ref{dNLSeigcorr2}, equation \eqref{3pulseeigs} follows from compu
 \sqrt{1 + \frac{b_2^2}{b_1^2} - \frac{b_2}{b_1} \cos\Delta\theta_1 \cos\Delta\theta_2} 
 \]
 and expand in a Taylor series to obtain the estimates \eqref{3pulsemag}.
+
+\section{Conclusions}
+
+In this paper we used Lin's method to construct multi-pulses in discrete systems and to find the small eigenvalues resulting from interaction between neighboring pulses in these structures. In doing so, we are able to extend known results about dNLS to parameter regimes which are further from the anti-continuum limit. In essence, we replace the requirement that the coupling parameter $d$ be small by the condition that the pulses are well separated. This method also allows us to estimate these interaction eigenvalues to a good degree of accuracy for intermediate values of $d$.
+
+The theoretical results we obtained will apply to many other Hamiltonian systems, as long as the coupling by nodes is via the discrete second order centered difference operator $\Delta_2$. Since these restrictions were motivated partly by mathematical convenience, future work could extend these results to a broader class of Hamiltonian systems. 
 
 \bibliographystyle{amsalpha}
 \bibliography{DiscreteLin.bib}
