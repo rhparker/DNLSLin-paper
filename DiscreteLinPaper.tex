@@ -1,5 +1,6 @@
 \documentclass[12pt]{elsarticle}
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}%
+\let\bibsection\relax
 \usepackage{amsrefs}
 \usepackage{amsmath}
 \usepackage{enumerate}
@@ -17,16 +18,21 @@
 \colorlet{siaminlinkcolor}{green!50!black}
 \colorlet{siamexlinkcolor}{red!50!black}
 \colorlet{siamreviewcolor}{black!50}
-\if@hidelinks
-\hypersetup{ hidelinks = true }
-\else
 \hypersetup{
   hidelinks = true,
   colorlinks = false,
   allcolors = siaminlinkcolor,
   urlcolor = siamexlinkcolor,
 }
-\fi
+
+% \makeatletter
+% \def\ps@pprintTitle{%
+%    \let\@oddhead\@empty
+%    \let\@evenhead\@empty
+%    \def\@oddfoot{\reset@font\hfil\thepage\hfil}
+%    \let\@evenfoot\@oddfoot
+% }
+% \makeatother
 
 \usepackage[capitalize,nameinlink]{cleveref}
 % Per SIAM Style Manual, "section" should be lowercase
@@ -80,7 +86,7 @@
 
 \graphicspath{ {images/} }
 
-\preprintfalse
+\newcommand{\revised}[1]{ \textcolor{red}{#1} }
 
 \begin{document}
 
@@ -100,28 +106,24 @@
 \address[3]{Mathematical Institute, University of Oxford, Oxford, OX2 6GG, UK}
 
 \begin{abstract}
-    In the present work we consider the existence and spectral stability of  
-    of multi-pulse solutions in Hamiltonian lattice systems.
+    In the present work, we consider the existence and spectral stability of multi-pulse solutions in Hamiltonian lattice systems.
     We provide a general framework for the study
     of such wave patterns based on a discrete
-    analogue of Lin's method previously used in
-    the continuum realm. We develop explicit conditions
-    for the existence of $m$-pulse structures and
-    subsequently develop a reduced matrix allowing to
+    analogue of Lin's method, previously used in
+    the continuum realm. We develop explicit conditions for the existence of $m$-pulse structures and
+    subsequently develop a reduced matrix allowing us to
     address their spectral stability. As a prototypical
     example for the manifestation of the details of
     the formulation, we consider the discrete nonlinear
-    Schr{\"o}dinger equation. Different families
-    of $2$- and $3$-pulse solitary waves are discussed
+    Schr\"{o}dinger equation. Different families
+    of $2$- and $3$-pulse solitary waves are discussed,
     and analytical expressions for the corresponding 
-    stability eigenvalues obtained in very good agreement
-    with numerical results. The systematic continuation of
-    the families of solutions over the inter-site coupling is explored numerically 
-    corroborating the analytical results.
+    stability eigenvalues are obtained which are in very good agreement
+    with numerical results.
 \end{abstract}
 
 \begin{keyword}
-discrete NLS equation \sep lattice differential equations \sep Lin's method
+multi-pulse solutions \sep Hamiltonian lattice systems \sep lattice differential equations \sep Lin's method \MSC{39A30, 37K60}
 \end{keyword}
 
 \end{frontmatter}
@@ -139,7 +141,7 @@ systematic view into a reduced formulation where
 the characteristics of the pulses (such as their centers,
 or possibly also their widths) could constitute effective
 dynamical variables for which simpler dynamical equations,
-i.e., ordinary differential equations, could be derived. While Lin's method for discrete dynamical systems has been developed in~\cite{Knobloch2000}, it has not so far been applied to the discrete multi-pulse problem.
+i.e. ordinary differential equations, could be derived. While Lin's method for discrete dynamical systems has been developed in~\cite{Knobloch2000}, it has not so far been applied to the discrete multi-pulse problem.
 Over the following decade, methods were sought to 
 isolate and freeze the dynamics of individual pulses
 within the patterns~\cite{beyn1,beyn2}. More recently,
@@ -195,13 +197,13 @@ i\dot{\psi}_n + d(\psi_{n+1} - 2 \psi_n + \psi_{n-1}) + |\psi_n|^2 \psi_n = 0,
 \end{equation}
 which is (2.12) in \cite{Kevrekidis2009}, where we have taken $\beta = -1$ and $\sigma = 1$. The parameter $d$ represents the coupling between nodes; $d > 0$ is the focusing case, and $d < 0$ the defocusing case~\cite{Kevrekidis2009}. Equation \cref{DNLS} is Hamiltonian, with energy given by (2.17) in \cite{Kevrekidis2009,pelinovsky_2011}. Of general interest in this type of lattice is the existence and stability of standing waves, which are bound state solutions of the form $\psi_n(t) = e^{i \omega t}\phi_n$~\cite{alfimov}. Making this substitution in \cref{DNLS} and simplifying, a standing wave solves the steady state equation
 \begin{equation}\label{DNLSequilib}
-d(\phi_{n+1} - 2 \phi_n + \phi_{n-1}) - \omega \phi_n + |\phi_n|^2 u_n = 0.
+d(\phi_{n+1} - 2 \phi_n + \phi_{n-1}) - \omega \phi_n + |\phi_n|^2 \phi_n = 0.
 \end{equation}
 From~\cite{herrmann_2011}, a symmetric, real-valued, on-site soliton solution $q_n$ exists to \cref{DNLSequilib} for all $\omega \neq 0$ and $d \geq 0$. This solution $q_n$ furthermore is differentiable in $\omega$. 
 
 We will write DNLS as a system of two real variables $u = (v, w) \in \ell^2(\Z, \R^2)$, where $v = \text{Re }\psi$ and $w = \text{Im }\psi$. In this fashion, we can write \cref{DNLS} in Hamiltonian form as
 \begin{equation}\label{DNLSrealHam}
-\dot{u}_n + J [\mathcal{H}'(u)]_n = 0,
+\dot{u}_n - J [\mathcal{H}'(u)]_n = 0,
 \end{equation}
 where $J$ is the standard skew-symmetric symplectic matrix
 \[
@@ -209,25 +211,25 @@ J = \begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix}
 \]
 and the Hamiltonian $\mathcal{H}: \ell^2(\Z,\R^2) \rightarrow \R$ is
 \begin{equation}\label{DNLSrealH}
-\mathcal{H}(v, w) = -\sum_{n = -\infty}^\infty 
+\mathcal{H}(v, w) = \sum_{n = -\infty}^\infty 
 \left( \frac{d}{2}\left(v_n - v_{n-1}\right)^2 + \frac{d}{2}\left(w_n - w_{n-1}\right)^2 - \frac{1}{4}\left( v_n^2 + w_n^2 \right)^2 \right).
 \end{equation}
 The Hamiltonian $\mathcal{H}$ is invariant under the standard rotation group $R(\theta)$, given by
 \begin{equation}\label{Rtheta}
 R(\theta) = \begin{pmatrix}
-\cos(\theta) & \sin(\theta) \\
--\sin(\theta)& \cos(\theta)
+\cos(\theta) & -\sin(\theta) \\
+\sin(\theta)& \cos(\theta)
 \end{pmatrix},
 \end{equation}
-which has infinitesimal generator $R'(0) = J$. In addition, there is another conserved quantity, often called the norm or the power of the solution, which is given by
+which has infinitesimal generator $R'(0) = -J$. The corresponding conserved quantity, often called the charge \cite[Section 6.C]{Grillakis1987}, is given by
 \begin{equation}\label{DNLSQ}
-\mathcal{Q}(v, w) = \frac{1}{2} \sum_{n = -\infty}^\infty 
+\mathcal{Q}(v, w) = -\frac{1}{2} \sum_{n = -\infty}^\infty 
 \left( v_n^2 + w_n ^2\right).
 \end{equation}
 
 Standing waves are solutions of \cref{DNLSrealHam} of the form $R(\omega t) u$, where $u$ is independent of $t$. Substituting this into \cref{DNLSrealHam}, we obtain the equivalent system of equations
 \begin{equation}\label{DNLSequilib1}
-\mathcal{H}'(u) - \omega u = 0,
+-\mathcal{H}'(u) - \omega u = 0,
 \end{equation}
 which for DNLS is given by
 \begin{equation}\label{DNLSequilib2}
@@ -236,33 +238,17 @@ d (v_{n+1} - 2 v_n + v_{n-1}) + v_n w_n^2 + v_n^3 - \omega v_n &= 0 \\
 d (w_{n+1} - 2 w_n + w_{n-1}) + v_n^2 w_n + w_n^3 - \omega w_n &= 0 \:.
 \end{aligned} 
 \end{equation}
-If $u$ is a standing wave solution, then $R(\theta) u$ is also a standing wave by symmetry. We note that the steady state system has the form
+If $u$ is a standing wave solution, then $R(\theta) u$ is also a solution to equation \eqref{DNLSequilib1}. \revised{ Since $R(\theta) u$ is a rotation of $u$ by $\theta$, we will not distinguish between $u$ and $R(\theta) u$, although $\theta$ will play a central role when we construct multi-pulses in Section 4.} We note that the steady state system is equivalent to
 \begin{equation}
 \mathcal{H}'(u) - \omega \mathcal{Q}'(u) = 0,
 \end{equation}
-which is the stationary equation \cite[(2.15)]{Grillakis1987}. The steady state equation \cref{DNLSequilib2} also has a conserved quantity $E$ \cite{Johansson2000}, which is given by
+which is the stationary equation \cite[(2.15)]{Grillakis1987}. The steady state equation \cref{DNLSequilib2} also has a conserved quantity $E$, which the current density \cite[(6)]{Johansson2000} and is given by
 \begin{equation}\label{DNLSE}
 E = 2d(v_n w_{n-1} - v_{n-1} w_n) = 2d \langle u_n, J u_{n-1} \rangle.
 \end{equation}
 By a conserved quantity in this setting we mean
 that this quantity is independent of the lattice
 index $n$.
-
-For stability analysis, the linearization of \cref{DNLSrealHam} about a standing wave solution $u^*$ 
-yields the linear operator $L(u^*)$, given by 
-\begin{equation}\label{DNLSeigproblem}
-L(u^*) = J \mathcal{H}''(u^*)  - \omega J.
-\end{equation}
-Let $u^*_n = (q_n, 0)$, where $q_n$ is the real-valued, on-site standing wave solution to \cref{DNLS}. It is straightforward to verify that
-\begin{equation}\label{DNLSkernel1}
-\begin{aligned}
-L(u^*) R'(0) u^* &= 0 \\
-L(u^*) \partial_\omega u^* &= R'(0) u^* \:.
-\end{aligned}
-\end{equation}
-Based on these statements, we have that $0$ is an
-eigenvalue with algebraic multiplicity $2$ and
-geometric multiplicity $1$ in the DNLS problem. 
 
 \section{Main theorems}
 
@@ -272,7 +258,7 @@ With DNLS as our principal motivation, we will consider the following more gener
 \begin{equation}\label{lattice1}
 \dot{u}_n = J [\mathcal{H}'(u)]_n,
 \end{equation}
-where $u(t) \in \ell^2(\Z, \R^{2k})$, $\mathcal{H}: \ell^2(\Z, \R^{2k}) \rightarrow \R$ is smooth with $\mathcal{H}(0) = 0$ and $\mathcal{H}'(0) = 0$, and $J$ is a $2k \times 2k$ symplectic matrix. For simplicity, and again using DNLS as motivation, we will assume that $\mathcal{H}'(u)$ takes the form
+where $u(t) \in \ell^2(\Z, \R^{2k})$, $\mathcal{H}: \ell^2(\Z, \R^{2k}) \rightarrow \R$ is smooth with $\mathcal{H}(0) = 0$ and $\mathcal{H}'(0) = 0$, and $J$ is a $2k \times 2k$ symplectic matrix. \revised{ The integer $k$ is the lattice dimension, and $k = 1$ corresponds to the usual one-dimensional DNLS lattice.} For simplicity, and again using DNLS as motivation, we will assume that $\mathcal{H}'(u)$ takes the form
 \begin{equation}\label{latticeform}
 [\mathcal{H}'(u)]_n = d (\Delta_2 u)_n + f(u_n),
 \end{equation}
@@ -286,10 +272,22 @@ There is unitary group of symmetries $\{ R(\theta) : \theta \in \R \}$ on $\R^{2
 \begin{equation}\label{Hinvariance}
 \mathcal{H}(R(\theta)u) = \mathcal{H}(u).
 \end{equation}
-\item $R'(0) = J$, where $R'(0)$ is the infinitesimal generator of $R(\theta)$.
+\item $R(\theta)$ satisfies the ``commuting'' relation
+\begin{equation}\label{RJcommute}
+R(\theta) J = J R^*(-\theta)
+\end{equation}
 \end{enumerate}
 \end{hypothesis}
-\noindent For DNLS, $R(\theta)$ is the rotation group \cref{Rtheta}.
+\noindent Condition (ii) implies 
+\begin{equation}\label{RprimeJcommute}
+R'(0) J = -J R'(0)^*,
+\end{equation}
+where $R'(0)$ is the infinitesimal generator of the symmetry group $R(\theta)$. In addition, since $R(\theta)$ is unitary, $R(\theta) J = J R(\theta)$. For DNLS, $R(\theta)$ is the rotation group \cref{Rtheta}. Following \cite[(2.9)]{Grillakis1987}, since $J$ is an invertible matrix, the corresponding conserved quantity is given by
+\begin{equation}\label{genQ}
+\mathcal{Q}(u) = \frac{1}{2} \sum_{n = -\infty}^\infty 
+\langle J^{-1}T'(0) u_n, u_n \rangle
+\end{equation}
+It follows from \eqref{RJcommute} and $J^{-1} = -J$ that $\mathcal{Q}(u)$ is also invariant under the symmetry group $R(\theta)$, i.e. $\mathcal{Q}(R(\theta)u) = \mathcal{Q}(u)$.
 
 Equilibrium solutions to \cref{lattice1} satisfy 
 \begin{equation}\label{equilib1}
@@ -304,30 +302,49 @@ Differentiating the symmetry invariance \cref{Hinvariance} as in \cite{Grillakis
 \end{equation}
 from which it follows that $u$ is a solution to \cref{equilib1} if and only if $R(\theta)u$ is a solution. We also note that $f(R(\theta)u) = f(u)R(\theta)$.
 
-We are interested in bound states (referred to also
-as standing waves), which are solutions to \cref{lattice1} of the form $u(t) = R(\omega t)u$, where $u \in \ell^2(\Z, \R^{2k})$ is independent of $t$. Bound states satisfy the equilibrium equation
+We are interested in bound states (also referred to as standing waves), which are solutions to \cref{lattice1} of the form $u(t) = R(\omega t)u$, where $u \in \ell^2(\Z, \R^{2k})$ is independent of $t$. Following \cite{Grillakis1987}, bound states satisfy the equilibrium equation
 \begin{equation}\label{latticestat}
-\mathcal{H}'(u) - \omega u = 0,
+\mathcal{H}'(u) - \omega \mathcal{Q}'(u) = 0.
 \end{equation}
-and we note that if $q$ is a bound state, $R(\theta)q$ is also a bound state. Let $q$ be a bound state solution to \cref{latticestat}. The linearization of \cref{lattice1} about a bound state $q$ is the linear operator
+Since $\mathcal{Q}'(u) = J^{-1}R'(0) u$, this is equivalent to
+\begin{equation}\label{latticestat2}
+\mathcal{H}'(u) - \omega J^{-1}R'(0) u = 0.
+\end{equation}
+We note that if $q$ is a bound state, $R(\theta)q$ is also a solution to \eqref{latticestat}, i.e.
+\begin{equation}\label{latticestatsymm}
+\mathcal{H}'(R(\theta)u) - \omega \mathcal{Q}'(R(\theta)u) = 0.
+\end{equation}
+Let $q$ be a bound state solution to \cref{latticestat}. The linearization of \cref{lattice1} about $q$ is the linear operator
 \begin{equation}\label{latticeL}
-L(q) = J \mathcal{H}''(q) - \omega J.
+L(q) = J \mathcal{H}''(q) - \omega J \mathcal{Q}''(q).
 \end{equation}
-By substituting $R(\theta)q$ into \cref{latticestat} and differentiating with respect to $\theta$ at $\theta = 0$, we can verify that 
+Since $\mathcal{Q}''(u) = J^{-1}R'(0)$, this is equivalent to
+\begin{equation}\label{latticeL2}
+L(q) = J \mathcal{H}''(q) - \omega R'(0).
+\end{equation}
+Taking $u = q$ in \eqref{latticestatsymm} and differentiating with respect to $\theta$ at $\theta = 0$,
 \begin{equation}\label{Lkernel1}
-L(q) R'(0) q = 0.
+L(q) R'(0) q = 0,
 \end{equation}
+thus $R'(0) q$ is an eigenfunction of $L(q)$ with eigenvalue 0.
 
-\noindent As in \cite{Grillakis1987}, we take the following hypothesis about the existence of bound state solutions.
+As in \cite[Assumption 2]{Grillakis1987}, we take the following hypothesis about the existence of bound state solutions. \revised{We also assume that a stability criterion is satisfied.}
 \begin{hypothesis}\label{boundstatehyp}
-For $\omega \in (\omega_1, \omega_2)$, there exists a $C^1$ map $\omega \mapsto q$ such that $q \in \ell^2(\Z, \R^{2k})$ is a bound state solution to \cref{latticestat}.
+For $\omega \in (\omega_1, \omega_2)$, there exists a $C^1$ map $\omega \mapsto q$ such that $q \in \ell^2(\Z, \R^{2k})$ is a bound state solution to \cref{latticestat}. \revised{ Furthermore, for all $\omega \in (\omega_1, \omega_2)$,
+\begin{align}\label{genstabcrit}
+\frac{d}{d\omega} \mathcal{Q}(q) < 0
+\end{align}
+}
 \end{hypothesis}
 
-By \cref{boundstatehyp}, $\partial_\omega q$ exists for $\omega \in (\omega_1, \omega_2)$. Differentiating \cref{latticeL} with respect to $\omega$, $\partial_\omega q$ satisfies 
+\begin{remark}
+The condition \eqref{genstabcrit} is the Vakhitov–Kolokolov stability criterion [CITE], which is generalized to abstract Hamiltonian systems in \cite{Grillakis1987}. Equation \eqref{genstabcrit} is equivalent to $d''(\omega) > 0$ in \cite[Theorem 3]{Grillakis1987}. In general, the condition \eqref{genstabcrit} can only be verified numerically.
+\end{remark}
+
+By \cref{boundstatehyp}, $\partial_\omega q$ exists for $\omega \in (\omega_1, \omega_2)$. Differentiating \cref{latticestat} with respect to $\omega$ and multiplying by $J$, $\partial_\omega q$ satisfies 
 \begin{equation}\label{Lkernel2}
 L(q)\partial_\omega q = R'(0) q.
 \end{equation}
-We note that this requires $R'(0) = J$.
 
 \subsection{Spatial dynamics formulation}
 
@@ -353,8 +370,7 @@ T(\theta) = \begin{pmatrix}
 R(\theta) & 0 \\ 0 & R(\theta)
 \end{pmatrix}.
 \end{equation}
-
-Let $Q(n) = (q_n, q_{n-1})$ be an equilibrium solution to \cref{diffeq}. We can similarly write the eigenvalue problem $(L(q) - \lambda I)v = 0$ as the first order difference equation 
+We can similarly write the eigenvalue problem $(L(q) - \lambda I)v = 0$ as the first order difference equation 
 \begin{equation}\label{latticeEVP}
 V(n+1) = DF(q_n) V(n) + \lambda B V(n),
 \end{equation}
@@ -380,7 +396,7 @@ T'(0) Q(n+1) = DF(Q(n)) T'(0) Q(n).
 \end{equation}
 We also note that since $J = R'(0)$, $T(\theta)$ commutes with $B$.
 
-Since $F(0) = 0$, 0 is an equilibrium point for the dynamical system \cref{diffeq}. Fix $\omega \in \omega_1, \omega_2)$, and let $q$ be the bound state from \cref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in \ell^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, thus $Q(n)$ is a homoclinic orbit solution to $\cref{diffeq}$ connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. It follows from \cref{Lkernel2} that
+Since $F(0) = 0$, the origin is an equilibrium point for the dynamical system \cref{diffeq}. Fix $\omega \in (\omega_1, \omega_2)$, and let $q$ be the bound state from \cref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in \ell^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, thus $Q(n)$ is a homoclinic orbit solution to $\cref{diffeq}$ connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. It follows from \cref{Lkernel2} that
 \begin{equation}\label{DFkernel2}
 \partial_\omega Q(n+1) = DF(Q(n)) \partial_\omega Q(n) + B T'(0)Q(n).
 \end{equation}
@@ -470,14 +486,14 @@ are satisfied, where the remainder terms have uniform bound
 $Q_m(n)$ can be written piecewise in the form \cref{Upiecewise}, and the following estimates \cref{Westimates} hold:
 \begin{equation}\label{Westimates}
 \begin{aligned}
-||\tilde{Q}_i^\pm|| &\leq C r^{-N} \\
+\|\tilde{Q}_i^\pm\| &\leq C r^{-N} \\
 \tilde{Q}_i^+(N_i^+) &= T(\theta_{i+1}) Q(-N_i^-) + \mathcal{O}(r^{-2N}) \\
 \tilde{Q}_{i+1}^-(-N_i^-) &= T(\theta_i) Q(N_i^+) + \mathcal{O}(r^{-2N}) .
 \end{aligned}
 \end{equation}
 \end{theorem}
 
-\begin{remark}If equation \cref{diffeq} has a conserved quantity, i.e. a function $E: \R^{4d} \rightarrow \R$ such that $E(F(U)) = E(U)$, we can remove one of the jump conditions in \cref{jumpcondexist} as is done in \cite{SandstedeStrut}.
+\begin{remark}If equation \cref{diffeq} has a conserved quantity, i.e. a function $E: \R^{4d} \rightarrow \R$ such that $E(F(U)) = E(U)$, we can remove one of the jump conditions in \cref{jumpcondexist} as is done in \cite{SandstedeStrut}. For DNLS, this conserved quantity is the current density \cref{DNLSE}.
 \end{remark}
 
 \subsection{Eigenvalue problem}
@@ -530,8 +546,8 @@ The remainder term has uniform bound
 \begin{align}\label{Rbound2}
 |R(\lambda)| \leq C\left( (r^{-N} + |\lambda|)^3 \right),
 \end{align}
+where $N = \frac{1}{2}\min\{N_1, \dots, N_{m-1} \}$.
 \end{theorem}
-where $N = \frac{1}{2}\min\{N_i\}$.
 
 \subsection{Transverse intersection}
 
@@ -709,7 +725,7 @@ We do the same for triple pulses with equal pulse distances in \cref{fig:eigende
 namely the in-phase (or $+++$) pulse, the 
 out-of-phase (or $+-+$) and finally the 
 intermediate/mixed phase case
-(or $++-$), the relative error of the slope of the least squares linear regression line is of order $10^{-4}$. 
+(or $++-$), the relative error of the slope of the least squares linear regression line is of order $10^{-4}$.  
 
 \begin{figure}
 \centering
@@ -1012,8 +1028,8 @@ As in \cite{Sandstede1997}, we will solve equations \cref{Wsystem1}, \cref{Wsyst
 There exist unique bounded functions $\tilde{Q}_i^\pm(n)$ such that equation \cref{Wsystem1} is satisfied. These solutions depend smoothly on the initial conditions $a_i^\pm$ and $b_i\pm$, and we have the estimates
 \begin{equation}\label{Wipmest}
 \begin{aligned}
-||\tilde{Q}_i^-|| &\leq C (|a_{i-1}^-| + |b_i^-|) \\
-||\tilde{Q}_i^+|| &\leq C (|a_i^+| + |b_i^+| ) \:.
+\|\tilde{Q}_i^-\| &\leq C (|a_{i-1}^-| + |b_i^-|) \\
+\|\tilde{Q}_i^+\| &\leq C (|a_i^+| + |b_i^+| ) \:.
 \end{aligned}
 \end{equation}
 For the interior pieces, we have the piecewise estimates
@@ -1032,7 +1048,7 @@ First, we show that the RHS of the fixed point equations \cref{FPeqs1} defines a
 and
 \begin{align*}
 \left| \sum_{j = -N_{i-1}^-}^{n-1} \Phi_s^-(n, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j))\right| + \left|\sum_{j = n}^{-1} \Phi_u^-(n, j+1; \theta_i) G_i^-(\tilde{Q}_i^-(j))\right| 
-\leq C ||\tilde{Q}_i^-||_{\ell^\infty([-N_{i-1}, 0])}^2 ,
+\leq C \|\tilde{Q}_i^-\|_{\ell^\infty([-N_{i-1}, 0])}^2 \:,
 \end{align*}
 both of which are independent of $n$. Define the map
 $K_i^-: \ell^\infty([-N_{i-1}, 0]) \times E^s \times Y^- \rightarrow \ell^\infty([-N_{i-1}, 0])$ by
@@ -1201,7 +1217,7 @@ For the higher order terms in \cref{jumpZ}, we substitute $\tilde{Q}_i^\pm$ from
 
 \subsection{Proof of Theorem \ref{ntmulti}}
 
-The existence statement follows from the jump conditions in \cref{jumpZlemma}. The uniform bound $||\tilde{Q}_i^\pm|| \leq C r^{-N}$ in \cref{Westimates} follows from \cref{inv1} together with the estimates on $a_i^\pm$ and $b_i^\pm$. For the second estimate in \cref{Westimates}, recall that in \cref{inv2} we solved
+The existence statement follows from the jump conditions in \cref{jumpZlemma}. The uniform bound $\|\tilde{Q}_i^\pm\| \leq C r^{-N}$ in \cref{Westimates} follows from \cref{inv1} together with the estimates on $a_i^\pm$ and $b_i^\pm$. For the second estimate in \cref{Westimates}, recall that in \cref{inv2} we solved
 \begin{equation}\label{Wsubdi}
 \tilde{Q}_i^+(N_i^+) - \tilde{Q}_{i+1}^-(-N_i^-) = T(\theta_{i+1}) Q(-N_i^-) - T(\theta_i) Q(N_i^+).
 \end{equation}
@@ -1249,7 +1265,7 @@ From \cref{ntmulti} and \cref{Qdecay}, we have the following bounds:
 \begin{equation}\label{stabbounds1}
 \begin{aligned}
 Q_1(n) &= \mathcal{O}(r^{-|n|}) \\
-||\tilde{Q}|| &\leq C r^{-N} \\
+\|\tilde{Q}\| &\leq C r^{-N} \\
 |\tilde{Q}_{i+1}^-(-N_i^-) - T(\theta_i) Q_1(N_i^+)| &\leq C r^{-2N} \\
 |\tilde{Q}_i^+(N_i^+) - T(\theta_{i+1}) Q_1(-N_i^-)| &\leq C r^{-2N}.
 \end{aligned}
@@ -1328,8 +1344,8 @@ Using Lin's method, we will be able to find a unique solution to this system. Th
 are satisfied. Using the bounds \cref{stabbounds1}, we have the estimates
 \begin{equation}\label{stabbounds2}
 \begin{aligned}
-||G_i^\pm|| &\leq C r^{-N} \\
-||\tilde{H}_i^\pm - H|| &\leq C r^{-N}. \\
+\|G_i^\pm\| &\leq C r^{-N} \\
+\|\tilde{H}_i^\pm - H\| &\leq C r^{-N}. \\
 \end{aligned}
 \end{equation}
 
@@ -1343,7 +1359,6 @@ V_b &= \bigoplus_{i=0}^{n-1} \ran P_-^u(0; \theta_i) \oplus \ran P_+^s(0; \theta
 V_\lambda &= B_\delta(0) \subset \C \\
 V_d &= \C^d.
 \end{align*}
-
 Then for
 \begin{align*}
 W = (W_i^-, W_i^+) &\in V_W \\
@@ -1391,7 +1406,7 @@ W = W_1(\lambda)(a,b,d)
 \]
 is a solution to \cref{eigsystem1} for $(a,b,d)$ and $\lambda$. The operator $W_1$ is analytic in $\lambda$, linear in $(a,b,d)$, and has bound
 \begin{equation}\label{W1bound}
-||W_1(\lambda)(a,b,d)|| \leq C \left( |a| + |b| + |\lambda|^2 |d| \right).
+\|W_1(\lambda)(a,b,d)\| \leq C \left( |a| + |b| + |\lambda|^2 |d| \right).
 \end{equation}
 
 \begin{proof}
@@ -1423,16 +1438,16 @@ and $L_2(\lambda): V_\lambda \times V_a \times V_b $ is the linear operator comp
 \end{align*}
 Using the exponential dichotomy bounds from \cref{dichotomy}, we obtain the following uniform bounds for $L_1$ and $L_2$.
 \begin{align*}
-||L_1(\lambda)W)|| &\leq C \left(||G|| + |\lambda| \right)||W|| \leq C \delta ||W|| \\
-||L_2(\lambda)(a,b,d))|| &\leq C\left( |a| + |b| + |\lambda|^2 |d| \right).
+\|L_1(\lambda)W)\| &\leq C \left(\|G\| + |\lambda| \right)\|W\| \leq C \delta \|W\| \\
+\|L_2(\lambda)(a,b,d))\| &\leq C\left( |a| + |b| + |\lambda|^2 |d| \right).
 \end{align*}
-For sufficiently small $\delta$, $||(L_1(\lambda)W)|| < 1$, thus $I - L_1(\lambda)$ is invertible on $V_W$. The inverse $(I - L_1(\lambda))^{-1}$ is analytic in $\lambda$, and we obtain the solution 
+For sufficiently small $\delta$, $\|(L_1(\lambda)W)\| < 1$, thus $I - L_1(\lambda)$ is invertible on $V_W$. The inverse $(I - L_1(\lambda))^{-1}$ is analytic in $\lambda$, and we obtain the solution 
 \[
 W = W_1(\lambda)(a,b,d) = (I - L_1(\lambda))^{-1} L_2(\lambda(a,b,d),
 \]
 which is analytic in $\lambda$, linear in $(a, b, d)$, and for which we have the estimate
 \begin{equation*}
-||W_1(\lambda)(a,b,d)|| \leq C \left( |a| + |b| + |\lambda|^2 |d| \right).
+\|W_1(\lambda)(a,b,d)\| \leq C \left( |a| + |b| + |\lambda|^2 |d| \right).
 \end{equation*}
 \end{proof}
 \end{lemma}
@@ -1448,8 +1463,8 @@ W_2 : V_\lambda \times V_b \times V_d \rightarrow V_W
 \end{align*}
 such that $(a, w) = (A_1(\lambda)(b,d), W_2(\lambda)(b,d)$ solves \cref{eigsystem1} and \cref{eigsystem2} for any $(b, d)$ and $\lambda$. These operators are analytic in $\lambda$, linear in $(b,d)$, and have bounds 
 \begin{align}
-|A_1(\lambda)(b, d)| &\leq C \left( (r^{-N} + ||G|| + |\lambda| ) |b| + (|\lambda|^2 + |D| ) |d| \right) \label{A1bound} \\
-||W_2(\lambda)(b,d)|| &\leq C \left( |b| + (|\lambda|^2 + |D|) |d| \right). \label{W2bound}
+|A_1(\lambda)(b, d)| &\leq C \left( (r^{-N} + \|G\| + |\lambda| ) |b| + (|\lambda|^2 + |D| ) |d| \right) \label{A1bound} \\
+\|W_2(\lambda)(b,d)\| &\leq C \left( |b| + (|\lambda|^2 + |D|) |d| \right). \label{W2bound}
 \end{align}
 Furthermore, we can write
 \begin{align*}
@@ -1459,7 +1474,7 @@ a_i^- &= -P_0^s(\theta_i) D_i d + A_2(\lambda)_i(b,d),
 where $A_2$ is a bounded linear operator with bound
 \begin{align}\label{A2bound}
 |A_2(\lambda)(b,d)| \leq 
-C\left( (r^{-N} + ||G|| + |\lambda| )|b| + (r^{-N} + ||G|| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
+C\left( (r^{-N} + \|G\| + |\lambda| )|b| + (r^{-N} + \|G\| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
 \end{align}
 
 \begin{proof}
@@ -1478,8 +1493,8 @@ D_i d = (a_i^+ - a_i^-) + L_3(\lambda)_i(a,b,d).
 \end{equation}
 Using \cref{dichotomy}, the bound for $W_1$ from \cref{eiginv1}, and the estimates \cref{projexpdecay} from \cref{dichotomy}, the linear operator $L_3$ has uniform bound
 \begin{align}\label{L3bound}
-L_3(\lambda)(a,b,d)| &\leq C\left( (r^{-N} + ||G|| + |\lambda| ) (|a| + |b|) + |\lambda|^2 |d|  \right) \\
-&\leq C \delta |a| + C\left( (r^{-N} + ||G|| + |\lambda| ) |b| + |\lambda|^2 |d|  \right) . \nonumber
+L_3(\lambda)(a,b,d)| &\leq C\left( (r^{-N} + \|G\| + |\lambda| ) (|a| + |b|) + |\lambda|^2 |d|  \right) \\
+&\leq C \delta |a| + C\left( (r^{-N} + \|G\| + |\lambda| ) |b| + |\lambda|^2 |d|  \right) . \nonumber
 \end{align}
 
 Define the map
@@ -1496,11 +1511,11 @@ a = A_1(\lambda)(b, d) = S_i^{-1}(-D d - L_3(\lambda)(b, d)),
 \]
 which has uniform bound
 \begin{equation*}
-|A_1(\lambda)(b, d)| \leq C \left( (r^{-N} + ||G|| + |\lambda| ) |b| + (|\lambda|^2 + |D| ) |d|  \right).
+|A_1(\lambda)(b, d)| \leq C \left( (r^{-N} + \|G\| + |\lambda| ) |b| + (|\lambda|^2 + |D| ) |d|  \right).
 \end{equation*}
 We plug this estimate into $W_1$ to get $W_2(\lambda)(b,d)$, which satisfies the bound
 \begin{equation*}
-||W_2(\lambda)(b,d)|| \leq C \left( |b| + (|\lambda|^2 + |D|) |d| \right).
+\|W_2(\lambda)(b,d)\| \leq C \left( |b| + (|\lambda|^2 + |D|) |d| \right).
 \end{equation*}
 
 \noindent Finally, we project \cref{Dideq2} onto $E^s(\theta_i)$ and $E^u(\theta_i)$ to get
@@ -1516,7 +1531,7 @@ a_i^- &= -P_0^s(\theta_i) D_i d + A_2(\lambda)_i(b,d).
 Substituting the bound for $A_1$ into the bound for $L_3$, we obtain the uniform bound
 \begin{align*}
 |A_2(\lambda)(b,d)| \leq 
-C\left( (r^{-N} + ||G|| + |\lambda| )|b| + (r^{-N} + ||G|| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
+C\left( (r^{-N} + \|G\| + |\lambda| )|b| + (r^{-N} + \|G\| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
 \end{align*}
 \end{proof}
 \end{lemma}
@@ -1547,9 +1562,9 @@ W_3 : V_\lambda \times V_d \rightarrow V_W
 \end{align*}
 such that $(a, b, W) = (A_3(\lambda)(d), B_1(\lambda)(d), W_2(\lambda)(d)$ solves \cref{eigsystem1}, \cref{eigsystem2}, \cref{eigsystem3a}, and \cref{eigsystem3b} for any $d$ and $\lambda$. These operators are analytic in $\lambda$, linear in $d$, and have bounds 
 \begin{align}
-|B_1(\lambda)(d)| &\leq C \left( (r^{-N} + ||G|| + |\lambda|)|D| |d| + |\lambda|^2 |d| \right) \label{B1bound} \\
+|B_1(\lambda)(d)| &\leq C \left( (r^{-N} + \|G\| + |\lambda|)|D| |d| + |\lambda|^2 |d| \right) \label{B1bound} \\
 |A_3(\lambda)(d)| &\leq C \left(|\lambda|^2 + |D|\right)|d| \label{A3bound} \\
-||W_3(\lambda)(d)|| &\leq C \left(|\lambda|^2 + |D|\right)|d|. \label{W3bound} \\
+\|W_3(\lambda)(d)\| &\leq C \left(|\lambda|^2 + |D|\right)|d|. \label{W3bound} \\
 \end{align}
 Furthermore, we can write
 \begin{align*}
@@ -1559,7 +1574,7 @@ a_i^- &= -P_0^s D_i d + A_4(\lambda)_i(d),
 where $A_4$ is a bounded linear operator with estimate
 \begin{align}\label{A4bound}
 |A_4(\lambda)(d)| &\leq 
-C\left( (r^{-N} + ||G|| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
+C\left( (r^{-N} + \|G\| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
 \end{align}
 
 \begin{proof}
@@ -1583,10 +1598,10 @@ x_i^- \\ x_i^+ \\ y_i^+ - y_i^-
 Using the exponential dichotomy estimates from \cref{dichotomy} and $(a, W) = (A_1(\lambda)(b,d), W_2(\lambda)(b,d))$ from \cref{eiginv2}, we get the uniform bound on $L_4$
 \begin{align*}
 |L_4(\lambda)(b,d)| 
-&\leq C \left( (r^{-2N} + ||G|| + |\lambda|)|b| + 
-(r^{-N} + ||G|| + |\lambda|)|D| |d| + |\lambda|^2 |d| )
+&\leq C \left( (r^{-2N} + \|G\| + |\lambda|)|b| + 
+(r^{-N} + \|G\| + |\lambda|)|D| |d| + |\lambda|^2 |d| )
 \right) \\
-&\leq C \delta(|x| + |y|) + C \left( (r^{N} + ||G|| + |\lambda|)|D| |d| + |\lambda|^2 |d| \right).
+&\leq C \delta(|x| + |y|) + C \left( (r^{N} + \|G\| + |\lambda|)|D| |d| + |\lambda|^2 |d| \right).
 \end{align*}
 
 Define the map
@@ -1619,15 +1634,15 @@ b = B_1(\lambda)(d) = -K_2^{-1} L_4(\lambda)(0, d),
 \end{equation}
 where we have the uniform bound on $B_1$
 \begin{equation}
-|B_1(\lambda)(d)| \leq C \left( (r^{-N} + ||G|| + |\lambda|)|D| |d| + |\lambda|^2 |d| \right) .
+|B_1(\lambda)(d)| \leq C \left( (r^{-N} + \|G\| + |\lambda|)|D| |d| + |\lambda|^2 |d| \right) .
 \end{equation}
 
 We can plug this into $A_1$, $W_2$, and $A_2$ to get operators $A_3$, $W_3$, and $A_4$ with bounds
 \begin{align*}
 |A_3(\lambda)(d)| &\leq C \left(|\lambda|^2 + |D|\right)|d|\\
-||W_3(\lambda)(d)|| &\leq C \left(|\lambda|^2 + |D|\right)|d| \\
+\|W_3(\lambda)(d)\| &\leq C \left(|\lambda|^2 + |D|\right)|d| \\
 |A_4(\lambda)(d)| &\leq 
-C\left( (r^{-N} + ||G|| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
+C\left( (r^{-N} + \|G\| + |\lambda|)|D||d| + |\lambda|^2 |d|  \right).
 \end{align*}
 \end{proof}
 \end{lemma}
@@ -1656,7 +1671,7 @@ are satisfied. The jumps $\xi_i$ can be written as
 \end{equation}
 where the remainder term $R(\lambda)(d)$ has bound
 \begin{align}\label{xiRbound}
-|R(\lambda)(d)| \leq C\left( (r^{-N} + ||G|| + |\lambda|)( (r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 \right).
+|R(\lambda)(d)| \leq C\left( (r^{-N} + \|G\| + |\lambda|)( (r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 \right).
 \end{align}
 
 \begin{proof}
@@ -1675,35 +1690,35 @@ W_i^+(0) &= b_i^+ + \Phi_u^+(0, N_i^+; \theta_i) a_i^+ \\
 To evaluate \cref{jumpIP}, we will compute the inner product of each of the terms in \cref{fpat0} with $T(\theta_i)Z_1(0)$. The $b_i^\pm$ terms will vanish since they lie in spaces orthogonal to $T(\theta_i) Z_1(0)$. We will evaluate the remaining terms in turn. For the terms involving $a$, we substitute $A_4$ from \cref{eiginv3} to get
 \begin{align*}
 \langle T(\theta_i) &Z_1(0), \Phi_s^-(0, -N_{i-1}^-; \theta_i) a_{i-1}^- \rangle \\
-&= -\langle T(\theta_i) Z_1(-N_{i-1}^-), P_0^s(\theta_{i-1}) D_{i-1} d \rangle + \mathcal{O}\left(r^{-N}( (r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 )|d| \right) \\
+&= -\langle T(\theta_i) Z_1(-N_{i-1}^-), P_0^s(\theta_{i-1}) D_{i-1} d \rangle + \mathcal{O}\left(r^{-N}( (r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d| \right) \\
 \langle T(\theta_i) &Z_1(0), \Phi_u^+(0, N_i^+; c_i) a_i^+ \rangle \\
-&= \langle T(\theta_i) Z_1(N_i^+), P_0^u(\theta_i) D_i d \rangle + \mathcal{O}\left(r^{-N}( (r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 )|d| \right).
+&= \langle T(\theta_i) Z_1(N_i^+), P_0^u(\theta_i) D_i d \rangle + \mathcal{O}\left(r^{-N}( (r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d| \right).
 \end{align*}
 
-The sums involving $\tilde{H}$ give us the higher order Melnikov sum $M_2$.
+The sums involving $\tilde{H}$ give us the Melnikov sum $M_2$.
 \begin{align*}
 &\langle T(\theta_i) Z_1(0), \sum_{j = -N_{i-1}^-}^{-1} \Phi_s^-(0, j+1; \theta_i) B \tilde{H}_i^-(j) + \sum_{j = 0}^{N_i^+-1} \Phi_u^+(0, j+1; \theta_i) B \tilde{H}_i^+(j) \rangle \\
-&= \sum_{j = -N_{i-1}^-}^{-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) S_1(j) \rangle + \sum_{j = 0}^{N_i^+-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) S_1(j) \rangle + \mathcal{O}(r^{-N})\\
-&= \sum_{j = -\infty}^{\infty} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) S_1(j)\rangle + \mathcal{O}(r^{-N}) \\
-&= \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B S_1(j)\rangle + \mathcal{O}(r^{-N}),
+&= \sum_{j = -N_{i-1}^-}^{-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) \partial_\omega Q(j) \rangle + \sum_{j = 0}^{N_i^+-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i)  \partial_\omega Q(j) \rangle + \mathcal{O}(r^{-N})\\
+&= \sum_{j = -\infty}^{\infty} \langle T(\theta_i) Z_1(j+1), B T(\theta_i)  \partial_\omega Q(j)\rangle + \mathcal{O}(r^{-N}) \\
+&= \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B  \partial_\omega Q(j) \rangle + \mathcal{O}(r^{-N}),
 \end{align*}
 where in the last line we used the fact that $T(\theta)$ is unitary and commutes with $B$.
 
 Finally, we need to obtain bound for the sum involving $W$. To do this, as in \cite{Sandstede1998}, we will need an improved bound for $W$. Plugging in the bounds for $A_3$, $W_3$, and $B_1$ into the fixed point equations \cref{fpeig}, we have piecewise bounds
 \begin{align*}
 |W_i^-(n)| &\leq C( r^{-(N_{i-1}^- + n)}|D| +  
-(r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 )|d| \\
+(r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d| \\
 |W_i^-(n)| &\leq C( r^{-(N_i^+ - n)}|D| +  
-(r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 )|d|.
+(r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d|.
 \end{align*}
 
-Since $Z_1(n) = T'(0)Q(n)$, it follows from \cref{Qdecay} that $Z_1(n) \leq C r^{|n|}$. Since $D F(0)$ is hyperbolic, we can find a constant $\tilde{r} > r$ such that $|Z_1(n)| \leq C \tilde{r}^{-n}$; the price to pay is a larger constant $C$. Using this bounds, the sum involving $W$ becomes
+Since $Z_1(n) = T'(0)Q(n)$, it follows from \cref{Qdecay} that $Z_1(n) \leq C r^{|n|}$. Since $D F(0)$ is hyperbolic, we can find a constant $\tilde{r} > r$ such that $|Z_1(n)| \leq C \tilde{r}^{-n}$. The price to pay is a larger constant $C$. Using this bounds, the sum involving $W$ becomes
 \begin{align*}
 &\left| \sum_{j = -N_{i-1}^-}^{-1} \langle Z_1(j+1), 
 (G_i^-(j) + \lambda B) W_i^-(j) \rangle \right| \\
-&\leq C (||G|| + |\lambda|) \sum_{j = -N_{i-1}^-}^{-1} \tilde{r}^{-|j+1|} r^{-(N_{i-1}^- + j)}|D||d| + C (||G|| + |\lambda|)(r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 )|d| \\
-&\leq C |D| r^{-N} (||G|| + |\lambda|)|d| \sum_{j = 1}^\infty \left( \frac{r}{\tilde{r}}\right)^j + C (||G|| + |\lambda|)(r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 )|d| \\
-&\leq C (||G|| + |\lambda|)(r^{-N} + ||G|| + |\lambda|)|D| + |\lambda|^2 )|d|.
+&\leq C (\|G\| + |\lambda|) \sum_{j = -N_{i-1}^-}^{-1} \tilde{r}^{-|j+1|} r^{-(N_{i-1}^- + j)}|D||d| + C (\|G\| + |\lambda|)(r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d| \\
+&\leq C |D| r^{-N} (\|G\| + |\lambda|)|d| \sum_{j = 1}^\infty \left( \frac{r}{\tilde{r}}\right)^j + C (\|G\| + |\lambda|)(r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d| \\
+&\leq C (\|G\| + |\lambda|)(r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d|.
 \end{align*}
 The infinite sum is convergent by our choice of $\tilde{r}$. We have a similar bound for the other sum. Putting this all together, we obtain the jump equations \cref{xieq} and the remainder bound \cref{xiRbound}.
 \end{proof}
@@ -1735,16 +1750,26 @@ since $T(\theta)$ is unitary and $\langle Z_1(n), T'(0)Q(n) \rangle = 0$ for all
 \langle T(\theta_i) Z_1(-N_{i-1}^-), P_0^s D_{i-1} d \rangle 
 &= \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) T'(0)Q(N_{i-1}^+) \rangle (d_i - d_{i-1}).
 \end{align*}
-Substituting these into the jump equations, we obtain the jump conditions
+For the Melnikov sum, we use equation \eqref{adjvarsol} for $Z_1(j)$ to get
 \begin{align*}
+\sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B  \partial_\omega Q(j) \rangle 
+&= \sum_{j = -\infty}^{\infty} \langle \begin{pmatrix} J q(j) \\ -J q(j+1) \end{pmatrix}, \frac{1}{d} \begin{pmatrix} J \partial_\omega q(j) \\ 0 \end{pmatrix} \rangle \\
+&= \frac{1}{d} \sum_{j = -\infty}^{\infty} \langle J q(j), J \partial_\omega q(j) \rangle \\
+&= -\frac{1}{d} \sum_{j = -\infty}^{\infty} \langle q(j), \partial_\omega q(j) \rangle 
+\end{align*}
+Substituting these into the jump equations, we obtain the jump conditions
+\begin{equation}\label{eigjumpcond}
+\begin{aligned}
 \xi_i = \langle &T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) T'(0)Q(-N_i^-) \rangle (d_{i+1} - d_i) \\
 &+ \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) T'(0)Q(N_{i-1}^+) \rangle (d_i - d_{i-1}) \\
-&- \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B S_1(j)\rangle + R(\lambda)_i(d).
-\end{align*}
-For the remainder term, we substitute $|D|, ||G|| = \mathcal{O}(r^{-N})$ into the remainder term in \cref{jumpcond} to get
+&+\frac{1}{d} \sum_{j = -\infty}^{\infty} \langle q(j), \partial_\omega q(j) \rangle + R(\lambda)_i(d).
+\end{aligned}
+\end{equation}
+For the remainder term, we substitute $|D|, \|G\| = \mathcal{O}(r^{-N})$ into the remainder term in \cref{jumpcond} to get
 \begin{align*}
 |R(\lambda)(d)| \leq C\left( (r^{-N} + |\lambda|)^3 \right).
 \end{align*} 
+The result follows by writing the jump conditions \eqref{eigjumpcond} in matrix form as in \cite{Sandstede1998}.
 
 \section{Proofs of results from section 4}
 
@@ -1824,8 +1849,8 @@ We showed above that for sufficiently large $N$, real-valued multi-pulses exist 
 
 To find the interaction eigenvalues for DNLS, we will solve the matrix equation \cref{Elambda} from \cref{stabilitytheorem}. For the higher order Melnikov sum,
 \[
-M_2 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B S_1(n) \rangle =
-\frac{1}{d} \sum_{n=-\infty}^\infty q(n) q_\omega(n) = \frac{1}{d}M,
+M_2 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B  \partial_\omega Q(n) \rangle =
+\frac{1}{d} \sum_{n=-\infty}^\infty q(n) \partial_\omega q(n) = \frac{1}{d}M,
 \]
 where
 \[
@@ -1923,12 +1948,12 @@ For \cref{DNLSeigcorr2}, equation \cref{3pulseeigs} follows from computing the e
 \]
 and expand in a Taylor series to obtain the estimates \cref{3pulsemag}.
 
-\paragraph{Acknowledgments:}
+\paragraph{Acknowledgments}
 
 This material is based upon work supported by the U.S. National Science Foundation under grants DMS-1148284 (R.P.), DMS-1809074 (P.G.K.), and DMS-1714429 (B.S.). P.G.K. also gratefully acknowledges support from the Leverhulme
 Trust during his stay at the University of Oxford.
 
-\bibliographystyle{amsalpha}
-\bibliography{DiscreteLin.bib}
+% \bibliographystyle{amsalpha}
+\bibliography{DiscreteLinPaper.bib}
 
 \end{document}
