@@ -1,0 +1,129 @@
+\documentclass[11pt]{letter}
+
+\usepackage[hmargin={1.0in,1.0in},%
+            vmargin={1.0in,1.0in},%
+            nohead,%
+            nofoot,%
+            ]{geometry}                                 % the page layout without fancyhdr
+\pagestyle{empty}
+
+\begin{document}
+\address{Ross Parker \\
+Division of Applied Mathematics \\
+Brown University \\
+Providence, RI 02912 \\
+\texttt{ross\_parker@brown.edu}}%
+\signature{Ross Parker}
+\begin{letter}{Editor, Physica D}
+
+\opening{Dear Editor,}
+
+On behalf of my co-authors, Panos Kevrekidis and Bj\"orn Sandstede, I would like to submit our revision of the article ``Existence and spectral stability of multi-pulses in discrete Hamiltonian lattice systems'' for consideration of publication in Physica D. This paper has not been submitted elsewhere.
+
+We are grateful to the referees for their careful reading of the original manuscript, and their comments and suggestions regarding how we could improve it. 
+
+Reviewer 1
+\begin{enumerate}
+\item \emph{On page 2 the authors state that the relevant stability eigenvalues are close to zero. This is due to the rotation symmetry, as the problem being discrete (generically) rules out the translation symmetry. What happens if there is no underlying symmetry which leads to a zero eigenvalue for the primary pulse? Would it simply be the case that, assuming a certain transversality condition, if the primary pulse is orbitally stable, then any and all multi-pulses would be orbitally stable? I am thinking of the Grillakis-Shatah-Strauss (GSS) stability index theory here as the underlying theoretical justification for such a statement.}
+
+\item \emph{The model problem is the discrete NLS. Would the theory presented herein also apply to the discrete Klein-Gordon equation?}
+
+\item \emph{Just before Section 3 it is stated that the origin is an eigenvalue with geometric multiplicity (g.m.) one and algebraic multiplicity (a.m.) two. However, the argument leading up to that statement suggests that the g.m. is at least one, and the a.m. is at least two. I believe a further condition is needed to make the statement true.}
+
+Without an additional assumption (i.e. transverse intersection in Hypothesis 4), this is correct. For clarity, the material about the kernel eigenvalues of DNLS has been moved to section 4 after the statement of Theorem 4.
+
+\item \emph{I am confused as to why (20) and (21) essentially restate (12). Am I missing something?}
+
+To avoid stating the same thing twice, this material has all been moved to section 3. 
+
+\item \emph{Just before Section 3.2 we are told that $R'(0) = J$ is required. What happens if this condition fails? Or, can it not, because of the relationship between the symmetry and the associated conserved quantity?}
+
+I have replaced the more restrictive condition $R'(0) = J$ by the commuting relation $R(\theta) J = J R^*(-\theta)$ from Grillakis (1987). The analysis is essentially unchanged. The main difference is the addition of Hypothesis 3, since the eigenvalues of $DF(0)$ can no longer be computed explicitly. We characterize the eigenvalues of $DF(0)$ following Hypothesis 3.
+
+\item \emph{Equation (22) gives the underlying existence problem. How essential is it that the existence problem be written as a smooth first-order difference equation? In particular, would the results still go through if one simply assumed certain properties associated with the wave? Here I am thinking about problems where there is nonlinear coupling between sites, and it is not so easy to recast the problem as a first-order difference equation.}
+
+\item \emph{Just above Section 4.2 it is stated that the spectral instability is due to Sturm-Liouville (SL) theory. As I understand [14], however, the instability follows from an application of the GSS theory, and SL is used simply to make some intermediate calculation. Am I wrong?}
+
+This is correct. Rather than summarize the technique used in [14], I have opted to include only the reference to [14].
+
+\item \emph{In Theorem 5 it is assumed $M > 0$. What happens if $M < 0$?}
+
+In Hypothesis 2 (of the revised manuscript), we assume $M > 0$, which is the Vakhitov-Kolokolov stability criterion (with the opposite sign) and stability criterion from Grillakis (1987). We no longer consider the case $M < 0$.
+
+\item \emph{On page 15 we are told about a pulse being ``highly discrete''. What does this mean? Does it have something to do with the decay rate? On a related note, if the decay rate is faster than exponential, does it effect the existence/spectral stability theory in any substantive way?}
+
+\item \emph{Reference [1] does not have an author.}
+
+Fixed.
+
+\end{enumerate}
+
+Reviewer 2
+\begin{enumerate}
+\item \emph{Why not adding ``multi-pulse solutions'' and replacing ``discrete NLS equation'' with some- thing referring to ``Hamiltonian lattices'' (as in the title itself)? }
+
+Done.
+
+\item \emph{While the symmetry is exploited from the very beginning of the Mathematical Setup (see the standing wave ansatz for $\psi_n$), it is never mentioned in the Introduction (and in the Abstract too). There is an interplay between the symmetry and the hyperbolic structure, visible also in the difference between Hypothesis 3 and Hypothesis 5: by restricting to real-valued spatial profiles, one gets rid of the symmetry direction in the dNLS application (and the intersection between stable and unstable tangent manifolds reduces to the equilibrium).}
+
+\item \emph{The possibility to extend existence and linear stability of multi-peaked discrete solitons beyond the anti-continuum and continuum limits should be stressed also in the Introduction, not only in the Conclusion: this point deserves some visibility.}
+
+\item \emph{I think that some words should be added in the Introduction on the strategy used to construct multi-pulse solutions: for example, no words are spent to give a “taste” of Lin’s ideas (even heuristically, as made for example in the first pages of reference [19]) and on the need of taking the $m$ copies of the single pulse distant enough.}
+
+\item \emph{The idea of decomposing multi-pulse solutions into overlapping single-pulse ones (re- stricted to the case of equally distinct pulse in the anti-continuum limit) reminds me a result of Pelinovsky and Sakovich in Nonlinearity 25(12) (see Lemma 1 formula (14) for a two-pulses). Also the scaling of the ``internal'' eigenvalues with respect to the parameters $d$, $N$ show similarities with this result (see Lemma, 2 Section 3).}
+
+\item \emph{Hypothesis needed to get the result are not mentioned and commented, maybe because implicitly included in the reference to the Lin’s method. For all those who are not familiar with this mathematical method, this lack could prevent a proper understanding of the result. If not here, the Hypothesis should be commented at least in the Main Theorems part.}
+
+\item \emph{Formula (2): last $u_n$ should be a $\phi_n$.}
+
+Fixed.
+
+\item \emph{After formula (5), I would write ``The corresponding conserved quantity is given by''
+instead of ``In addition...''.}
+
+Done.
+
+\item \emph{Before formula (9), isn’t the symmetric solution $R(\theta)u$ ``the same'' solution as $u$ (see also the statement before (18))?}
+
+I clarified this point and noted how $\theta$ will be important for construction of multi-pulses.
+
+\item \emph{It should be stated somewhere that $k$ is the ``lattice dimension'', so that $k = 1$ corresponds to the usual one-dimensional dNLS lattice. }
+
+Done.
+
+\item \emph{Is the map in Hypothesis 2 injective, so that there is a 1-to-1 correspondence between the frequency $\omega$ and the bound state $q$?}
+
+I added injectivity to the hypothesis as well as a comment following the hypothesis that we do not distinguish between solutions $R(\theta)q$, which are just ``rotations'' of $q$.
+
+\item \emph{After (25) the notation $Q(n)$ is used for an equilibrium of (22), while in the paragraph before (30) the same symbol stands for a homoclinic orbit. The context clarifies the different meanings, but maybe for the equilibrium a slightly different notation might be used.}
+
+I clarified this by removing the notation $Q(n)$ after (25) so that $Q(n)$ now only refers to the homoclinic orbit.
+
+\item \emph{Formula (39) looks like the so-called ``persistence condition'' which appear in other approaches: indeed, these are the equations providing the phase-shifts among the single pulses, as remarked before formula (134). This role of the ``vanishing-jumps condition'' should be stressed somewhere.}
+
+\item \emph{In Remark 1, please make reference to the density current (10) already introduced.}
+
+Done. Also introduced the term ``current density'' with equation (10).
+
+\item \emph{Before Hypothesis 4 you speak about ``higher order Melnikov sum'': it suggests the idea that you are expanding a Melnikov function with respect to some parameter to get $M_2$. Unfortunately the reader is not helped to figure out to what expansion you are referring.}
+
+$M > 0$ is now part of Hypothesis 2, and the connection is made to the stability criteria of Vakhitov-Kolokolov and Grillakis (1987). In the second remark following Hypothesis 2, I explain that the notation $M$ refers to the interpretation of $M$ as a Melnikov sum, since it measures a jump in a specific direction.
+
+\item \emph{Is it possible to say something (in a dedicated Remark, for example) about how the ``threshold'' $N_0$ in Theorem 4 depends on $d$ and $\omega$?}
+
+This is given in a remark after Theorem 4.
+
+\item \emph{The definition of the Melnikov-like function $M$ should be numbered; moreover, since $M = \partial_\omega P$, with $P = \|q\|_{l^2}^2$, this assumption reminds me the Vakhitov-Kolokolov stability criterion, but no comments on this connection are given. Am I wrong?}
+
+$M$ is now defined in Hypothesis 2 and is numbered. The connection to the stability criteria of Vakhitov-Kolokolov and Grillakis (1987) is made in the first remark after Hypothesis 2.
+
+\item \emph{Corollary 1 deals exactly with the equally-spaced multi-pulses case, which I think might be compared with multi-site breathers in the above-mentioned paper by Pelinovsky and Sakovich.}
+
+\item \emph{Consider additional papers by Pelinovsky and Sakovich; Bountis, et. al.; and Quin and Xiao.}
+
+\end{enumerate}
+
+\closing{Sincerely,}
+
+\end{letter}
+\end{document}

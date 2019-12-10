@@ -260,11 +260,11 @@ With DNLS as our principal motivation, we will consider the following more gener
 \end{equation}
 where $u(t) \in \ell^2(\Z, \R^{2k})$, $\mathcal{H}: \ell^2(\Z, \R^{2k}) \rightarrow \R$ is smooth with $\mathcal{H}(0) = 0$ and $\mathcal{H}'(0) = 0$, and $J$ is a $2k \times 2k$ symplectic matrix. \revised{ The integer $k$ is the lattice dimension, and $k = 1$ corresponds to the usual one-dimensional DNLS lattice.} For simplicity, and again using DNLS as motivation, we will assume that $\mathcal{H}'(u)$ takes the form
 \begin{equation}\label{latticeform}
-[\mathcal{H}'(u)]_n = d (\Delta_2 u)_n + f(u_n),
+[\mathcal{H}'(u)]_n = -d (\Delta_2 u)_n + f(u_n),
 \end{equation}
 where $\Delta_2$ is the second difference operator $(\Delta_2 u)_n = u_{n+1} - 2 u_n + u_{n-1}$, $d$ is the coupling constant, and $f: \R^{2k} \rightarrow \R^{2k}$ is smooth with $f(0) = 0$ and $Df(0) = 0$. This implies that, other than the terms from $\Delta_2 u$, the RHS of \cref{lattice1} only involves the lattice site $u_n$. We note that $Df(u(n))$ is self-adjoint since $\mathcal{H}''(u)$ is self-adjoint.
 
-We make the following hypothesis concerning symmetries of the system.
+Using \cite{Grillakis1987} as a guide, we make the following hypothesis concerning symmetries of the system.
 \begin{hypothesis}\label{symmetryhyp}
 There is unitary group of symmetries $\{ R(\theta) : \theta \in \R \}$ on $\R^{2k}$ such that 
 \begin{enumerate}[(i)]
@@ -282,10 +282,14 @@ R(\theta) J = J R^*(-\theta)
 \begin{equation}\label{RprimeJcommute}
 R'(0) J = -J R'(0)^*,
 \end{equation}
-where $R'(0)$ is the infinitesimal generator of the symmetry group $R(\theta)$. In addition, since $R(\theta)$ is unitary, $R(\theta) J = J R(\theta)$. For DNLS, $R(\theta)$ is the rotation group \cref{Rtheta}. Following \cite[(2.9)]{Grillakis1987}, since $J$ is an invertible matrix, the corresponding conserved quantity is given by
+where $R'(0)$ is the infinitesimal generator of the symmetry group $R(\theta)$. In addition, since $R(\theta)$ is unitary,
+\begin{equation}\label{RJcommute2}
+R(\theta) J = J R(\theta).
+\end{equation}
+For DNLS, $R(\theta)$ is the rotation group \cref{Rtheta}. Following \cite[(2.9)]{Grillakis1987}, since $J$ is an invertible matrix, the corresponding conserved quantity is given by
 \begin{equation}\label{genQ}
 \mathcal{Q}(u) = \frac{1}{2} \sum_{n = -\infty}^\infty 
-\langle J^{-1}T'(0) u_n, u_n \rangle
+\langle J^{-1}R'(0) u_n, u_n \rangle
 \end{equation}
 It follows from \eqref{RJcommute} and $J^{-1} = -J$ that $\mathcal{Q}(u)$ is also invariant under the symmetry group $R(\theta)$, i.e. $\mathcal{Q}(R(\theta)u) = \mathcal{Q}(u)$.
 
@@ -330,15 +334,26 @@ thus $R'(0) q$ is an eigenfunction of $L(q)$ with eigenvalue 0.
 
 As in \cite[Assumption 2]{Grillakis1987}, we take the following hypothesis about the existence of bound state solutions. \revised{We also assume that a stability criterion is satisfied.}
 \begin{hypothesis}\label{boundstatehyp}
-For $\omega \in (\omega_1, \omega_2)$, there exists a $C^1$ map $\omega \mapsto q$ such that $q \in \ell^2(\Z, \R^{2k})$ is a bound state solution to \cref{latticestat}. \revised{ Furthermore, for all $\omega \in (\omega_1, \omega_2)$,
-\begin{align}\label{genstabcrit}
-\frac{d}{d\omega} \mathcal{Q}(q) < 0
+For $\omega \in (\omega_1, \omega_2)$, there exists an injective $C^1$ map $\omega \mapsto q$ such that $q \in \ell^2(\Z, \R^{2k})$ is a bound state solution to \cref{latticestat}. \revised{ Furthermore, for all $\omega \in (\omega_1, \omega_2)$, $M > 0$, where
+\begin{align}\label{genstabcritM}
+M = -\frac{d}{d\omega} \mathcal{Q}(q) = -\sum_{n = -\infty}^\infty 
+\langle J^{-1}R'(0) u_n, \partial_\omega u_n \rangle
 \end{align}
 }
 \end{hypothesis}
+We note that for the map $\omega \mapsto q$ to be well defined, we do not distinguish between solutions $R(\theta)q$ for $\theta \in \R$.
 
 \begin{remark}
-The condition \eqref{genstabcrit} is the Vakhitov–Kolokolov stability criterion [CITE], which is generalized to abstract Hamiltonian systems in \cite{Grillakis1987}. Equation \eqref{genstabcrit} is equivalent to $d''(\omega) > 0$ in \cite[Theorem 3]{Grillakis1987}. In general, the condition \eqref{genstabcrit} can only be verified numerically.
+The condition $M > 0$ is the Vakhitov–Kolokolov stability criterion \cite{Vakhitov1973}, which is generalized to abstract Hamiltonian systems in \cite{Grillakis1987}. $M > 0$ implies stability of the primary pulse \cite{Grillakis1987}. In general, the condition $M > 0$ can only be verified numerically.
+\end{remark}
+
+\begin{remark}
+We use the notation $M$ for the stability criterion \eqref{genstabcritM} since $M$ will appear in the proof of \cref{stabilitytheorem} as a Melnikov sum which measures a jump in a specific direction. Since we have a Hamiltonian system, the ``lower order'' Melnikov sum $M_1$ is 0, where $M_1$ is defined by
+\begin{align}\label{MelnikovM1zero}
+M_1 &= \sum_{n=-\infty}^\infty \langle Z_1(n+1), B T'(0)Q(n) \rangle
+= \sum_{n=-\infty}^\infty \langle R'(0)q(n), J R'(0)q(n) \rangle.
+\end{align}
+If $M_1 \neq 0$, which can occur in non-Hamiltonian systems, the analysis is much simpler and in fact is the discrete analogue of \cite{Sandstede1998}. 
 \end{remark}
 
 By \cref{boundstatehyp}, $\partial_\omega q$ exists for $\omega \in (\omega_1, \omega_2)$. Differentiating \cref{latticestat} with respect to $\omega$ and multiplying by $J$, $\partial_\omega q$ satisfies 
@@ -348,7 +363,7 @@ L(q)\partial_\omega q = R'(0) q.
 
 \subsection{Spatial dynamics formulation}
 
-We write the bound state equation \cref{latticestat} as the first order difference equation
+Using equation \ref{latticeform}, we write the bound state equation \cref{latticestat2} as the first order difference equation
 \begin{equation}\label{diffeq}
 U(n+1) = F(U(n)),
 \end{equation}
@@ -356,7 +371,7 @@ where $U(n) = (u(n), \tilde{u}(n)) = (u_n, u_{n-1}) \in \R^{4k}$ and $F: \R^{4k}
 \begin{equation}\label{latticeF}
 F\begin{pmatrix}u \\ \tilde{u} \end{pmatrix} =
 \begin{pmatrix}
-\left( 2 + \frac{\omega}{d} \right)u - \frac{1}{d}f(u) - \tilde{u} \\
+2 u +\frac{1}{d}\left( f(u) - \omega J^{-1} R'(0) u \right) - \tilde{u} \\
 u
 \end{pmatrix}.
 \end{equation}
@@ -370,6 +385,7 @@ T(\theta) = \begin{pmatrix}
 R(\theta) & 0 \\ 0 & R(\theta)
 \end{pmatrix}.
 \end{equation}
+
 We can similarly write the eigenvalue problem $(L(q) - \lambda I)v = 0$ as the first order difference equation 
 \begin{equation}\label{latticeEVP}
 V(n+1) = DF(q_n) V(n) + \lambda B V(n),
@@ -378,7 +394,7 @@ where
 \begin{equation}\label{latticeDF}
 DF(q(n)) = 
 \begin{pmatrix}
-2 + \frac{\omega}{d} - \frac{1}{d}Df(q_n) & -I  \\
+2I + \frac{1}{d}Df(q_n) -\frac{1}{d}\omega J^{-1} R'(0) & -I \\
 I & 0
 \end{pmatrix} 
 \end{equation}
@@ -390,30 +406,35 @@ J & 0 \\
 0 & 0 
 \end{pmatrix}.
 \end{equation}
-It follows from \cref{Lkernel1} that
-\begin{equation}\label{DFkernel1}
-T'(0) Q(n+1) = DF(Q(n)) T'(0) Q(n).
-\end{equation}
-We also note that since $J = R'(0)$, $T(\theta)$ commutes with $B$.
+Since $R(\theta)J = J R(\theta)$, $T(\theta)$ commutes with $B$. It follows from \cref{Lkernel1} and \cref{Lkernel2} that
+\begin{align}
+T'(0) Q(n+1) &= DF(Q(n)) T'(0) Q(n) \label{DFkernel1} \\
+\partial_\omega Q(n+1) &= DF(Q(n)) \partial_\omega Q(n) + B T'(0)Q(n) \label{DFkernel2}.
+\end{align}
 
-Since $F(0) = 0$, the origin is an equilibrium point for the dynamical system \cref{diffeq}. Fix $\omega \in (\omega_1, \omega_2)$, and let $q$ be the bound state from \cref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in \ell^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, thus $Q(n)$ is a homoclinic orbit solution to $\cref{diffeq}$ connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. It follows from \cref{Lkernel2} that
-\begin{equation}\label{DFkernel2}
-\partial_\omega Q(n+1) = DF(Q(n)) \partial_\omega Q(n) + B T'(0)Q(n).
-\end{equation}
-
-Since $f(0) = Df(0) = 0$, for the equilibrium at 0 we have
+Since $F(0) = 0$, the origin is an equilibrium point for the dynamical system \cref{diffeq}. Fix $\omega \in (\omega_1, \omega_2)$, and let $q$ be the bound state from \cref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in \ell^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, $Q(n)$ is a homoclinic orbit solution to \cref{diffeq} connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. Since $f(0) = Df(0) = 0$, for the equilibrium at 0 we have
 \begin{equation}\label{DF0}
 DF(0) = \begin{pmatrix}u \\ \tilde{u} \end{pmatrix} =
 \begin{pmatrix}
-2 + \frac{\omega}{d} & -I  \\
+2I - \frac{1}{d}\omega J^{-1} R'(0) & -I  \\
 I & 0
-\end{pmatrix} ,
+\end{pmatrix}.
 \end{equation}
-which has eigenvalues $\mu = \{r, 1/r\}$, each with multiplicity $k$, where
-\begin{align}\label{eigr}
-r = 1 + \frac{\omega}{2 d} \left( 1 + \sqrt{1 + \frac{4 d}{\omega}} \right).
+We take the following hypothesis concerning the equilibrium at 0.
+\begin{hypothesis}\label{hyperbolichyp}
+The equilibrium at 0 is hyperbolic, i.e. there are no eigenvalues $\nu$ of $DF(0)$ with $\text{Re } \nu = 0$. 
+\end{hypothesis}
+Since $DF(0)$ does not have a zero eigenvalue by \cref{hyperbolichyp}, we can use standard determinant identities to compute the characteristic polynomial of $DF(0)$.
+\begin{align}\label{charpolyDF0}
+\det(DF(0) - \nu I) &= 
+\det(-\nu I) \det \left( 2I - \frac{1}{d}\omega J^{-1} R'(0) - \left( \nu + \frac{1}{\nu} \right) I\right)
 \end{align}
-For $\omega, d > 0$, we have $r > 1$. Thus the equilibrium at 0 is hyperbolic with $k$-dimensional stable and unstable manifolds. The homoclinic orbit $Q(n)$ lies in the intersection of the stable and unstable manifolds. We take the following additional hypothesis regarding their intersection.
+It follows from \eqref{charpolyDF0} that the eigenvalues of $DF(0)$ come in pairs $\{\nu, 1/\nu\}$. By \eqref{RprimeJcommute}, $2I - \frac{1}{d}\omega J^{-1} R'(0)$ is self-adjoint, thus $DF(0)$ has $2k$ pairs of real eigenvalues $\{ (\nu_j, 1/\nu_j) : j = 1, \dots, 2k\}$. Let
+\begin{equation}\label{defr}
+r = \min_{j = 1, \dots, 2k} \nu_j.
+\end{equation}
+
+The homoclinic orbit $Q(n)$ lies in the intersection of the stable and unstable manifolds. We take the following additional hypothesis regarding their intersection.
 
 \begin{hypothesis}\label{intersectionhyp}
 The tangent spaces of the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ have a one-dimensional intersection at $Q(n)$.
@@ -423,14 +444,13 @@ The tangent spaces of the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ ha
 \begin{equation}\label{Qdecay}
 |Q(n)| \leq C r^{-|n|}.
 \end{equation}
-
 By \cref{intersectionhyp}, $T'(0) Q(n)$ is the unique bounded solution to the variational equation
 \begin{align*}
 V(n+1) &= D_U F(q(n)) V(n),
 \end{align*}
 where
 \begin{equation}\label{varsol}
-T'(0) Q(n) = \begin{pmatrix} R'(0) q(n) \\ R'(0) q(n-1) \end{pmatrix} = \begin{pmatrix} J q(n) \\ J q(n-1) \end{pmatrix}.
+T'(0) Q(n) = \begin{pmatrix} R'(0) q(n) \\ R'(0) q(n-1) \end{pmatrix}.
 \end{equation}
 It follows that there exists a unique bounded solution $Z_1(n)$ to the adjoint variational equation
 \begin{align*}
@@ -438,7 +458,7 @@ Z(n) &= D_U F(q(n))^* Z(n+1).
 \end{align*}
 We can verify directly that
 \begin{equation}\label{adjvarsol}
-Z_1(n) = \begin{pmatrix} R'(0) q(n-1) \\ -R'(0) q(n) \end{pmatrix} = \begin{pmatrix} J q(n-1) \\ -J q(n) \end{pmatrix}.
+Z_1(n) = \begin{pmatrix} -R'(0) q(n-1) \\ R'(0) q(n) \end{pmatrix}.
 \end{equation}
 In both of these cases, uniqueness is up to scalar multiples.
 
@@ -470,7 +490,7 @@ for $i = 1, \dots, m$. The first equation in \cref{Usystem} states that the indi
 We will solve \cref{Usystem} using Lin's method. Lin's method yields a solution which has $m$ jumps in the direction of $Z_1(0)$. An $m-$pulse solution exists if and only if all $m$ jumps are 0. These jump conditions are given in the next theorem.
 
 \begin{theorem}\label{ntmulti}
-Assume \cref{symmetryhyp}, \cref{boundstatehyp}, and \cref{intersectionhyp}, and let $Q(n)$ be the primary pulse solution to \cref{diffeq}. Then there exists a positive  integer $N_0$ with the following property. For all $m > 1$, pulse distances $N_i \geq N_0$ and symmetry parameters $\theta_i$, there exists a unique $m-$pulse solution $Q_m(n)$ to \cref{diffeq} if and only if the $m$ jump conditions 
+Assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{hyperbolichyp}, and \cref{intersectionhyp}, and let $Q(n)$ be the primary pulse solution to \cref{diffeq}. Then there exists a positive  integer $N_0$ with the following property. For all $m > 1$, pulse distances $N_i \geq N_0$ and symmetry parameters $\theta_i$, there exists a unique $m-$pulse solution $Q_m(n)$ to \cref{diffeq} if and only if the $m$ jump conditions 
 \begin{equation}\label{jumpcondexist}
 \begin{aligned}
 \xi_1 &= \langle T(\theta_1) Z_1(N_1^+), T(\theta_{2}) Q(-N_1^-) \rangle + R_1 = 0 \\
@@ -504,30 +524,14 @@ V(n+1) = DF(q_m(n)) V(n) + \lambda B V(n),
 \end{equation}
 where $DF(q_m(n))$ and $B$ are given by \cref{latticeDF} and \cref{latticeB}. Since $q_m(n)$ decays exponentially to 0 and $F$ is smooth, $DF(q_m(n))$ is exponentially asymptotic to the constant coefficient matrix $DF(0)$, which is hyperbolic.
 
-We will also assume a Melnikov sum condition holds. Since we have a Hamiltonian system, the standard Melnikov sum $M_1$ is 0 since $J$ is skew-symmetric.
-\begin{align}\label{MelnikovM1zero}
-M_1 &= \sum_{n=-\infty}^\infty \langle Z_1(n+1), B T'(0)Q(n) \rangle
-= \sum_{n=-\infty}^\infty \langle R'(0)q(n), J R'(0)q(n) \rangle
-= 0.
-\end{align}
-We note if $M_1 \neq 0$, which can occur in non-Hamiltonian systems, the analysis is much simpler and in fact is the discrete analogue of \cite{Sandstede1998}. We will assume that the following higher order Melnikov sum is nonzero.
-
-\begin{hypothesis}\label{melnikovhyp}
-The following Melnikov-like condition holds.
-\begin{align}\label{M2cond}
-M_2 &= \sum_{n=-\infty}^\infty \langle Z_1(n+1), B \partial_\omega Q(n) \rangle = \sum_{n=-\infty}^\infty \langle R'(0) q(n), \partial_\omega q(n) \rangle \neq 0 .
-\end{align}
-\end{hypothesis}
-\noindent In general, the Melnikov condition \cref{M2cond} can only be verified numerically.
-
 We can now state the following theorem, in which we locate the eigenvalues of \cref{latticeEVP} resulting from interactions between neighboring pulses.
 
 \begin{theorem}\label{stabilitytheorem}
-Assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{intersectionhyp}, and \cref{melnikovhyp}. Let $Q_m(n)$ be an $m-$pulse solution to \cref{diffeq} constructed according to \cref{ntmulti} with pulse distances $\{ N_1, \dots, N_{m-1}\}$ and symmetry parameters $\{\theta_1, \dots, \theta_m\}$. Then there exists $\delta > 0$ small with the following property. There exists a bounded, nonzero solution $V(n)$ of the eigenvalue problem \cref{multiEVP} for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
+Assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{hyperbolichyp}, and \cref{intersectionhyp}. Let $Q_m(n)$ be an $m-$pulse solution to \cref{diffeq} constructed according to \cref{ntmulti} with pulse distances $\{ N_1, \dots, N_{m-1}\}$ and symmetry parameters $\{\theta_1, \dots, \theta_m\}$. Then there exists $\delta > 0$ small with the following property. There exists a bounded, nonzero solution $V(n)$ of the eigenvalue problem \cref{multiEVP} for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
 \begin{equation}\label{Elambda}
-E(\lambda) = \det(A - M_2 \lambda^2 I + R(\lambda)).
+E(\lambda) = \det\left(A - \frac{1}{d}M \lambda^2 I + R(\lambda)\right).
 \end{equation}
-$M_2$ is defined in \cref{melnikovhyp}, and $A$ is the tridiagonal $m \times m$ matrix
+$M$ is defined in \eqref{genstabcritM}, and $A$ is the tridiagonal $m \times m$ matrix
 \begin{align}\label{matrixA}
 A &= \begin{pmatrix}
 -a_1 & a_1 & & & \\
@@ -565,7 +569,7 @@ The following hold concerning the function $F$.
 F(T(\theta)U) = F(U)T(\theta)
 \end{equation}
 for all $\theta \in G$ and all $U \in \R^k$. 
-\item 0 is a hyperbolic equilibrium for $F$, thus there exists a radius $r > 1$ such that for all eigenvalues $\nu$ of $DF(0)$, $|\nu| \leq 1/r$ or $|\nu| > r$. Furthermore, $\dim E^s, \dim E^u \geq 1$, where $E^s$ and $E^u$ are the stable and unstable eigenspaces of $DF(0)$.
+\item The origin is a hyperbolic equilibrium for $F$, thus there exists a radius $r > 1$ such that for all eigenvalues $\nu$ of $DF(0)$, $|\nu| \leq 1/r$ or $|\nu| > r$. Furthermore, $\dim E^s, \dim E^u \geq 1$, where $E^s$ and $E^u$ are the stable and unstable eigenspaces of $DF(0)$.
 \item There exists a primary pulse homoclinic orbit solution $Q(n)$ to \cref{diffeqtransv} which connects the equilibrium at 0 to itself.
 \item The stable and unstable manifolds $W^s(0)$ and $W^u(0)$ intersect transversely.
 \end{enumerate}
@@ -580,43 +584,55 @@ Assume \cref{transversehyp}, and let $Q(n)$ be the primary pulse solution to \cr
 
 \subsection{Background}
 
-We will now apply the results the previous section to the 
-DNLS to illustrate the impact of the discrete Lin's method. Before we do that, we will give a brief overview what is already known. Many more details can be found in \cite{Kevrekidis2009,pelinovsky_2011}. 
+We will now apply the results the previous section to the DNLS to illustrate the impact of the discrete Lin's method. Before we do that, we will give a brief overview what is already known. Many more details can be found in \cite{Kevrekidis2009,pelinovsky_2011}. 
 
-At the anti-continuum limit, equation \cref{DNLSequilib} reduces to a system of decoupled algebraic equations. Any $u_n$ with $u_n \in \{ 0, \pm \sqrt{\omega}\}$ is a solution. For $d > 0$, the DNLS possesses two real-valued, symmetric, single pulse solutions (up to rotation): on-site solutions, which are centered on a single lattice point; and off-site solutions, which are centered between two adjacent lattice points \cite{Kevrekidis2009}. The on-site solution has a single eigenvalue at 0 from rotational symmetry. The off-site solution has an additional pair of real eigenvalues; since the off-site solution is spectrally unstable, we will only consider the on-site solution from here on as the foundation for the 
-single pulse state. 
+At the anti-continuum limit, equation \cref{DNLSequilib} reduces to a system of decoupled algebraic equations. Any $u_n$ with $u_n \in \{ 0, \pm \sqrt{\omega}\}$ is a solution. For $d > 0$, the DNLS possesses two real-valued, symmetric, single pulse solutions (up to rotation): on-site solutions, which are centered on a single lattice point; and off-site solutions, which are centered between two adjacent lattice points \cite{Kevrekidis2009}. The on-site solution has a single eigenvalue at 0 from rotational symmetry. The off-site solution has an additional pair of real eigenvalues; since the off-site solution is spectrally unstable, we will only consider the on-site solution from here on as the foundation for the single pulse state. 
 
-For sufficiently small $d$, $m$-pulse solutions exist to equation \cref{DNLSequilib} for any pulse distances as long as the phase differences satisfy $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $d$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}.
-This means that these eigendirections, although neutrally
-stable, are prone to instabilities when parameters 
-(such as $d$) are varied upon collision with other
-eigenvalues. However, they may also lead to instabilities
-at a purely nonlinear level (despite potential spectral
-stability) as a result of the mechanism explored, e.g.,
-in~\cite{CUCCAGNA200938,PRL_2015}.
-For any $d$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it follows from Sturm-Liouville theory that there is at least one positive, real eigenvalue \cite{Kapitula2001a}.
+For sufficiently small $d$, $m$-pulse solutions exist to equation \cref{DNLSequilib} for any pulse distances as long as the phase differences satisfy $\Delta \theta_i \in \{0, \pi\}$ \cite[Proposition 2.1]{Pelinovsky2005}. For sufficiently small $d$, this $m-$pulse is spectrally unstable unless all of the phase differences $\Delta \theta_i$ are $\pi$; in that case there are $m-1$ pairs of purely imaginary eigenvalues with negative Krein signature \cite[Theorem 3.6]{Pelinovsky2005}. This means that these eigendirections, although neutrally stable, are prone to instabilities when parameters (such as $d$) are varied upon collision with other eigenvalues. However, they may also lead to instabilities at a purely nonlinear level (despite potential spectral stability) as a result of the mechanism explored, e.g., in~\cite{CUCCAGNA200938,PRL_2015}. For any $d$ for which the $m-$pulse exists, if one or more phase differences $\Delta \theta_i$ is 0, it was shown in \cite{Kapitula2001a} that there is at least one positive, real eigenvalue.
 
 \subsection{Main results}
 
-Let $q(n)$ be the on-site, real-valued soliton solution to \cref{DNLSequilib}. We will characterize an $m-$pulse solution to \cref{DNLSequilib} in terms of the $m-1$ pulse distances $\{ N_1, \dots, N_{m-1} \}$ and phase differences $\{ \Delta\theta_1, \dots, \Delta\theta_{m-1} \}$ between consecutive copies of $q(n)$. We have the following theorem regarding the existence of $m-$pulse solutions.
+Let $q(n)$ be the on-site, real-valued soliton solution to \cref{DNLSequilib}. The existence of $q(n)$ is discussed in Section 2. The symmetry group $R(\theta)$, which is the rotation group \eqref{Rtheta}, satisfies the commuting relation \eqref{RJcommute}. Since $J^{-1}R'(0) = -I$, the conserved charge is given by 
+\begin{equation}\label{DNLSQ2}
+\mathcal{Q}(u) = \frac{1}{2} \sum_{n = -\infty}^\infty 
+\langle u_n, u_n \rangle,
+\end{equation}
+which is the same as \eqref{DNLSQ}. The stability criterion $M$ from \eqref{genstabcritM} is given by
+\begin{equation}\label{DNLSM}
+M = \partial_\omega \left( \frac{1}{2} \sum_{n=-\infty}^\infty q_n^2 \right) = \sum_{n=-\infty}^\infty q_n \partial_\omega q_n
+\end{equation}
+We will assume that $M > 0$, which is strongly suggested by numerical analysis. Following Section 3.2, equation \eqref{DNLSequilib2} can be written as $U(n+1) = F(U(n))$, where
+\begin{equation}\label{DNLSF}
+F\begin{pmatrix}u \\ \tilde{u} \end{pmatrix} =
+\begin{pmatrix}
+\left( 2 + \frac{\omega}{d} \right)u + \frac{1}{d}f(u) - \tilde{u} \\
+u
+\end{pmatrix}.
+\end{equation}
+The origin is a hyperbolic equilibrium of $F$, and the eigenvalues of $DF(0)$ are $\nu = \{r, 1/r\}$, each with multiplicity 2, where
+\begin{align}\label{eigr}
+r = 1 + \frac{\omega}{2 d} \left( 1 + \sqrt{1 + \frac{4 d}{\omega}} \right).
+\end{align}
+For $\omega, d > 0$, we have $r > 1$. 
+
+We will characterize an $m-$pulse solution to \cref{DNLSequilib} in terms of the $m-1$ pulse distances $\{ N_1, \dots, N_{m-1} \}$ and phase differences $\{ \Delta\theta_1, \dots, \Delta\theta_{m-1} \}$ between consecutive copies of $q(n)$. We have the following theorem regarding the existence of $m-$pulse solutions.
 
 \begin{theorem}\label{DNLSexisttheorem}
 There exists a positive integer $N_0$ (which depends on $\omega$ and $d$), with the following property. For any $m \geq 2$, pulse distances $N_i \geq N_0$, and phase differences $\Delta\theta_i \in \{0, \pi\}$, there exists a unique $m-$pulse solution $q_m(n)$ to \cref{DNLSequilib} which resembles $m$ consecutive copies of the on-site pulse $q(n)$. No other phase differences are possible.
 \end{theorem}
 
-By \cref{Lkernel1} and \cref{Lkernel2}, the linearization about $q_m(n)$ has a kernel with algebraic multiplicity 2 and geometric multiplicity 1 which is a result of rotational invariance. The following theorem locates the small eigenvalues of the linearization about $q_m(n)$ resulting from interaction between consecutive copies of $q(n)$. 
+\begin{remark}
+For $\omega, d > 0$, $r$ is an increasing function of both $\omega$ and $d$, thus the threshold $N_0$ decreases as $\omega$ and $d$ increase.
+\end{remark}
+
+By \cref{Lkernel1} and \cref{Lkernel2}, the linearization \eqref{multiEVP} about $q_m(n)$ has a kernel with algebraic multiplicity at least 2 and geometric multiplicity at least 1 which is a result of rotational invariance. Assuming Hypothesis \ref{transversehyp}, the geometric multiplicity is exactly 1. The following theorem locates the small eigenvalues of the linearization about $q_m(n)$ resulting from interaction between consecutive copies of $q(n)$. 
 
 \begin{theorem}\label{DNLSeigtheorem}
-Let $q_m(n)$ be an $m-$pulse solution to \cref{DNLSequilib} with pulse distances $N_i$ and phase differences $\Delta\theta_i$. Assume that $M > 0$, where
-\[
-M = \sum_{n=-\infty}^\infty q_n \partial_\omega q_n = \partial_\omega \left( \frac{1}{2} \sum_{n=-\infty}^\infty q_n^2 \right).
-\]
-Let $N = \frac{1}{2} \min\{ N_1, \dots, N_{m-1}\}$. Then for $N$ sufficiently large, there exist $m-1$ pairs of interaction eigenvalues $\{\pm \lambda_1, \dots, \pm \lambda_{m-1}\}$, which can be grouped as follows. There are $k_\pi$ pairs of purely imaginary eigenvalues and $k_0$ pairs of real eigenvalues, where $k_\pi$ is the number of phase differences $\Delta\theta_i$ which are $\pi$, and $k_0$ is the number of phase differences $\Delta\theta_i$ which are $0$. The $\lambda_j$ are close to 0 and are given by the following formula
+Let $q_m(n)$ be an $m-$pulse solution to \cref{DNLSequilib} with pulse distances $N_i$ and phase differences $\Delta\theta_i$. Assume that $M > 0$, where $M$ is given by \eqref{DNLSM}. Let $N = \frac{1}{2} \min\{ N_1, \dots, N_{m-1}\}$. Then for $N$ sufficiently large, there exist $m-1$ pairs of interaction eigenvalues $\{\pm \lambda_1, \dots, \pm \lambda_{m-1}\}$, which can be grouped as follows. There are $k_\pi$ pairs of purely imaginary eigenvalues and $k_0$ pairs of real eigenvalues, where $k_\pi$ is the number of phase differences $\Delta\theta_i$ which are $\pi$, and $k_0$ is the number of phase differences $\Delta\theta_i$ which are $0$. The $\lambda_j$ are close to 0 and are given by the following formula
 \begin{align}\label{eigsDNLS}
 \lambda_j &= \sqrt{\frac{d \mu_j}{M}} + \mathcal{O}(r^{-2N}) && j = 1, \dots, m-1,
 \end{align}
-where $r$ is defined in \cref{eigr}, $d$ is the coupling
-constant and $\{ \mu_1, \dots, \mu_{m-1} \}$ are the distinct, real, nonzero eigenvalues of the symmetric, tridiagonal matrix
+where $r$ is defined in \cref{eigr}, $d$ is the coupling constant and $\{ \mu_1, \dots, \mu_{m-1} \}$ are the distinct, real, nonzero eigenvalues of the symmetric, tridiagonal matrix
 \begin{align}\label{DNLSmatrixA}
 A &= \begin{pmatrix}
 -\cos(\Delta\theta_1) b_1 & \cos(\Delta\theta_1) b_1 & & &  \\
@@ -636,10 +652,6 @@ q\left(\frac{N_i-1}{2}\right)\left(\frac{N_i+3}{2}\right)
 \end{theorem}
 
 \begin{remark}
-There is strong numerical evidence that $M > 0$, i.e. the Melnikov condition is satisfied.
-\end{remark}
-
-\begin{remark}
 If all the nonzero eigenvalues $\mu_j$ of $A$ are larger than $\mathcal{O}(r^{-4N})$, then the formula \cref{eigsDNLS} is the sum of a leading order term and a small remainder term. A good approximation for the eigenvalues $\lambda_j$ can be obtained by computing the eigenvalues of $A$. A sufficient condition for this is $N_{\mathrm{max}} < 2 N$, where $N_{\mathrm{max}} = \frac{1}{2} \max\{ N_1, \dots, N_{m-1}\}$.
 \end{remark}
 
@@ -647,7 +659,8 @@ If all the nonzero eigenvalues $\mu_j$ of $A$ are larger than $\mathcal{O}(r^{-4
 
 We can compute the nonzero eigenvalues of \cref{DNLSmatrixA} in several special cases. In the first corollary, we consider the case where the pulse distances $N_i$ are equal.
 
-\begin{corollary}\label{DNLSeigcorr}Let $q_m(n)$ be an $m-$pulse solution to \cref{DNLSequilib} with pulse distances $N_i = 2N$ and phase differences $\Delta\theta_i$. Then the $\lambda_j$ are as follows.
+\begin{corollary}\label{DNLSeigcorr}
+Let $q_m(n)$ be an $m-$pulse solution to \cref{DNLSequilib} with pulse distances $N_i = 2N$ and phase differences $\Delta\theta_i$. Then the $\lambda_j$ are as follows.
 \begin{enumerate}[(i)]
 \item For $m = 2$, we have
 \begin{align}\label{2pulseeigs}
@@ -744,7 +757,7 @@ intermediate/mixed phase case
 
 We can also look at triple pulses with unequal pulse distances $N_1$ and $N_2$. If $N_1 < N_2 < 2 N_1$, then by \cref{DNLSeigcorr2}, there are two pairs of eigenvalues of order $r^{-N_1/2}$ and $r^{-N_2/2}$. We can similarly verify these decay rates numerically.
 
-Finally, we can compute the leading order term in equation \cref{eigsDNLS} and compare that to the numerical result. A value for $\omega$ is chosen, and the single pulse solution $q(n; \omega)$ is constructed numerically using parameter continuation from the anti-continuum limit until the desired coupling parameter $d$ is reached. The terms $b_i$ from the matrix $A$ are computed by using equation \cref{bieq} with the numerically constructed solution $q(n; \omega)$. For the derivative $\partial_\omega q(n; \omega)$, solutions $q(n; \omega + \epsilon)$ and $q(n; \omega - \epsilon)$ are constructed numerically for small $\epsilon$ by parameter continuation from the anti-continuum limit to the same value of $d$. The derivative $\partial_\omega q(n; \omega)$ is computed from these via a centered finite difference method; this is used together with $q(n; \omega)$ to calculate the Melnikov sum $M$. 
+Finally, we can compute the leading order term in equation \cref{eigsDNLS} and compare that to the numerical result. A value for $\omega$ is chosen, and the single pulse solution $q(n; \omega)$ is constructed numerically using parameter continuation from the anti-continuum limit until the desired coupling parameter $d$ is reached. The terms $b_i$ from the matrix $A$ are computed by using equation \cref{bieq} with the numerically constructed solution $q(n; \omega)$. For the derivative $\partial_\omega q(n; \omega)$, solutions $q(n; \omega + \epsilon)$ and $q(n; \omega - \epsilon)$ are constructed numerically for small $\epsilon$ by parameter continuation from the anti-continuum limit to the same value of $d$. The derivative $\partial_\omega q(n; \omega)$ is computed from these via a centered finite difference method; this is used together with $q(n; \omega)$ to calculate $M$. 
 
 First, we consider the case of equal pulse distances. We use the expressions from \cref{DNLSeigcorr} to compute the leading order term for the interaction eigenvalues, and we compare this to the results from Matlab's \texttt{eig} function. In \cref{fig:error1} we fix the inter-pulse distances and plot the log of the relative error of the eigenvalues versus the coupling parameter $d$. For intermediate values of $d$, the relative error is less than $10^{-3}$. Since the results of Theorem \cref{stabilitytheorem} are not uniform in $d$, i.e. they hold for sufficiently large $N$ once $d$ and $\omega$ are chosen, we do not expect to have a nice relationship between the error and $d$. This is furthermore complicated by the fact that additional sources of error arise from  
 numerically approximating $b_i$ and $M$. In principle, though, the method (and the asymptotic prediction) yields
@@ -1695,7 +1708,7 @@ To evaluate \cref{jumpIP}, we will compute the inner product of each of the term
 &= \langle T(\theta_i) Z_1(N_i^+), P_0^u(\theta_i) D_i d \rangle + \mathcal{O}\left(r^{-N}( (r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d| \right).
 \end{align*}
 
-The sums involving $\tilde{H}$ give us the Melnikov sum $M_2$.
+The sums involving $\tilde{H}$ give us the Melnikov sum $M$.
 \begin{align*}
 &\langle T(\theta_i) Z_1(0), \sum_{j = -N_{i-1}^-}^{-1} \Phi_s^-(0, j+1; \theta_i) B \tilde{H}_i^-(j) + \sum_{j = 0}^{N_i^+-1} \Phi_u^+(0, j+1; \theta_i) B \tilde{H}_i^+(j) \rangle \\
 &= \sum_{j = -N_{i-1}^-}^{-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i) \partial_\omega Q(j) \rangle + \sum_{j = 0}^{N_i^+-1} \langle T(\theta_i) Z_1(j+1), B T(\theta_i)  \partial_\omega Q(j) \rangle + \mathcal{O}(r^{-N})\\
@@ -1712,7 +1725,7 @@ Finally, we need to obtain bound for the sum involving $W$. To do this, as in \c
 (r^{-N} + \|G\| + |\lambda|)|D| + |\lambda|^2 )|d|.
 \end{align*}
 
-Since $Z_1(n) = T'(0)Q(n)$, it follows from \cref{Qdecay} that $Z_1(n) \leq C r^{|n|}$. Since $D F(0)$ is hyperbolic, we can find a constant $\tilde{r} > r$ such that $|Z_1(n)| \leq C \tilde{r}^{-n}$. The price to pay is a larger constant $C$. Using this bounds, the sum involving $W$ becomes
+It follows from the definition \eqref{adjvarsol} of $Z_1(n)$ and \cref{Qdecay} that $Z_1(n) \leq C r^{|n|}$. Since $D F(0)$ is hyperbolic, we can find a constant $\tilde{r} > r$ such that $|Z_1(n)| \leq C \tilde{r}^{-n}$. The price to pay is a larger constant $C$. Using this bounds, the sum involving $W$ becomes
 \begin{align*}
 &\left| \sum_{j = -N_{i-1}^-}^{-1} \langle Z_1(j+1), 
 (G_i^-(j) + \lambda B) W_i^-(j) \rangle \right| \\
@@ -1753,16 +1766,19 @@ since $T(\theta)$ is unitary and $\langle Z_1(n), T'(0)Q(n) \rangle = 0$ for all
 For the Melnikov sum, we use equation \eqref{adjvarsol} for $Z_1(j)$ to get
 \begin{align*}
 \sum_{j = -\infty}^{\infty} \langle Z_1(j+1), B  \partial_\omega Q(j) \rangle 
-&= \sum_{j = -\infty}^{\infty} \langle \begin{pmatrix} J q(j) \\ -J q(j+1) \end{pmatrix}, \frac{1}{d} \begin{pmatrix} J \partial_\omega q(j) \\ 0 \end{pmatrix} \rangle \\
-&= \frac{1}{d} \sum_{j = -\infty}^{\infty} \langle J q(j), J \partial_\omega q(j) \rangle \\
-&= -\frac{1}{d} \sum_{j = -\infty}^{\infty} \langle q(j), \partial_\omega q(j) \rangle 
+&= \sum_{j = -\infty}^{\infty} \langle \begin{pmatrix} -R'(0) q(j) \\ R'(0) q(j+1) \end{pmatrix}, \frac{1}{d} \begin{pmatrix} J \partial_\omega q(j) \\ 0 \end{pmatrix} \rangle \\
+&= -\frac{1}{d} \sum_{j = -\infty}^{\infty} \langle R'(0) q(j), J \partial_\omega q(j) \rangle \\
+&= -\frac{1}{d} \sum_{j = -\infty}^{\infty} \langle J^{-1} R'(0) q(j), \partial_\omega q(j) \rangle \\
+&= \frac{1}{d}M,
 \end{align*}
+where $M$ is defined in \eqref{genstabcritM}.
+
 Substituting these into the jump equations, we obtain the jump conditions
 \begin{equation}\label{eigjumpcond}
 \begin{aligned}
 \xi_i = \langle &T(\theta_i) Z_1(N_i^+), T(\theta_{i+1}) T'(0)Q(-N_i^-) \rangle (d_{i+1} - d_i) \\
 &+ \langle T(\theta_i) Z_1(-N_{i-1}^-), T(\theta_{i-1}) T'(0)Q(N_{i-1}^+) \rangle (d_i - d_{i-1}) \\
-&+\frac{1}{d} \sum_{j = -\infty}^{\infty} \langle q(j), \partial_\omega q(j) \rangle + R(\lambda)_i(d).
+&-\frac{1}{d} M + R(\lambda)_i(d).
 \end{aligned}
 \end{equation}
 For the remainder term, we substitute $|D|, \|G\| = \mathcal{O}(r^{-N})$ into the remainder term in \cref{jumpcond} to get
@@ -1847,16 +1863,7 @@ We showed above that for sufficiently large $N$, real-valued multi-pulses exist 
 
 \subsection{Proof of Theorem \ref{DNLSeigtheorem}}
 
-To find the interaction eigenvalues for DNLS, we will solve the matrix equation \cref{Elambda} from \cref{stabilitytheorem}. For the higher order Melnikov sum,
-\[
-M_2 = \sum_{n=-\infty}^\infty \langle Z_1(n+1), B  \partial_\omega Q(n) \rangle =
-\frac{1}{d} \sum_{n=-\infty}^\infty q(n) \partial_\omega q(n) = \frac{1}{d}M,
-\]
-where
-\[
-M = \sum_{n=-\infty}^\infty q(n) q_\omega(n).
-\]
-We are assuming that $M > 0$. 
+To find the interaction eigenvalues for DNLS, we will solve the matrix equation \cref{Elambda} from \cref{stabilitytheorem}. For DNLS, the stability criterion $M$ is given by \eqref{DNLSM}, and we are assuming that $M > 0$. 
 
 For $N$ sufficiently large, we can find the eigenvalues of \cref{multiEVP} using \cref{stabilitytheorem}. The matrix $A$ is given by \cref{DNLSmatrixA}. First, we rescale equation \cref{Elambda} by taking
 \begin{align*}
@@ -1867,7 +1874,7 @@ R(\lambda) = r^{-3N} \tilde{R}(\lambda)
 and dividing by $r^{-2N}$ to get the equivalent equation
 \begin{equation}\label{DNLStildeE}
 \tilde{E}(\lambda) = 
-\det(\tilde{A} - M_2 \tilde{\lambda}^2 I + r^{-N} \tilde{R}(\lambda)) = 0.
+\det\left(\tilde{A} - \frac{1}{d}M \tilde{\lambda}^2 I + r^{-N} \tilde{R}(\lambda)\right) = 0.
 \end{equation}
 To solve $\tilde{E}(\lambda) = 0$, we need to find the eigenvalues of $\tilde{A}$. Since $\tilde{A}$ is symmetric tridiagonal, its eigenvalues are real. Furthermore, $\tilde{A}$ has an eigenvalue at 0 with corresponding eigenvector $(1, 1, \dots, 1)^T$. Let $\{ \tilde{\mu}_1, \dots, \tilde{\mu}_{m-1}\}$ be the remaining $m-1$ eigenvalues of $A$. Since $b_i < 0$ for all $i$, it follows from \cite[Lemma 5.4]{Sandstede1998} that the signs of $\{ \tilde{\mu}_1, \dots, \tilde{\mu}_{m-1}\}$ are determined by the phase differences $\Delta\theta_i$. Specifically, $A$ has $k_\pi$ negative real eigenvalues (counting multiplicity), where $k_\pi$ is the number of $\Delta\theta_i$ which are $\pi$, and $A$ has $k_0$ positive real eigenvalues (counting multiplicity), where $k_0$ is the number of $\Delta\theta_i$ which are $0$. 
 
@@ -1883,13 +1890,13 @@ where $p_i = \cos(\Delta\theta_i) b_i$, $\Delta$ is the forward difference opera
 
 We can now solve equation \cref{DNLStildeE} for $\lambda$. By \cref{DFQmkernel}, we will always have an eigenvalue at 0 with algebraic multiplicity 2 and geometric multiplicity 1. The remaining eigenvalues result from interaction between the pulses. Let $\eta = r^{-N}$, and rewrite equation \cref{DNLStildeE} as 
 \begin{equation}\label{DNLStildeE2}
-K(\tilde{\lambda}; \eta) = \det(\tilde{A} - M_2 \tilde{\lambda}^2 I + \eta \tilde{R}(\lambda)).
+K(\tilde{\lambda}; \eta) = \det\left(\tilde{A} - \frac{1}{d}M \tilde{\lambda}^2 I + \eta \tilde{R}(\lambda)\right).
 \end{equation}
-For $j = 1, \dots, m-1$, $K(\pm \sqrt{\tilde{\mu}_j / M_2 }; 0) = 0$. Since the eigenvalues of $\tilde{A}$ are distinct, 
+For $j = 1, \dots, m-1$, $K(\pm \sqrt{d \tilde{\mu}_j / M }; 0) = 0$. Since the eigenvalues of $\tilde{A}$ are distinct, 
 \[
-\frac{\partial}{\partial \tilde{\lambda}} K(\tilde{\lambda}; 0)\Big|_{\tilde{\lambda} = \pm \sqrt{\tilde{\mu}_j / M_2 }} \neq 0.
+\frac{\partial}{\partial \tilde{\lambda}} K(\tilde{\lambda}; 0)\Big|_{\tilde{\lambda} = \pm \sqrt{d \tilde{\mu}_j / M }} \neq 0.
 \]
-Using the implicit function theorem, we can solve for $\tilde{\lambda}$ as a function of $\eta$ near $(\tilde{\lambda}, \eta) = (\pm \sqrt{\tilde{\mu}_j / M_2 }; 0)$. Thus for sufficiently small $\eta$, we can find smooth functions $\tilde{\lambda}_j^\pm(\eta)$ such that $\tilde{\lambda}_j^\pm(0) = \pm \sqrt{\tilde{\mu}_j / M_2 }$ and $K(\tilde{\lambda}_j^\pm(\eta); \eta) = 0$. Expanding $\tilde{\lambda}(\eta)$ in a Taylor series about $\eta = 0$ and taking $\eta = r^{-N}$, we can write $\tilde{\lambda}_j^\pm$ as $\tilde{\lambda}_j^\pm(N) = \tilde{\lambda}_j^\pm + \mathcal{O}(r^{-N})$. Undoing the scaling and taking $M_2 = M/d$, the interaction eigenvalues are given by
+Using the implicit function theorem, we can solve for $\tilde{\lambda}$ as a function of $\eta$ near $(\tilde{\lambda}, \eta) = (\pm \sqrt{d \tilde{\mu}_j / M }; 0)$. Thus for sufficiently small $\eta$, we can find smooth functions $\tilde{\lambda}_j^\pm(\eta)$ such that $\tilde{\lambda}_j^\pm(0) = \pm \sqrt{d \tilde{\mu}_j / M }$ and $K(\tilde{\lambda}_j^\pm(\eta); \eta) = 0$. Expanding $\tilde{\lambda}(\eta)$ in a Taylor series about $\eta = 0$ and taking $\eta = r^{-N}$, we can write $\tilde{\lambda}_j^\pm$ as $\tilde{\lambda}_j^\pm(N) = \tilde{\lambda}_j^\pm + \mathcal{O}(r^{-N})$. Undoing the scaling, the interaction eigenvalues are given by
 \begin{align*}
 \lambda^\pm_j &= \pm \sqrt{\frac{d \mu_j}{M}} + \mathcal{O}(r^{-2N}) && j = 1, \dots, m-1 .
 \end{align*}
