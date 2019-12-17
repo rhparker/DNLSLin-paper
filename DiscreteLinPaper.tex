@@ -106,20 +106,7 @@
 \address[3]{Mathematical Institute, University of Oxford, Oxford, OX2 6GG, UK}
 
 \begin{abstract}
-    In the present work, we consider the existence and spectral stability of multi-pulse solutions in Hamiltonian lattice systems.
-    We provide a general framework for the study
-    of such wave patterns based on a discrete
-    analogue of Lin's method, previously used in
-    the continuum realm. We develop explicit conditions for the existence of $m$-pulse structures and
-    subsequently develop a reduced matrix allowing us to
-    address their spectral stability. As a prototypical
-    example for the manifestation of the details of
-    the formulation, we consider the discrete nonlinear
-    Schr\"{o}dinger equation. Different families
-    of $2$- and $3$-pulse solitary waves are discussed,
-    and analytical expressions for the corresponding 
-    stability eigenvalues are obtained which are in very good agreement
-    with numerical results.
+    In the present work, we consider the existence and spectral stability of multi-pulse solutions in Hamiltonian lattice systems \revised{which are invariant under a one-parameter unitary group of symmetries.} We provide a general framework for the study of such wave patterns based on a discrete analogue of Lin's method, previously used in the continuum realm. We develop explicit conditions for the existence of multi-pulse \revised{standing wave structures} and subsequently develop a reduced matrix allowing us to address their spectral stability. As a prototypical example, we consider the discrete nonlinear Schr\"{o}dinger equation (DNLS). \revised{Using Lin's method, we extend existence and linear stability results of multi-pulse solutions beyond the anti-continuum and continuum limits.} Different families of $2$- and $3$-pulse solitary waves are discussed, and analytical expressions for the corresponding stability eigenvalues are obtained which are in very good agreement with numerical results.
 \end{abstract}
 
 \begin{keyword}
@@ -130,66 +117,27 @@ multi-pulse solutions \sep Hamiltonian lattice systems \sep lattice differential
 
 \section{Introduction and motivation}
 
-The study of multi-pulse wave structures has a time
-honored history in continuum systems. Attempts at
-a systematic formulation have taken place both at
-a more phenomenological, asymptotic level~\cite{elphick}
-and at a more rigorous level~\cite{Sandstede1998}.
-The development in the latter work of the so-called
-Lin's method for such wave patterns offered a 
-systematic view into a reduced formulation where
-the characteristics of the pulses (such as their centers,
-or possibly also their widths) could constitute effective
-dynamical variables for which simpler dynamical equations,
-i.e. ordinary differential equations, could be derived. While Lin's method for discrete dynamical systems has been developed in~\cite{Knobloch2000}, it has not so far been applied to the discrete multi-pulse problem.
-Over the following decade, methods were sought to 
-isolate and freeze the dynamics of individual pulses
-within the patterns~\cite{beyn1,beyn2}. More recently,
-such freezing techniques have also been extended to other
-structures including rotating waves~\cite{beyn3}. 
+The study of multi-pulse wave structures has a time honored history in continuum systems. Attempts at a systematic formulation have taken place both at a more phenomenological, asymptotic level~\cite{elphick} and at a more rigorous level~\cite{Sandstede1998}. The development in the latter work of the so-called Lin's method for such wave patterns offered a systematic view into a reduced formulation where the characteristics of the pulses (such as their centers, or possibly also their widths) could constitute effective
+dynamical variables for which simpler dynamical equations, i.e. ordinary differential equations, could be derived. While Lin's method for discrete dynamical systems has been developed in~\cite{Knobloch2000}, it has not so far been applied to the discrete multi-pulse problem. Over the following decade, methods were sought to 
+isolate and freeze the dynamics of individual pulses within the patterns~\cite{beyn1,beyn2}. More recently, such freezing techniques have also been extended to other structures including rotating waves~\cite{beyn3}. 
 
-Despite the intense interest in such multiple coherent
-structure patterns at the continuum limit, similar 
-techniques have not been systematically developed
-at the discrete level. Parts of the relevant efforts
-have involved an attempt at adapting the
-asymptotic methodology of~\cite{elphick} 
-(in the work of~\cite{kevold}) and also the consideration
-of structures systematically in the vicinity of the
-so-called anti-continuum limit~\cite{Pelinovsky2005}.
-The latter setting involves as a starting point the
-limit of vanishing coupling between the discrete sites,
-whereby suitable Lyapunov-Schmidt conditions can 
-be brought to bear to identify persistent configurations
-for finite coupling strengths between the adjacent
-lattice sites. While works such as~\cite{Kapitula2001a}
-have emerged that develop instability criteria, it would
-be useful to have a systematic toolbox to study the spectrum of multi-pulses in the spatially discrete setting. This would
-serve to both quantify the persistence conditions of
-the multi-structure states, and also to offer specific
-predictions on their spectral stability and nonlinear
-dynamics. 
+Despite the intense interest in such multiple coherent structure patterns at the continuum limit, similar techniques have not been systematically developed at the discrete level. Parts of the relevant efforts have involved an attempt at adapting the asymptotic methodology of~\cite{elphick} (in the work of~\cite{kevold}) and also the consideration of structures systematically in the vicinity of the so-called anti-continuum limit~\cite{Pelinovsky2005}.
+The latter setting involves as a starting point the limit of vanishing coupling between the discrete sites, whereby suitable Lyapunov-Schmidt conditions can be brought to bear to identify persistent configurations for finite coupling strengths between the adjacent lattice sites. While works such as~\cite{Kapitula2001a}
+have emerged that develop instability criteria, it would be useful to have a systematic toolbox to study the spectrum of multi-pulses in the spatially discrete setting. This would serve to both quantify the persistence conditions of the multi-structure states, and also to offer specific predictions on their spectral stability and nonlinear dynamics. 
 
-It is this void that it is the aim of the present work
-to fill. We start from a general formulation of Lin's method
-for the discrete multi-pulse problem in Hamiltonian systems. (For non-Hamiltonian systems, an adaptation of the results in \cite{Sandstede1998} is also possible). Assuming that a homoclinic orbit exists (the single pulse), we systematically develop conditions for the persistence of multi-pulse states. We then provide estimates of their relevant stability eigenvalues for the low dimensional (reduced) system of the pulses. These eigenvalues are close to 0, and we call them interaction eigenvalues, since they result from nonlinear interaction between neighboring copies of the primary pulse.
+It is this void that it is the aim of the present work to fill. \revised{Following~\cite{Grillakis1987}, we start with a Hamiltonian lattice system which is invariant under a one-parameter unitary group of symmetries $R(\theta)$.} (For non-Hamiltonian systems, an adaptation of the results in \cite{Sandstede1998} is possible). \revised{We assume that a primary pulse solution $q_n$ exists, which is a standing wave that evolves only in the direction of the symmetry group. We further assume that this primary pulse solution is orbitally stable in the sense of \cite{Grillakis1987}. From a spatial dynamics perspective, the primary pulse is a homoclinic orbit connecting the unstable and stable manifolds of a saddle-node equilibrium at the origin.}
 
-As a concrete example for the implementation of the method, we revisit the
-discrete nonlinear Schr{\"o}dinger (DNLS) system for which many of the methods of the previous paragraph have been developed~\cite{Kevrekidis2009} (see also~\cite{pelinovsky_2011}). In particular, we give a 
-systematic description especially of 2- and 3-pulse solutions and explain how the relevant conclusions can be generalized
-to arbitrary multi-pulse structures. 
-Our presentation will be structured as follows.
-In section 2, we will present the mathematical
-setup of the problem and of the special case (DNLS)
-example of interest. In section 3, we will develop
-Lin's method providing the main results but deferring
-the proof details to later sections. In section 4,
-we apply the method to the DNLS, comparing the theoretical findings to systematic computations of multi-pulse solutions. Our results are then summarized and some possible directions for future work are offered. Details of the proofs are presented in sections 6-8.
+\revised{To construct multi-pulses solutions, we use Lin's method \cite{Lin1990, Lin2008,Knobloch2000}, a Lyapunov-Schmidt reduction that can be used to find solutions which remain near a known homoclinic orbit. Heuristically, we can construct a 2-pulse as follows. Let $Q(n)$ be the primary homoclinic orbit and let $\Sigma$ be a section orthogonal to the homoclinic orbit at $Q(0)$. We look for a homoclinic orbit which starts at the origin at $n = -\infty$; intersects $\Sigma$ at $n = -N$; passes near the origin at $n = 0$; intersects $\Sigma$ again at $n = N$; and terminates at the origin at $n = \infty$. The distance in lattice points between the two intersections of $\Sigma$ is $2N$. Lin's method constructs a solution $U(n)$ which generically has ``jumps'' at $n = \pm N$. A 2-pulse solution $Q_2(n)$ exists if and only if these two jump conditions are both 0. This reduces the existence problem for 2-pulses to solving two jump equations. Similarly, the existence of an $m$-pulse is equivalent to solving $m$ jump conditions.}
+
+\revised{For an $m$-pulse, we also use Lin's method to find the eigenvalues which result from nonlinear interactions between neighboring copies of the primary pulse. These eigenvalues are close to 0, and we call them interaction eigenvalues. To do this, we follow the analysis in \cite{Sandstede1998}. Invariance under the symmetry group $R(\theta)$ induces an eigenvalue at 0 in the linearized equation. The corresponding eigenfunctions are, to leading order, piecewise linear combinations of the kernel eigenfunction.}
+
+\revised{The case where there is no underlying continuous symmetry group is briefly considered in section 3.5. If the stable and unstable manifolds of the equilibrium at 0 intersect transversely, the analysis is much simpler. There are no longer any jump conditions, and multi-pulses exist as long as the individual copies of the primary pulse are sufficiently well separated. In the absence of symmetry invariance, there is generically no longer a kernel eigenvalue. If the Hessian of the Hamiltonian $\mathcal{H}$ for the primary pulse is positive definite, the primary pulse will be orbitally stable. Using Lin's method, since multi-pulses are small perturbations of the primary pulse, the primary pulse will be stable as well.}
+
+As a concrete example for the implementation of the method, we revisit the discrete nonlinear Schr{\"o}dinger (DNLS) system for which many of the methods of the previous paragraph have been developed~\cite{Kevrekidis2009} (see also~\cite{pelinovsky_2011}). \revised{We show that known existence and linear stability results hold for regimes beyond the anti-continuum and continuum limits; in essence, we replace the requirement that the coupling between adjacent lattice sites is small by the the requirement that the pulses are well separated.} In particular, we give a systematic description especially of 2- and 3-pulse solutions and explain how the relevant conclusions can be generalized to arbitrary multi-pulse structures. Our presentation will be structured as follows. In section 2, we will present the mathematical setup of the problem and of the special case (DNLS) example of interest. In section 3, we will develop Lin's method providing the main results but deferring the proof details to later sections. In section 4, we apply the method to the DNLS, comparing the theoretical findings to systematic computations of multi-pulse solutions. Our results are then summarized and some possible directions for future work are offered. Details of the proofs are presented in sections 6-8.
 
 \section{Mathematical setup}
 
-A lattice dynamical system is an infinite system of ordinary differential equations which are indexed by points (nodes)
-on a lattice. For the purposes of this work, we will only consider dynamical systems on the integer lattice $\Z$, where the differential equation for each point on the lattice is identical, and the equations are coupled by a centered, second order difference operator.
+A lattice dynamical system is an infinite system of ordinary differential equations which are indexed by points (nodes) on a lattice. For the purposes of this work, we will only consider dynamical systems on the integer lattice $\Z$, where the differential equation for each point on the lattice is identical, and the equations are coupled by a centered, second order difference operator.
 
 As a specific example, we will look at the discrete nonlinear Schr{\"o}dinger equation (DNLS)
 \begin{equation}\label{DNLS}
@@ -264,7 +212,7 @@ where $u(t) \in \ell^2(\Z, \R^{2k})$, $\mathcal{H}: \ell^2(\Z, \R^{2k}) \rightar
 \end{equation}
 where $\Delta_2$ is the second difference operator $(\Delta_2 u)_n = u_{n+1} - 2 u_n + u_{n-1}$, $d$ is the coupling constant, and $f: \R^{2k} \rightarrow \R^{2k}$ is smooth with $f(0) = 0$ and $Df(0) = 0$. This implies that, other than the terms from $\Delta_2 u$, the RHS of \cref{lattice1} only involves the lattice site $u_n$. We note that $Df(u(n))$ is self-adjoint since $\mathcal{H}''(u)$ is self-adjoint.
 
-Using \cite{Grillakis1987} as a guide, we make the following hypothesis concerning symmetries of the system.
+\revised{Using \cite{Grillakis1987} as a guide, we make the following hypothesis concerning the invariance of the system under a group of symmetries. This hypothesis allows us to have standing wave solutions to \eqref{lattice1}, which are solutions which evolve only in the direction of the symmetry group. In addition, there is a kernel eigenvalue in the linearized problem which is a result of this symmetry invariance. We will construct the eigenfunctions associated with a multi-pulse standing wave using this kernel eigenvalue.}
 \begin{hypothesis}\label{symmetryhyp}
 There is unitary group of symmetries $\{ R(\theta) : \theta \in \R \}$ on $\R^{2k}$ such that 
 \begin{enumerate}[(i)]
@@ -344,7 +292,7 @@ M = -\frac{d}{d\omega} \mathcal{Q}(q) = -\sum_{n = -\infty}^\infty
 We note that for the map $\omega \mapsto q$ to be well defined, we do not distinguish between solutions $R(\theta)q$ for $\theta \in \R$.
 
 \begin{remark}
-The condition $M > 0$ is the Vakhitov–Kolokolov stability criterion \cite{Vakhitov1973}, which is generalized to abstract Hamiltonian systems in \cite{Grillakis1987}. $M > 0$ implies stability of the primary pulse \cite{Grillakis1987}. In general, the condition $M > 0$ can only be verified numerically.
+The condition $M > 0$ is the Vakhitov–Kolokolov stability criterion~\cite{Vakhitov1973}, which is generalized to abstract Hamiltonian systems in \cite{Grillakis1987}. $M > 0$ implies stability of the primary pulse~\cite{Grillakis1987}. In general, the condition $M > 0$ can only be verified numerically.
 \end{remark}
 
 \begin{remark}
@@ -375,7 +323,9 @@ F\begin{pmatrix}u \\ \tilde{u} \end{pmatrix} =
 u
 \end{pmatrix}.
 \end{equation}
-We note that $F(0) = 0$. It is straightforward to verify the symmetry relation 
+We note that $F(0) = 0$. \revised{Reformulation of the problem as a first order difference equation is required by standard implementations of Lin's method (See equation (1.1) in \cite{Knobloch2000} for the discrete case). For systems where the coupling between nodes is nonlinear, a different approach would be needed.}
+
+It is straightforward to verify the symmetry relation 
 \begin{equation}
 F(T(\theta)U) = F(U)T(\theta),
 \end{equation}
@@ -420,7 +370,9 @@ DF(0) = \begin{pmatrix}u \\ \tilde{u} \end{pmatrix} =
 I & 0
 \end{pmatrix}.
 \end{equation}
-We take the following hypothesis concerning the equilibrium at 0.
+
+\revised{In the next hypothesis, we assume the equilibrium at 0 is hyperbolic. This facilitates the analysis by allowing us to decompose the linearized problem in an exponential dichotomy. This also allows us to characterize the eigenvalues of $DF(0)$.}
+
 \begin{hypothesis}\label{hyperbolichyp}
 The equilibrium at 0 is hyperbolic, i.e. there are no eigenvalues $\nu$ of $DF(0)$ with $\text{Re } \nu = 0$. 
 \end{hypothesis}
@@ -434,7 +386,7 @@ It follows from \eqref{charpolyDF0} that the eigenvalues of $DF(0)$ come in pair
 r = \min_{j = 1, \dots, 2k} \nu_j.
 \end{equation}
 
-The homoclinic orbit $Q(n)$ lies in the intersection of the stable and unstable manifolds. We take the following additional hypothesis regarding their intersection.
+The homoclinic orbit $Q(n)$ lies in the intersection of the stable and unstable manifolds. \revised{In the following hypothesis, we assume that this intersection is non-degenerate.}
 
 \begin{hypothesis}\label{intersectionhyp}
 The tangent spaces of the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ have a one-dimensional intersection at $Q(n)$.
@@ -475,7 +427,7 @@ where $N_i^+ = \lfloor \frac{N_i}{2} \rfloor$, $N_i^- = N_i - N_i^+$, $N_0^- = N
 \begin{equation}\label{defN}
 N = \frac{1}{2} \min\{ N_i \}.
 \end{equation}
-The individual pieces are joined together end-to-end as in \cite{Sandstede1998}. The functions $\tilde{Q}_i^\pm(n)$ are remainder terms, which we expect to be small; see the estimates in \cref{transversemulti} below.
+The individual pieces are joined together end-to-end as in \cite{Sandstede1998}. The functions $\tilde{Q}_i^\pm(n)$ are remainder terms, which we expect to be small; see the estimates in \cref{transversemulti} below. \revised{The process of constructing a double pulse in terms of overlapping, well-separated single pulses resembles the construction of multi-site breathers in~\cite{Pelinovsky2012} (see \cite[Lemma 1]{Pelinovsky2012} for a two-site breather in the discrete Klein-Gordon equation).} 
 
 In addition to satisfying \cref{diffeq}, the pieces $U_i^\pm(n)$ must match at endpoints of consecutive intervals. Thus, in order to have a multi-pulse solution, $U_i^\pm(n)$ must satisfy the system of equations
 \begin{equation}\label{Usystem}
@@ -487,7 +439,7 @@ U_i^+(0) - U_i^-(0) &= 0
 \end{equation}
 for $i = 1, \dots, m$. The first equation in \cref{Usystem} states that the individual pulses are solutions to the difference equation \cref{diffeq} on the appropriate domains; the second equation glues together the individual pulses at their tails; and the third equation is a matching condition at the centers of the pulses.
 
-We will solve \cref{Usystem} using Lin's method. Lin's method yields a solution which has $m$ jumps in the direction of $Z_1(0)$. An $m-$pulse solution exists if and only if all $m$ jumps are 0. These jump conditions are given in the next theorem.
+We will solve \cref{Usystem} using Lin's method. Lin's method yields a solution which has $m$ jumps in the direction of $Z_1(0)$. An $m-$pulse solution exists if and only if all $m$ jumps are 0. These jump conditions are given in the next theorem, \revised{and resemble persistence conditions from other approaches.}
 
 \begin{theorem}\label{ntmulti}
 Assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{hyperbolichyp}, and \cref{intersectionhyp}, and let $Q(n)$ be the primary pulse solution to \cref{diffeq}. Then there exists a positive  integer $N_0$ with the following property. For all $m > 1$, pulse distances $N_i \geq N_0$ and symmetry parameters $\theta_i$, there exists a unique $m-$pulse solution $Q_m(n)$ to \cref{diffeq} if and only if the $m$ jump conditions 
@@ -615,7 +567,12 @@ r = 1 + \frac{\omega}{2 d} \left( 1 + \sqrt{1 + \frac{4 d}{\omega}} \right).
 \end{align}
 For $\omega, d > 0$, we have $r > 1$. 
 
-We will characterize an $m-$pulse solution to \cref{DNLSequilib} in terms of the $m-1$ pulse distances $\{ N_1, \dots, N_{m-1} \}$ and phase differences $\{ \Delta\theta_1, \dots, \Delta\theta_{m-1} \}$ between consecutive copies of $q(n)$. We have the following theorem regarding the existence of $m-$pulse solutions.
+We will characterize an $m-$pulse solution to \cref{DNLSequilib} in terms of the $m-1$ pulse distances $\{ N_1, \dots, N_{m-1} \}$ and phase differences $\{ \Delta\theta_1, \dots, \Delta\theta_{m-1} \}$ between consecutive copies of $q(n)$. \revised{Using \cref{transversemulti}, the $m$ jump conditions necessary for an $m-$pulse to exist can be written in terms of the phase differences $\Delta \theta_i$ as
+\begin{align}\label{jumpDNLS1}
+\xi_i &= \langle T(-\Delta \theta_i) Z_1(N_i^+), Q(-N_i^-) \rangle
+- \langle T(\Delta \theta_{i-1}) Z_1(-N_{i-1}^-), Q(N_{i-1}^+) \rangle + R_i && i = 1, \dots, m,
+\end{align}
+where we take $\Delta \theta_0 = \Delta \theta_m = 0$.} We have the following theorem regarding the existence of $m-$pulse solutions. 
 
 \begin{theorem}\label{DNLSexisttheorem}
 There exists a positive integer $N_0$ (which depends on $\omega$ and $d$), with the following property. For any $m \geq 2$, pulse distances $N_i \geq N_0$, and phase differences $\Delta\theta_i \in \{0, \pi\}$, there exists a unique $m-$pulse solution $q_m(n)$ to \cref{DNLSequilib} which resembles $m$ consecutive copies of the on-site pulse $q(n)$. No other phase differences are possible.
@@ -624,6 +581,7 @@ There exists a positive integer $N_0$ (which depends on $\omega$ and $d$), with 
 \begin{remark}
 For $\omega, d > 0$, $r$ is an increasing function of both $\omega$ and $d$, thus the threshold $N_0$ decreases as $\omega$ and $d$ increase.
 \end{remark}
+\revised{In addition, we note that an alternative approach to the existence of multi-pulse solutions in DNLS using the underlying reversibility of the system can be found in \cite{Qin2007}.}
 
 By \cref{Lkernel1} and \cref{Lkernel2}, the linearization \eqref{multiEVP} about $q_m(n)$ has a kernel with algebraic multiplicity at least 2 and geometric multiplicity at least 1 which is a result of rotational invariance. Assuming Hypothesis \ref{transversehyp}, the geometric multiplicity is exactly 1. The following theorem locates the small eigenvalues of the linearization about $q_m(n)$ resulting from interaction between consecutive copies of $q(n)$. 
 
@@ -655,7 +613,7 @@ q\left(\frac{N_i-1}{2}\right)\left(\frac{N_i+3}{2}\right)
 If all the nonzero eigenvalues $\mu_j$ of $A$ are larger than $\mathcal{O}(r^{-4N})$, then the formula \cref{eigsDNLS} is the sum of a leading order term and a small remainder term. A good approximation for the eigenvalues $\lambda_j$ can be obtained by computing the eigenvalues of $A$. A sufficient condition for this is $N_{\mathrm{max}} < 2 N$, where $N_{\mathrm{max}} = \frac{1}{2} \max\{ N_1, \dots, N_{m-1}\}$.
 \end{remark}
 
-\noindent In addition, we remark that if $b_1 = \dots = b_{m-1} = b$, $A = -b \mathcal{M}_1$, where the matrix $\mathcal{M}_1$ is defined in \cite[(2.84)]{Kevrekidis2009} and represents interactions between neighboring sites.
+\noindent In addition, we remark that if $b_1 = \dots = b_{m-1} = b$, $A = -b \mathcal{M}_1$, where the matrix $\mathcal{M}_1$ is defined in \cite[(2.84)]{Kevrekidis2009} and represents interactions between neighboring sites. \revised{The scaling of the interaction eigenvalues with respect to $d$ and $N$ is similar to that of small eigenvalues of multi-site breathers in the discrete Klein-Gordon equation \cite[Lemma 2]{Pelinovsky2012}, where we note that $N$ in our analysis corresponds to $2N$ in \cite{Pelinovsky2012}.}
 
 We can compute the nonzero eigenvalues of \cref{DNLSmatrixA} in several special cases. In the first corollary, we consider the case where the pulse distances $N_i$ are equal.
 
@@ -690,7 +648,7 @@ for $j = 1, \dots, m-1$.
 where $\nu = \sqrt{\frac{|b|d}{M}} = \mathcal{O}(r^{-N})$, and $b$ is given by equation \cref{bieq}.
 \end{corollary}
 
-In the second corollary, we give a general formula for the eigenvalues for a 3-pulse.
+\revised{ The case of equal pulse distances in DNLS resembles the multi-site breathers considered in \cite[Lemma 2]{Pelinovsky2012}.} In the second corollary, we give a general formula for the eigenvalues for a 3-pulse.
 
 \begin{corollary}\label{DNLSeigcorr2}
 Let $q_3(n)$ be an $3-$pulse solution to \cref{DNLSequilib} with pulse distances $N_1, N_2$ and phase differences $\Delta \theta_1, \Delta \theta_2$. Then $\lambda_1, \lambda_2$ are given by
@@ -802,7 +760,7 @@ the discrete sine-Gordon equation~\cite{peyrard},
 to settings of first order PDE discretizations
 related, e.g., to the Burgers model~\cite{turner}
 or even discretizations of third order models
-such as the Korteweg-de Vries equation~\cite{ohta}. 
+such as the Korteweg-de Vries equation~\cite{ohta}. \revised{This work could also be applied to the spectral stability of multi-site breathers a wider class of equations, such as that considered in \cite{Bountis2000}.}
 
 Another direction for future work is characterizing the family of multi-pulse solutions which arises as the coupling parameter $d$ is varied. Recent work~\cite{Jason2019} has investigated stationary, spatially localized patterns in lattice dynamical systems which change as a parameter is varied; the coupling parameter in this case is fixed. In some cases, these patterns exist along a closed bifurcation curves known as an isola. Numerical continuation with AUTO in the coupling parameter $d$ suggests that multi-pulse solutions in DNLS exist on an isola. The parameter $d$ varies over a bounded interval which includes the origin, thus the isola contains solutions to both the focusing and defocusing equation.
 
@@ -1263,7 +1221,7 @@ which is done in \cref{inv3nt}. There are no remaining jump conditions to satisf
 
 \section{Proof of Theorem \ref{stabilitytheorem}}
 
-In this section, we will prove \cref{stabilitytheorem}, which provides a means of locating the interaction eigenvalues associated with a multi-pulse. Throughout this section, we will assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{intersectionhyp}, and \cref{melnikovhyp}. The technique of the proof is similar to the proof of \cite[Theorem 2]{Sandstede1998}.
+In this section, we will prove \cref{stabilitytheorem}, which provides a means of locating the interaction eigenvalues associated with a multi-pulse. Throughout this section, we will assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{hyperbolichyp}, and \cref{intersectionhyp}. The technique of the proof is similar to the proof of \cite[Theorem 2]{Sandstede1998}.
 
 \subsection{Setup}
 
