@@ -87,7 +87,6 @@
 \graphicspath{ {images/} }
 
 \newcommand{\revised}[1]{ \textcolor{red}{#1} }
-
 \begin{document}
 
 \begin{frontmatter}
@@ -125,15 +124,59 @@ Despite the intense interest in such multiple coherent structure patterns at the
 The latter setting involves as a starting point the limit of vanishing coupling between the discrete sites, whereby suitable Lyapunov-Schmidt conditions can be brought to bear to identify persistent configurations for finite coupling strengths between the adjacent lattice sites. While works such as~\cite{Kapitula2001a}
 have emerged that develop instability criteria, it would be useful to have a systematic toolbox to study the spectrum of multi-pulses in the spatially discrete setting. This would serve to both quantify the persistence conditions of the multi-structure states, and also to offer specific predictions on their spectral stability and nonlinear dynamics. 
 
-It is this void that it is the aim of the present work to fill. \revised{Following~\cite{Grillakis1987}, we start with a Hamiltonian lattice system which is invariant under a one-parameter unitary group of symmetries $R(\theta)$.} (For non-Hamiltonian systems, an adaptation of the results in \cite{Sandstede1998} is possible). \revised{We assume that a primary pulse solution $q_n$ exists, which is a standing wave that evolves only in the direction of the symmetry group. We further assume that this primary pulse solution is orbitally stable in the sense of \cite{Grillakis1987}. From a spatial dynamics perspective, the primary pulse is a homoclinic orbit connecting the unstable and stable manifolds of a saddle-node equilibrium at the origin.}
+It is this void that it is the aim of the present work to fill. \revised{Following~\cite{Grillakis1987}, we start with a Hamiltonian lattice system which is invariant under a one-parameter unitary group of symmetries $R(\theta)$ (we will comment in section~3.5 on the far easier case of systems that do not respect continuous symmetries and also note that non-Hamiltonian systems can be tackled using an adaptation of the results in \cite{Sandstede1998}). Such systems often exhibit primary pulse solutions $q_n$ which are standing waves that evolve only in the direction of the symmetry group. We assume that this primary pulse solution is orbitally stable in the sense of \cite{Grillakis1987}. From a spatial dynamics perspective, the primary pulse is a homoclinic orbit that lies in intersection of the unstable and stable manifolds of a saddle equilibrium at the origin.}
 
-\revised{To construct multi-pulses solutions, we use Lin's method \cite{Lin1990, Lin2008,Knobloch2000}, a Lyapunov-Schmidt reduction that can be used to find solutions which remain near a known homoclinic orbit. Heuristically, we can construct a 2-pulse as follows. Let $Q(n)$ be the primary homoclinic orbit and let $\Sigma$ be a section orthogonal to the homoclinic orbit at $Q(0)$. We look for a homoclinic orbit which starts at the origin at $n = -\infty$; intersects $\Sigma$ at $n = -N$; passes near the origin at $n = 0$; intersects $\Sigma$ again at $n = N$; and terminates at the origin at $n = \infty$. The distance in lattice points between the two intersections of $\Sigma$ is $2N$. Lin's method constructs a solution $U(n)$ which generically has ``jumps'' at $n = \pm N$. A 2-pulse solution $Q_2(n)$ exists if and only if these two jump conditions are both 0. This reduces the existence problem for 2-pulses to solving two jump equations. Similarly, the existence of an $m$-pulse is equivalent to solving $m$ jump conditions.}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{images/LinsMethod}
+    \caption{Shown is an illustration of a piecewise 2-pulse $U(n)$, composed of the three pieces $U_1$, $U_2$, and $U_3$, and the linear superposition of two copies of the primary pulse $Q(n)$ placed at $n=-N$ and $n=N$, respectively. $U(n)$ is a genuine 2-pulse solution if and only if the two jumps at $n = \pm N$ are zero.}
+    \label{fig:lin}
+\end{figure}
 
-\revised{For an $m$-pulse, we also use Lin's method to find the eigenvalues which result from nonlinear interactions between neighboring copies of the primary pulse. These eigenvalues are close to 0, and we call them interaction eigenvalues. To do this, we follow the analysis in \cite{Sandstede1998}. Invariance under the symmetry group $R(\theta)$ induces an eigenvalue at 0 in the linearized equation. The corresponding eigenfunctions are, to leading order, piecewise linear combinations of the kernel eigenfunction.}
+\revised{To construct multi-pulse solutions, we use Lin's method \cite{Lin1990, Lin2008,Knobloch2000}, a Lyapunov-Schmidt reduction that can be used to find solutions which remain near a known homoclinic orbit. Heuristically, we can construct a 2-pulse on the integer lattice $\mathbb{Z}$ as follows. Let $Q(n)$ be the primary homoclinic orbit; then a homoclinic orbit $U(n)$ is said to be a 2-pulse if there is an $N\gg1$ so that
+\[
+\sup_{n\leq0} |U(n) - Q(n+N)| + \sup_{n\geq0} |U(n) - Q(n-N)|
+\]
+is small, i.e. the graph of $U(n)$ resembles the sum of two copies of the primary pulse translated by $N$ units to the left and right, respectively. For each $N\gg1$, Lin's method produces a piecewise 2-pulse solution that is composed of three pieces
+\begin{equation*}
+\begin{cases}
+U_1(n) & n \in (-\infty, -N] \\
+U_2(n) & n \in [-N, N] \\
+U_3(n) & n \in [N, \infty)
+\end{cases}
+\end{equation*}
+as shown in Figure~\ref{fig:lin}. This piecewise function will be a genuine 2-pulse if and only if these pieces coincide at $n=\pm N$ so that
+\[
+U_1(-N) = U_2(-N), \qquad
+U_2(N) = U_3(N).
+\]
+This approach therefore reduces the existence problem for 2-pulses to solving two jump conditions. Similarly, the existence of an $m$-pulse is equivalent to solving $m$ jump conditions.}
 
-\revised{The case where there is no underlying continuous symmetry group is briefly considered in section 3.5. If the stable and unstable manifolds of the equilibrium at 0 intersect transversely, the analysis is much simpler. There are no longer any jump conditions, and multi-pulses exist as long as the individual copies of the primary pulse are sufficiently well separated. In the absence of symmetry invariance, there is generically no longer a kernel eigenvalue. If the Hessian of the Hamiltonian $\mathcal{H}$ for the primary pulse is positive definite, the primary pulse will be orbitally stable. Using Lin's method, since multi-pulses are small perturbations of the primary pulse, the primary pulse will be stable as well.}
+\revised{For a multi-pulse, we also use Lin's method to find the eigenvalues which result from nonlinear interactions between neighboring copies of the primary pulse. These eigenvalues are close to 0, and we call them interaction eigenvalues. To do this, we adapt the analysis in \cite{Sandstede1998} to the Hamiltonian case. (For non-Hamiltonian systems, the analysis is much simpler, an in fact is the discrete analogue of \cite{Sandstede1998}). Invariance under the symmetry group $R(\theta)$ induces an eigenvalue at 0 in the linearized equation. The corresponding eigenfunctions are, to leading order, piecewise linear combinations of the kernel eigenfunction.}
 
-As a concrete example for the implementation of the method, we revisit the discrete nonlinear Schr{\"o}dinger (DNLS) system for which many of the methods of the previous paragraph have been developed~\cite{Kevrekidis2009} (see also~\cite{pelinovsky_2011}). \revised{We show that known existence and linear stability results hold for regimes beyond the anti-continuum and continuum limits; in essence, we replace the requirement that the coupling between adjacent lattice sites is small by the the requirement that the pulses are well separated.} In particular, we give a systematic description especially of 2- and 3-pulse solutions and explain how the relevant conclusions can be generalized to arbitrary multi-pulse structures. Our presentation will be structured as follows. In section 2, we will present the mathematical setup of the problem and of the special case (DNLS) example of interest. In section 3, we will develop Lin's method providing the main results but deferring the proof details to later sections. In section 4, we apply the method to the DNLS, comparing the theoretical findings to systematic computations of multi-pulse solutions. Our results are then summarized and some possible directions for future work are offered. Details of the proofs are presented in sections 6-8.
+As a concrete example for the implementation of the method, we revisit the discrete nonlinear Schr{\"o}dinger (DNLS) system for which many of the methods of the previous paragraph have been developed~\cite{Kevrekidis2009} (see also~\cite{pelinovsky_2011}). \revised{We show that known existence and linear stability results hold for regimes beyond the anti-continuum and continuum limits; in essence, we replace the requirement that the coupling between adjacent lattice sites be small by the the requirement that the pulses are well separated.} In particular, we give a systematic description especially of 2- and 3-pulse solutions and explain how the relevant conclusions can be generalized to arbitrary multi-pulse structures. Our presentation will be structured as follows. In section 2, we will present the mathematical setup of the problem and of the special case (DNLS) example of interest. In section 3, we will develop Lin's method providing the main results but deferring the proof details to later sections. In section 4, we apply the method to the DNLS, comparing the theoretical findings to systematic computations of multi-pulse solutions. Our results are then summarized and some possible directions for future work are offered. Details of the proofs are presented in sections 6-8.
+
+\revised{While the paradigm of interest herein will be the
+DNLS, we note in passing that the technique considered is
+more broadly applicable in dispersive discrete nonlinear
+systems. As only one parallel worth drawing, we 
+mention the case of multiple kinks in the context
+of discrete Klein-Gordon models such as the discrete
+sine-Gordon or the discrete $\phi^4$ model~\cite{pgksg}.
+While there are some nontrivial differences between
+this case and the one considered herein (including, e.g.,
+the study of fronts rather than pulses, and the 
+stability of configurations centered between adjacent sites
+rather than on a lattice site), the relevant setting can
+be adapted to such a case. Such Klein-Gordon multi-kinks 
+are of interest both in their static~\cite{add1} and in their
+traveling~\cite{add2} form in the discrete problem. A more
+challenging generalization is the one to the setting
+of discrete breathers in Klein-Gordon lattices. The latter,
+however, is also worth considering in a suitable 
+action-angle framework where the relevant persistence and
+stability problem can also be considered; see, e.g.,~\cite{vkouketal} 
+for a recent discussion thereof.}
 
 \section{Mathematical setup}
 
@@ -220,17 +263,21 @@ There is unitary group of symmetries $\{ R(\theta) : \theta \in \R \}$ on $\R^{2
 \begin{equation}\label{Hinvariance}
 \mathcal{H}(R(\theta)u) = \mathcal{H}(u).
 \end{equation}
+
+\revised{
 \item $R(\theta)$ satisfies the ``commuting'' relation
 \begin{equation}\label{RJcommute}
 R(\theta) J = J R^*(-\theta)
 \end{equation}
+}
 \end{enumerate}
 \end{hypothesis}
+\revised{
 \noindent Condition (ii) implies 
 \begin{equation}\label{RprimeJcommute}
 R'(0) J = -J R'(0)^*,
 \end{equation}
-where $R'(0)$ is the infinitesimal generator of the symmetry group $R(\theta)$. In addition, since $R(\theta)$ is unitary,
+where $R'(0)$ is the infinitesimal generator of the symmetry group $R(\theta)$. } In addition, since $R(\theta)$ is unitary,
 \begin{equation}\label{RJcommute2}
 R(\theta) J = J R(\theta).
 \end{equation}
@@ -282,28 +329,25 @@ thus $R'(0) q$ is an eigenfunction of $L(q)$ with eigenvalue 0.
 
 As in \cite[Assumption 2]{Grillakis1987}, we take the following hypothesis about the existence of bound state solutions. \revised{We also assume that a stability criterion is satisfied.}
 \begin{hypothesis}\label{boundstatehyp}
-For $\omega \in (\omega_1, \omega_2)$, there exists an injective $C^1$ map $\omega \mapsto q$ such that $q \in \ell^2(\Z, \R^{2k})$ is a bound state solution to \cref{latticestat}. \revised{ Furthermore, for all $\omega \in (\omega_1, \omega_2)$, $M > 0$, where
+For $\omega \in (\omega_1, \omega_2)$, there exists an \revised{injective} $C^1$ map $\omega \mapsto q$ such that $q \in \ell^2(\Z, \R^{2k})$ is a bound state solution to \cref{latticestat}. \revised{ Furthermore, for all $\omega \in (\omega_1, \omega_2)$, $M > 0$, where
 \begin{align}\label{genstabcritM}
 M = -\frac{d}{d\omega} \mathcal{Q}(q) = -\sum_{n = -\infty}^\infty 
 \langle J^{-1}R'(0) u_n, \partial_\omega u_n \rangle
 \end{align}
 }
 \end{hypothesis}
-We note that for the map $\omega \mapsto q$ to be well defined, we do not distinguish between solutions $R(\theta)q$ for $\theta \in \R$.
-
+We note that for the map $\omega \mapsto q$ to be well defined, we do not distinguish between solutions $R(\theta)q$ for $\theta \in \R$. \revised{The case of $M<0$ is connected
+to an instability of the primary pulse and hence is not further considered herein.}
+\revised{
 \begin{remark}
-The condition $M > 0$ is the Vakhitov–Kolokolov stability criterion~\cite{Vakhitov1973}, which is generalized to abstract Hamiltonian systems in \cite{Grillakis1987}. $M > 0$ implies stability of the primary pulse~\cite{Grillakis1987}. In general, the condition $M > 0$ can only be verified numerically.
+The condition $M > 0$ is the Vakhitov Kolokolov stability criterion~\cite{Vakhitov1973}, which is generalized to abstract Hamiltonian systems in \cite{Grillakis1987}. $M > 0$ implies stability of the primary pulse~\cite{Grillakis1987}. In general, the condition $M > 0$ can only be verified numerically.
 \end{remark}
-
+}
+\revised{
 \begin{remark}
-We use the notation $M$ for the stability criterion \eqref{genstabcritM} since $M$ will appear in the proof of \cref{stabilitytheorem} as a Melnikov sum which measures a jump in a specific direction. Since we have a Hamiltonian system, the ``lower order'' Melnikov sum $M_1$ is 0, where $M_1$ is defined by
-\begin{align}\label{MelnikovM1zero}
-M_1 &= \sum_{n=-\infty}^\infty \langle Z_1(n+1), B T'(0)Q(n) \rangle
-= \sum_{n=-\infty}^\infty \langle R'(0)q(n), J R'(0)q(n) \rangle.
-\end{align}
-If $M_1 \neq 0$, which can occur in non-Hamiltonian systems, the analysis is much simpler and in fact is the discrete analogue of \cite{Sandstede1998}. 
+We use the notation $M$ for the stability criterion \eqref{genstabcritM} since $M$ will appear in the proof of \cref{stabilitytheorem} as a Melnikov sum which measures a jump in a specific direction.
 \end{remark}
-
+}
 By \cref{boundstatehyp}, $\partial_\omega q$ exists for $\omega \in (\omega_1, \omega_2)$. Differentiating \cref{latticestat} with respect to $\omega$ and multiplying by $J$, $\partial_\omega q$ satisfies 
 \begin{equation}\label{Lkernel2}
 L(q)\partial_\omega q = R'(0) q.
@@ -341,6 +385,7 @@ We can similarly write the eigenvalue problem $(L(q) - \lambda I)v = 0$ as the f
 V(n+1) = DF(q_n) V(n) + \lambda B V(n),
 \end{equation}
 where
+\revised{
 \begin{equation}\label{latticeDF}
 DF(q(n)) = 
 \begin{pmatrix}
@@ -348,6 +393,7 @@ DF(q(n)) =
 I & 0
 \end{pmatrix} 
 \end{equation}
+}
 and $B$ is the constant-coefficient block matrix
 \begin{equation}\label{latticeB}
 B = \frac{1}{d} 
@@ -356,13 +402,15 @@ J & 0 \\
 0 & 0 
 \end{pmatrix}.
 \end{equation}
+\revised{
 Since $R(\theta)J = J R(\theta)$, $T(\theta)$ commutes with $B$. It follows from \cref{Lkernel1} and \cref{Lkernel2} that
 \begin{align}
 T'(0) Q(n+1) &= DF(Q(n)) T'(0) Q(n) \label{DFkernel1} \\
 \partial_\omega Q(n+1) &= DF(Q(n)) \partial_\omega Q(n) + B T'(0)Q(n) \label{DFkernel2}.
 \end{align}
+}
 
-Since $F(0) = 0$, the origin is an equilibrium point for the dynamical system \cref{diffeq}. Fix $\omega \in (\omega_1, \omega_2)$, and let $q$ be the bound state from \cref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in \ell^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, $Q(n)$ is a homoclinic orbit solution to \cref{diffeq} connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. Since $f(0) = Df(0) = 0$, for the equilibrium at 0 we have
+Since $F(0) = 0$, the origin is an equilibrium point for the dynamical system \cref{diffeq}. Fix $\omega \in (\omega_1, \omega_2)$, and let $q$ be the bound state from \cref{boundstatehyp} corresponding to $\omega$. Let $Q(n) = ( q_n, q_{n-1} )$. Since $q \in \ell^2(\Z, \R^{2k})$, $q_n \rightarrow 0$ as $n \rightarrow \pm \infty$, $Q(n)$ is a homoclinic orbit solution to \cref{diffeq} connecting the equilibrium at 0 to itself. We will refer to this as the primary pulse solution. \revised{Since $f(0) = Df(0) = 0$, for the equilibrium at 0 we have
 \begin{equation}\label{DF0}
 DF(0) = \begin{pmatrix}u \\ \tilde{u} \end{pmatrix} =
 \begin{pmatrix}
@@ -370,9 +418,9 @@ DF(0) = \begin{pmatrix}u \\ \tilde{u} \end{pmatrix} =
 I & 0
 \end{pmatrix}.
 \end{equation}
-
+}
 \revised{In the next hypothesis, we assume the equilibrium at 0 is hyperbolic. This facilitates the analysis by allowing us to decompose the linearized problem in an exponential dichotomy. This also allows us to characterize the eigenvalues of $DF(0)$.}
-
+\revised{
 \begin{hypothesis}\label{hyperbolichyp}
 The equilibrium at 0 is hyperbolic, i.e. there are no eigenvalues $\nu$ of $DF(0)$ with $\text{Re } \nu = 0$. 
 \end{hypothesis}
@@ -381,11 +429,11 @@ Since $DF(0)$ does not have a zero eigenvalue by \cref{hyperbolichyp}, we can us
 \det(DF(0) - \nu I) &= 
 \det(-\nu I) \det \left( 2I - \frac{1}{d}\omega J^{-1} R'(0) - \left( \nu + \frac{1}{\nu} \right) I\right)
 \end{align}
-It follows from \eqref{charpolyDF0} that the eigenvalues of $DF(0)$ come in pairs $\{\nu, 1/\nu\}$. By \eqref{RprimeJcommute}, $2I - \frac{1}{d}\omega J^{-1} R'(0)$ is self-adjoint, thus $DF(0)$ has $2k$ pairs of real eigenvalues $\{ (\nu_j, 1/\nu_j) : j = 1, \dots, 2k\}$. Let
+It follows from \eqref{charpolyDF0} that the eigenvalues of $DF(0)$ come in pairs $\{\nu, 1/\nu\}$. By \eqref{RprimeJcommute}, the matrix $2I - \frac{1}{d}\omega J^{-1} R'(0)$ is self-adjoint, thus $DF(0)$ has $2k$ pairs of real eigenvalues $\{ (\nu_j, 1/\nu_j) : j = 1, \dots, 2k\}$. Let
 \begin{equation}\label{defr}
 r = \min_{j = 1, \dots, 2k} \nu_j.
 \end{equation}
-
+}
 The homoclinic orbit $Q(n)$ lies in the intersection of the stable and unstable manifolds. \revised{In the following hypothesis, we assume that this intersection is non-degenerate.}
 
 \begin{hypothesis}\label{intersectionhyp}
@@ -396,6 +444,7 @@ The tangent spaces of the stable and unstable manifolds $W^s(0)$ and $W^u(0)$ ha
 \begin{equation}\label{Qdecay}
 |Q(n)| \leq C r^{-|n|}.
 \end{equation}
+\revised{
 By \cref{intersectionhyp}, $T'(0) Q(n)$ is the unique bounded solution to the variational equation
 \begin{align*}
 V(n+1) &= D_U F(q(n)) V(n),
@@ -412,6 +461,7 @@ We can verify directly that
 \begin{equation}\label{adjvarsol}
 Z_1(n) = \begin{pmatrix} -R'(0) q(n-1) \\ R'(0) q(n) \end{pmatrix}.
 \end{equation}
+}
 In both of these cases, uniqueness is up to scalar multiples.
 
 \subsection{Existence of multi-pulses}
@@ -439,7 +489,7 @@ U_i^+(0) - U_i^-(0) &= 0
 \end{equation}
 for $i = 1, \dots, m$. The first equation in \cref{Usystem} states that the individual pulses are solutions to the difference equation \cref{diffeq} on the appropriate domains; the second equation glues together the individual pulses at their tails; and the third equation is a matching condition at the centers of the pulses.
 
-We will solve \cref{Usystem} using Lin's method. Lin's method yields a solution which has $m$ jumps in the direction of $Z_1(0)$. An $m-$pulse solution exists if and only if all $m$ jumps are 0. These jump conditions are given in the next theorem, \revised{and resemble persistence conditions from other approaches.}
+We will solve \cref{Usystem} using Lin's method. Lin's method yields a solution which has $m$ jumps in the direction of $Z_1(0)$. An $m-$pulse solution exists if and only if all $m$ jumps are 0. These jump conditions are given in the next theorem.
 
 \begin{theorem}\label{ntmulti}
 Assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{hyperbolichyp}, and \cref{intersectionhyp}, and let $Q(n)$ be the primary pulse solution to \cref{diffeq}. Then there exists a positive  integer $N_0$ with the following property. For all $m > 1$, pulse distances $N_i \geq N_0$ and symmetry parameters $\theta_i$, there exists a unique $m-$pulse solution $Q_m(n)$ to \cref{diffeq} if and only if the $m$ jump conditions 
@@ -465,9 +515,10 @@ $Q_m(n)$ can be written piecewise in the form \cref{Upiecewise}, and the followi
 \end{equation}
 \end{theorem}
 
+\revised{
 \begin{remark}If equation \cref{diffeq} has a conserved quantity, i.e. a function $E: \R^{4d} \rightarrow \R$ such that $E(F(U)) = E(U)$, we can remove one of the jump conditions in \cref{jumpcondexist} as is done in \cite{SandstedeStrut}. For DNLS, this conserved quantity is the current density \cref{DNLSE}.
 \end{remark}
-
+}
 \subsection{Eigenvalue problem}
 
 We will now turn to the spectral stability of multi-pulses. In particular, we will locate the interaction eigenvalues. Let $Q_m(n) = (q_m(n), q_m(n-1))$ be an $m-$pulse solution to \cref{diffeq} constructed according to \cref{ntmulti}. By \cref{ntmulti}, $Q_m(n)$ can be written piecewise in the form \cref{Upiecewise}. The eigenvalue problem is
@@ -480,9 +531,11 @@ We can now state the following theorem, in which we locate the eigenvalues of \c
 
 \begin{theorem}\label{stabilitytheorem}
 Assume \cref{symmetryhyp}, \cref{boundstatehyp}, \cref{hyperbolichyp}, and \cref{intersectionhyp}. Let $Q_m(n)$ be an $m-$pulse solution to \cref{diffeq} constructed according to \cref{ntmulti} with pulse distances $\{ N_1, \dots, N_{m-1}\}$ and symmetry parameters $\{\theta_1, \dots, \theta_m\}$. Then there exists $\delta > 0$ small with the following property. There exists a bounded, nonzero solution $V(n)$ of the eigenvalue problem \cref{multiEVP} for $|\lambda| < \delta$ if and only if $E(\lambda) = 0$, where
+\revised{
 \begin{equation}\label{Elambda}
 E(\lambda) = \det\left(A - \frac{1}{d}M \lambda^2 I + R(\lambda)\right).
 \end{equation}
+}
 $M$ is defined in \eqref{genstabcritM}, and $A$ is the tridiagonal $m \times m$ matrix
 \begin{align}\label{matrixA}
 A &= \begin{pmatrix}
@@ -531,6 +584,8 @@ We note that for DNLS, the group $G$ is $( \{\pm 1\}, \cdot)$. In this case, Lin
 \begin{theorem}\label{transversemulti}
 Assume \cref{transversehyp}, and let $Q(n)$ be the primary pulse solution to \cref{diffeq}. Then there exists a positive integer $N_0$ with the following property. For all $m > 1$, pulse distances $N_i \geq N_0$ and symmetry parameters $\theta_i$, there exists a unique $m-$pulse solution $Q_m(n)$ to \cref{diffeq} which can be written in the form \cref{Upiecewise}. The remainder terms $\tilde{Q}_i^\pm(n)$ have the same estimates as in \cref{ntmulti}.
 \end{theorem}
+
+\revised{Note that, if the discrete system comes from a discrete Hamiltonian system, the Hessian of the Hamiltonian $\mathcal{H}$ about the primary pulse will not have an eigenvalue at the origin. If the Hessian of the Hamiltonian $\mathcal{H}$ for the primary pulse is positive definite, the primary pulse will be orbitally stable. Lin's method then shows that the multi-pulses we constructed in Theorem~\ref{transversemulti} will not have any eigenvalues near the origin either: their Hessians will therefore also be positive definite, and the multi-pulses are orbitally stable.}
 
 \section{Discrete NLS equation}\label{sec:DNLS}
 
@@ -720,8 +775,7 @@ Finally, we can compute the leading order term in equation \cref{eigsDNLS} and c
 First, we consider the case of equal pulse distances. We use the expressions from \cref{DNLSeigcorr} to compute the leading order term for the interaction eigenvalues, and we compare this to the results from Matlab's \texttt{eig} function. In \cref{fig:error1} we fix the inter-pulse distances and plot the log of the relative error of the eigenvalues versus the coupling parameter $d$. For intermediate values of $d$, the relative error is less than $10^{-3}$. Since the results of Theorem \cref{stabilitytheorem} are not uniform in $d$, i.e. they hold for sufficiently large $N$ once $d$ and $\omega$ are chosen, we do not expect to have a nice relationship between the error and $d$. This is furthermore complicated by the fact that additional sources of error arise from  
 numerically approximating $b_i$ and $M$. In principle, though, the method (and the asymptotic prediction) yields
 satisfactory results except for the vicinity of the 
-anti-continuum limit (where the notion of the single
-pulse is highly discrete) and the near-continuum limit
+anti-continuum limit  and the near-continuum limit
 (where the role of discreteness is too weak). 
 It is interesting to point out that at a ``middle
 ground'' between these two limits, namely around $d=0.5$,
