@@ -1307,13 +1307,16 @@ T'(0)Q_m(n+1) &= DF(Q_m(n))T'(0)Q_m(n) \\
 (\partial_\omega Q_m)(n+1) &= DF(Q_m(n))\partial_\omega Q_m(n) + B T'(0)Q_m(n).
 \end{aligned}
 \end{equation}
-As in \cite{Sandstede1998}, we will take an ansatz for the eigenfunction $V(n)$ which is a piecewise perturbation of the kernel eigenfunction. If we follow \cite{Sandstede1998} and 
-use an ansatz of the form 
+As in \cite{Sandstede1998}, we will take an ansatz for the eigenfunction $V(n)$ which is a piecewise perturbation of the kernel eigenfunction. If we follow \cite{Sandstede1998} and use an ansatz of the form 
 \begin{equation*}
 V_i^\pm(n) = 
 d_i T'(0)Q_m(n) + W_i^\pm(n),
 \end{equation*}
-we will obtain a Melnikov sum of the form \cref{MelnikovM1zero}, which is 0. Instead, we will take a piecewise ansatz of the form
+we will obtain a Melnikov sum of the form
+\begin{align*}
+M_1 &= \sum_{j=-\infty}^\infty \langle Z_1(j+1), B T'(0)Q(j),
+\end{align*}
+which is zero. Instead, we will take a piecewise ansatz of the form
 \begin{equation}\label{Viansatz2}
 V_i^\pm(n) = 
 d_i [ T'(0)Q_m(n) + \lambda \partial_\omega Q_m(n) ] + W_i^\pm(n),
